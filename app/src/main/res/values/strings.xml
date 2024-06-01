@@ -1,0 +1,41 @@
+<resources>
+
+    <string name="remote" translatable="false">Satellite_Finder</string>
+    <string name="app_name">Satellite Tracker App</string>
+    <string name="north">North</string>
+    <string name="northwest">N/W</string>
+    <string name="west">West</string>
+    <string name="southwest">S/W</string>
+    <string name="south">South</string>
+    <string name="southeast">S/E</string>
+    <string name="east">East</string>
+    <string name="north_east">N/E</string>
+    <string name="not_now"><u>NOT NOW</u></string>
+    <string name="select_satellite">Select Satellite</string>
+    <string name="satellite_finder">Satellite Finder</string>
+    <string name="satellite_map">Satellite Map</string>
+    <string name="compass">Compass</string>
+    <string name="more">More</string>
+    <string name="satellite_info">Satellite info</string>
+    <string name="select_map_type">Select Map Type</string>
+    <string name="hybrid">Hybrid</string>
+    <string name="normal">Normal</string>
+    <string name="satellite">Satellite</string>
+    <string name="terrain">Terrain</string>
+    <string name="do_you_like_our_app">Do you like our app?</string>
+    <string name="give_us_a_rating_so_we_know_if_you_like">Give us a rating so we know if you like</string>
+    <string name="do_you_want_to_exit">Do you want to exit</string>
+    <string name="ad_attribution">AD</string>
+    <string name="install">Install</string>
+    <string name="get_started">Get Started</string>
+    <string name="languages">Languages</string>
+    <string name="done">Done</string>
+    <string name="this_action_may_contains_ad">This action may contains Ad</string>
+    <string name="exit">Exit</string>
+    <string name="cancel">Cancel</string>
+    <string name="the_smart_solution_for_your_dish">The smart solution for your dish</string>
+    <string name="the_feature_that_guides_you_to_your_destination">The feature that guides you to your destination.</string>
+    <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Never lose your signal again. Use satellite maps to find your dish.</string>
+    <string name="location_info">Location Info</string>
+    <string name="rate_now">Rate now</string>
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Satellite Tracker App</string>
+
+    <string name="north">Norte</string>
+    <string name="northwest">N/O</string>
+    <string name="west">Oeste</string>
+    <string name="southwest">S/O</string>
+    <string name="south">Sur</string>
+    <string name="southeast">S/E</string>
+    <string name="east">Este</string>
+    <string name="north_east">N/E</string>
+    <string name="not_now"><u>NO AHORA</u></string>
+    <string name="select_satellite">Seleccionar Satélite</string>
+    <string name="satellite_finder">Localizador de Satélites</string>
+    <string name="satellite_map">Mapa Satelital</string>
+    <string name="compass">Brújula</string>
+    <string name="more">Más</string>
+    <string name="satellite_info">Información del Satélite</string>
+    <string name="select_map_type">Seleccionar Tipo de Mapa</string>
+    <string name="hybrid">Híbrido</string>
+    <string name="normal">Normal</string>
+    <string name="satellite">Satélite</string>
+    <string name="terrain">Terreno</string>
+    <string name="do_you_like_our_app">¿Te gusta nuestra aplicación?</string>
+    <string name="give_us_a_rating_so_we_know_if_you_like">Danos una calificación para saber si te gusta</string>
+    <string name="do_you_want_to_exit">¿Deseas salir?</string>
+    <string name="ad_attribution">ANUNCIO</string>
+    <string name="install">Instalar</string>
+    <string name="get_started">Empezar</string>
+    <string name="languages">Idiomas</string>
+    <string name="done">Listo</string>
+    <string name="this_action_may_contains_ad">Esta acción puede contener publicidad</string>
+    <string name="exit">Salir</string>
+    <string name="cancel">Cancelar</string>
+    <string name="the_smart_solution_for_your_dish">La solución inteligente para tu antena</string>
+    <string name="the_feature_that_guides_you_to_your_destination">La función que te guía a tu destino.</string>
+    <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Nunca pierdas tu señal de nuevo. Usa mapas satelitales para encontrar tu antena.</string>
+    <string name="location_info">Información de Ubicación</string>
+    <string name="rate_now">Calificar ahora</string>
+
+</resources>

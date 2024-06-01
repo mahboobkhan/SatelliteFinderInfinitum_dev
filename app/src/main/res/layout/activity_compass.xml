@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg"
+    tools:context=".ui.activites.CompassActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:background="@drawable/top_bg"
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/top"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:padding="@dimen/_3sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/btnBack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/compass"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18ssp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        app:layout_constraintTop_toBottomOf="@id/top"
+        app:layout_constraintBottom_toBottomOf="@id/top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/card">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/compass"
+                android:textAlignment="center"
+                android:textColor="#464646"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvCompassText"
+                android:fontFamily="@font/roboto_medium"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/compassTv"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/compassTv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textColor="#464646"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto_medium"
+                android:id="@+id/tvCompassText"/>
+
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_230sdp"
+        android:id="@+id/compassLayout"
+        android:background="@drawable/compass_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_native"
+        app:layout_constraintBottom_toBottomOf="parent"
+       >
+
+
+        <ImageView
+            android:id="@+id/main_compass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compass_needle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_native"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card"
+        android:layout_width="match_parent">
+
+        <include layout="@layout/native_ad_layout_loader_small" />
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

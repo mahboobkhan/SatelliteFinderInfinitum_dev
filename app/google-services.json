@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980946649625",
+    "project_id": "satellitefinder-9d0c1",
+    "storage_bucket": "satellitefinder-9d0c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980946649625:android:88986c0c9b509b83dbe088",
+        "android_client_info": {
+          "package_name": "com.is.satellite.finder.gps.detector.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980946649625-7lenuk30a3rg79p23u7kb5o5a2p1p3l1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDJPKH6Nklmd98oHUC-pavi25RVxDfbgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980946649625-7lenuk30a3rg79p23u7kb5o5a2p1p3l1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

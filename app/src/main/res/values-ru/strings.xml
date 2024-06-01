@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Satellite Tracker App</string>
+
+    <string name="north">Север</string>
+    <string name="northwest">С/З</string>
+    <string name="west">Запад</string>
+    <string name="southwest">Ю/З</string>
+    <string name="south">Юг</string>
+    <string name="southeast">Ю/В</string>
+    <string name="east">Восток</string>
+    <string name="north_east">С/В</string>
+    <string name="not_now"><u>НЕТ СЕЙЧАС</u></string>
+    <string name="select_satellite">Выбрать спутник</string>
+    <string name="satellite_finder">Поиск спутника</string>
+    <string name="satellite_map">Карта спутника</string>
+    <string name="compass">Компас</string>
+    <string name="more">Еще</string>
+    <string name="satellite_info">Информация о спутнике</string>
+    <string name="select_map_type">Выбрать тип карты</string>
+    <string name="hybrid">Гибрид</string>
+    <string name="normal">Обычная</string>
+    <string name="satellite">Спутник</string>
+    <string name="terrain">Рельеф</string>
+    <string name="do_you_like_our_app">Вам нравится наше приложение?</string>
+    <string name="give_us_a_rating_so_we_know_if_you_like">Поставьте оценку, чтобы мы знали, нравится ли вам</string>
+    <string name="do_you_want_to_exit">Вы хотите выйти?</string>
+    <string name="ad_attribution">РЕКЛАМА</string>
+    <string name="install">Установить</string>
+    <string name="get_started">Начать</string>
+    <string name="languages">Языки</string>
+    <string name="done">Готово</string>
+    <string name="this_action_may_contains_ad">Это действие может содержать рекламу</string>
+    <string name="exit">Выход</string>
+    <string name="cancel">Отмена</string>
+    <string name="the_smart_solution_for_your_dish">Умное решение для вашей антенны</string>
+    <string name="the_feature_that_guides_you_to_your_destination">Функция, которая направляет вас к вашему пункту назначения.</string>
+    <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Больше не теряйте сигнал. Используйте спутниковые карты, чтобы найти вашу антенну.</string>
+    <string name="location_info">Информация о местоположении</string>
+    <string name="rate_now">Оценить сейчас</string>
+
+</resources>

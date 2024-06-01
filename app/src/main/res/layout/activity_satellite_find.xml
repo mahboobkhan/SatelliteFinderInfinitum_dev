@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/app_bg"
+    android:layout_height="match_parent"
+    tools:context=".ui.activites.SatelliteFindActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:background="@drawable/top_bg"
+        android:padding="@dimen/_10sdp"
+        android:id="@+id/top"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnSelectSatellite"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardBackgroundColor="#04BBDD"
+            app:strokeWidth="@dimen/_1sdp"
+            android:id="@+id/btnSatelliteInfo"
+            app:strokeColor="@color/white">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/satellite_info"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                tools:ignore="RtlCompat"
+                android:background="#00000000"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/white"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/btnSelectSatellite"
+            app:layout_constraintStart_toEndOf="@id/btnSatelliteInfo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/select_satellite"
+                android:gravity="center_vertical"
+                android:textAlignment="center"
+                tools:ignore="RtlCompat"
+                android:id="@+id/satelliteTitle"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/primary"
+                />
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+        android:id="@+id/text_compass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="6dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+            android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top">
+
+        <TextView
+            android:id="@+id/moveAntenaTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Move antina to"
+            android:visibility="gone"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/_11ssp" />
+
+
+        <TextView
+            android:id="@+id/compass_azimuthTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="center"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/leftToRightTextTv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingStart="@dimen/_3sdp"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/compass_Round_layout"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_230sdp"
+        app:cardCornerRadius="@dimen/_110sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_native"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.272">
+
+        <RelativeLayout
+            android:id="@+id/rotateRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <fragment
+                android:id="@+id/provider_map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                />
+
+            <ImageView
+                android:id="@+id/imgMap_Compass"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/satellite_compass" />
+
+            <RelativeLayout
+                android:id="@+id/sateImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/satellite_Azimuth_Iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:src="@drawable/ic_satellite_default" />
+
+                <ImageView
+                    android:id="@+id/satellite_Azimuth_Line"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_119sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:paddingTop="@dimen/_22sdp"
+                    android:src="@drawable/ic_satellite_line" />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="283dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/texCompAzimuth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/satellite_antina"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:paddingTop="@dimen/_30sdp"
+                android:text="98 east"
+                android:textAlignment="center"
+                android:textColor="@color/primary"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_native"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/text_compass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent">
+
+        <include layout="@layout/native_ad_layout_loader_small" />
+
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

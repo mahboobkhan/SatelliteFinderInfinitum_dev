@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/permission_bg"
+    tools:context=".ui.activites.PermissionActivity">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/permissionCard"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Required Permissions :"
+        android:textSize="@dimen/_18ssp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:id="@+id/tv"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/tv"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        android:textSize="@dimen/_12ssp"
+        android:id="@+id/tv1"
+
+        android:text="Hey there! To enhance your experience with our app, we'd love to access your current location. This will help us provide you with accurate satellite tracking and ensure you get the most out of our features.Would you mind granting us permission to access your location? Rest assured, we prioritize your privacy and will only use your location within the context of our app. You can adjust these settings at any time in your device's settings.Allowing access will enable seamless satellite tracking and navigation features. Thanks for helping us make your experience even better!"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/permission"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_30sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/permissionCard"
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/layout_native"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_marginTop="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/_30sdp"
+        app:layout_constraintTop_toBottomOf="@id/permissionCard"
+        app:layout_constraintBottom_toTopOf="@id/ll"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_width="match_parent">
+
+        <include layout="@layout/native_ad_layout_loader_small" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       android:orientation="vertical"
+       android:id="@+id/ll"
+       android:layout_marginBottom="@dimen/_20sdp">
+       <com.google.android.material.button.MaterialButton
+           android:layout_width="@dimen/_150sdp"
+           android:layout_height="wrap_content"
+           android:id="@+id/btnAllow"
+           android:textAllCaps="false"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintBottom_toTopOf="@id/btnNotNow"
+
+           android:text="Allow"/>
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="@string/not_now"
+           android:layout_gravity="center"
+           android:layout_marginTop="@dimen/_10sdp"
+           app:layout_constraintTop_toBottomOf="@id/btnAllow"
+           app:layout_constraintStart_toStartOf="@id/btnAllow"
+           app:layout_constraintEnd_toEndOf="@id/btnAllow"
+           app:layout_constraintBottom_toBottomOf="parent"
+           android:fontFamily="@font/roboto_medium"
+           android:textColor="@color/white"
+           android:id="@+id/btnNotNow"/>
+
+   </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
