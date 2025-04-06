@@ -23,7 +23,7 @@ class OpenApp(private val globalClass: MyApplication) : Application.ActivityLife
     private val log = "AppOpenManager"
 
     private var adVisible = false
-    private var appOpenAd: AppOpenAd? = null
+     var appOpenAd: AppOpenAd? = null
 
     private var currentActivity: Activity? = null
     private var isShowingAd = false
@@ -40,7 +40,6 @@ class OpenApp(private val globalClass: MyApplication) : Application.ActivityLife
      * Request an ad
      */
     fun fetchAd() {
-        Log.d(log, "fetchAd " + isAdAvailable())
         // Have unused ad, no need to fetch another.
         if (isAdAvailable()) {
             return
@@ -81,7 +80,7 @@ class OpenApp(private val globalClass: MyApplication) : Application.ActivityLife
         )
     }
 
-    private fun showAdIfAvailable() {
+     fun showAdIfAvailable() {
         // Only show ad if there is not already an app open ad currently showing
         // and an ad is available.
 
@@ -128,7 +127,7 @@ class OpenApp(private val globalClass: MyApplication) : Application.ActivityLife
     /**
      * Utility method that checks if ad exists and can be shown.
      */
-    private fun isAdAvailable(): Boolean {
+     fun isAdAvailable(): Boolean {
         return appOpenAd != null
     }
 

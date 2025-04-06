@@ -10,7 +10,39 @@
     <color name="app_bg">#ECECEC</color>
     <color name="background">#F6F6F6</color>
     <color name="shimmerColor">#C3C1C1</color>
-    <color name="adAttrColor">#7FE647</color>
-    <color name="textColor">#505050</color>
+    <color name="adAttrColor">#4CAF50</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="card_bg">#4C4F6B</color>
+    <color name="ad_bg">#2D3047</color>
 
+    <!--    General-->
+    <color name="silver">#FF888888</color>
+    <color name="bubble_bg">#2E3149</color>
+    <color name="violet">#EE53537B</color>
+    <color name="green">#FFB1C800</color>
+    <color name="translucent">#00FFFFFF</color>
+    <color name="semitranslucent">#44FFFFFF</color>
+
+    <!-- Level -->
+    <color name="level_liquid_reflect">#19D2A6</color>
+    <color name="level_border_reflect">@color/black</color>
+    <color name="level_liquid_dark">#3087D7</color>
+    <color name="level_border">#4C4F6B</color>
+    <!-- Markers -->
+    <color name="marker_stroke">@color/black</color>
+    <color name="marker_reflect">@color/black</color>
+    <color name="marker_dark">@color/black</color>
+    <!-- Bubble -->
+    <color name="bubble_center">@color/violet</color>
+
+    <!-- LCD -->
+    <color name="lcd_front">@color/green</color>
+    <color name="lcd_back">@color/semitranslucent</color>
+    <!-- LOCK -->
+    <color name="lock_front">@color/green</color>
+    <color name="lock_back">@color/semitranslucent</color>
+    <!-- Display -->
+    <color name="display_border">@color/black</color>
+    <color name="display_dark">@color/black</color>
+    <color name="display_reflect">@color/black</color>
 </resources>

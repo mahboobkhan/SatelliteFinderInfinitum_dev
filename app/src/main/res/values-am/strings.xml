@@ -39,5 +39,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">ምንዛሬ በጣም ማንዛሬ አይቆጣጠርም። ስለዚህ ሳተለይት መፑታዊ ቦታዎችን ተጠቀሙ</string>
     <string name="location_info">ቦታ መረጃ</string>
     <string name="rate_now">አስተያየት</string>
+    <string name="bubble_level">የአረፋ ደረጃ</string>
+    <string name="get_the_perfect_level_with_ease">በቀላል ሁኔታ ትክክለኛውን ደረጃ ያግኙ</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">እርግጠኛ ነዎት ከመተግበሪያው መውጣት ይፈልጋሉ?</string>
+    <string name="my_location">የእኔ ቦታ</string>
+    <string name="rate_us">ደረጃ ይስጡን።</string>
+    <string name="share_app">መተግበሪያ አጋራ</string>
+    <string name="privacy_policy">የግላዊነት ፖሊሲ</string>
+    <string name="go_premium">ወደ ፕሪሚየም ይሂዱ</string>
+    <string name="not_supported">አቀማመጥ አይደገፍም።</string>
+    <string name="calibrate_info">ለማስተካከል MENU ን ይጫኑ...</string>
+    <string name="lock_info">የደረጃ አቀማመጥን ለመቆለፍ መታ ያድርጉ</string>
 
 </resources>

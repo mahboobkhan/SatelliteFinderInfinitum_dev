@@ -27,8 +27,6 @@ class MapTypesDialog(context: Context) : Dialog(context){
             val alert = dialog.create()
             alert.show()
 
-
-
            binding.btnHybridView.setOnClickListener {
                alert.dismiss()
                dismissCallBack.invoke("hybrid")
@@ -45,9 +43,6 @@ class MapTypesDialog(context: Context) : Dialog(context){
                alert.dismiss()
                dismissCallBack.invoke("terrain")
            }
-
-
-
         }
 
     }

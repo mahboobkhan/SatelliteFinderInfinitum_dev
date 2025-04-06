@@ -9,15 +9,16 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCurrentLocationBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
-import com.example.satellitefinder.utils.isAlreadyPurchased
-import com.example.satellitefinder.utils.isInternetConnected
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.requestLocationPermissions
 import com.example.satellitefinder.utils.screenEventAnalytics
 import com.example.satellitefinder.utils.showGpsDialog
@@ -27,11 +28,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
     private var isGPSEnabled = false
     private var isNetworkEnabled = false
@@ -53,7 +51,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (remoteConfigViewModel.getRemoteConfig(this@CurrentLocationActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.interAll)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
 
@@ -75,6 +73,12 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
         } else {
             requestLocationPermissions()
         }
+
+        binding.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        onBackPressedDispatcher.addCallback(this@CurrentLocationActivity, callback)
     }
 
 
@@ -274,7 +278,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
 
 
     private fun showNativeAd() {
-        if (remoteConfigViewModel.getRemoteConfig(this@CurrentLocationActivity)?.currentLocationNative?.value == 1 && !isAlreadyPurchased()) {
+        if (canWeShowAds(RemoteConfig.currentLocationNative)) {
             newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_small,
@@ -289,4 +293,11 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
         }
     }
 
+    private val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finish()
+
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+    }
 }

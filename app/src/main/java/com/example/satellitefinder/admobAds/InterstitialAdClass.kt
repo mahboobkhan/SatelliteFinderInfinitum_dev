@@ -16,15 +16,12 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
-
 open class InterstitialAdClass {
     private val logTag = "interstitialAdFlow"
 
     private var someOpPerformed = false
 
-
     companion object {
-
         @Volatile
         private var instance: InterstitialAdClass? = null
         fun getInstance() = instance ?: synchronized(this) {
@@ -37,84 +34,78 @@ open class InterstitialAdClass {
      * */
 
     fun loadAndShowSplashInterstitial(
-        context: Context,
+        activity: Activity,
         adIDLow: String,
-        loadAgain:Boolean,
-        mainAdId:String,
-        activity: Activity
-    ){
-        context.let {
-            showLoadingDialog(activity)
+        closeListener: (() -> Unit)? = null,
+        failListener: (() -> Unit)? = null,
+        showListener: (() -> Unit)? = null
+    ) {
+        showLoadingDialog(activity)
 
-            InterstitialAd.load(
-                it,
-                adIDLow,
-                AdRequest.Builder().build(),
-                object : InterstitialAdLoadCallback() {
+        InterstitialAd.load(
+            activity,
+            adIDLow,
+            AdRequest.Builder().build(),
+            object : InterstitialAdLoadCallback() {
 
-                    override fun onAdFailedToLoad(ad: LoadAdError) {
-                        showInterstitialAdLog("High Ad failed to load because $ad")
-                    }
+                override fun onAdFailedToLoad(ad: LoadAdError) {
+                    showInterstitialAdLog("High Ad failed to load because $ad")
+                }
 
-                    override fun onAdLoaded(ad: InterstitialAd) {
-                        interstitialAdPriority = ad
-                        interstitialAdPriority?.let {
-                            showInterstitialAdLog("priority Ad is not null , Calling show and setting listener ...")
-                            it.fullScreenContentCallback = object : FullScreenContentCallback() {
-                                override fun onAdDismissedFullScreenContent() {
-                                    super.onAdDismissedFullScreenContent()
-                                    showInterstitialAdLog("priority Ad closed by user")
-                                    isInterstitialAdOnScreen = false
-                                    interstitialAdPriority = null
-                                    if (loadAgain) {
-                                        loadAgainPriorityInterstitialAd(activity, mainAdId)
-                                    }
-                                }
-
-                                override fun onAdFailedToShowFullScreenContent(p0: AdError) {
-                                    someOpPerformed = true
-                                    interstitialAdPriority = null
-                                    showInterstitialAdLog("priority Ad failed to show")
-                                    dismissLoadingDialog(activity)
-                                    if (loadAgain) {
-                                        loadAgainPriorityInterstitialAd(activity, adIDLow)
-                                    }
-                                }
-
-                                override fun onAdShowedFullScreenContent() {
-                                    super.onAdShowedFullScreenContent()
-                                    isInterstitialAdOnScreen = true
-                                    showInterstitialAdLog("priority Ad successfully showed")
-                                    interstitialAdPriority = null
-                                    someOpPerformed = true
-                                    Handler().postDelayed({
-                                        dismissLoadingDialog(activity)
-                                    }, 1000)
-                                }
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    interstitialAdPriority = ad
+                    interstitialAdPriority?.let {
+                        showInterstitialAdLog("priority Ad is not null , Calling show and setting listener ...")
+                        it.fullScreenContentCallback = object : FullScreenContentCallback() {
+                            override fun onAdDismissedFullScreenContent() {
+                                super.onAdDismissedFullScreenContent()
+                                closeListener?.invoke()
+                                showInterstitialAdLog("priority Ad closed by user")
+                                isInterstitialAdOnScreen = false
+                                interstitialAdPriority = null
+                                loadAgainPriorityInterstitialAd(activity, activity.getString(R.string.interstialId))
                             }
 
-                            someOpPerformed = false
+                            override fun onAdFailedToShowFullScreenContent(p0: AdError) {
+                                someOpPerformed = true
+                                interstitialAdPriority = null
+                                failListener?.invoke()
+                                showInterstitialAdLog("priority Ad failed to show")
+                                dismissLoadingDialog(activity)
 
-                            Handler().postDelayed({
-                                if (ProcessLifecycleOwner.get().lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
-                                    it.show(activity)
-                                } else {
+                            }
+
+                            override fun onAdShowedFullScreenContent() {
+                                super.onAdShowedFullScreenContent()
+                                isInterstitialAdOnScreen = true
+                                showListener?.invoke()
+                                showInterstitialAdLog("priority Ad successfully showed")
+                                interstitialAdPriority = null
+                                someOpPerformed = true
+                                Handler().postDelayed({
                                     dismissLoadingDialog(activity)
-                                }
-
-                            }, 1000)
-
-                        } ?: run {
-                            if (loadAgain) {
-                                loadAgainPriorityInterstitialAd(activity, adIDLow)
+                                }, 1000)
                             }
                         }
 
-                    }
-                })
-        }
-    }
+                        someOpPerformed = false
 
+                        Handler().postDelayed({
+                            if (ProcessLifecycleOwner.get().lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+                                it.show(activity)
+                            } else {
+                                dismissLoadingDialog(activity)
+                            }
+
+                        }, 1000)
+
+                    } ?: run {
+
+                    }
+
+                }
+            })
+    }
 
     fun loadPriorityInterstitialAds(
         context: Context,
@@ -123,10 +114,7 @@ open class InterstitialAdClass {
         interstitialAdPriority?.let { return }
         showInterstitialAdLog("Loading High Ad 2...")
         loadInterstitialAdPriority(context, adIDLow) {}
-
-
     }
-
 
     private fun loadInterstitialAdPriority(
         context: Context, adId: String, adLoadedCallback: () -> Unit
@@ -250,12 +238,11 @@ open class InterstitialAdClass {
     }
 
     private fun dismissLoadingDialog(activity: Activity) {
-        if ( loadingDialog != null && loadingDialog?.isShowing == true) {
-            if (!activity.isDestroyed){
+        if (loadingDialog != null && loadingDialog?.isShowing == true) {
+            if (!activity.isDestroyed) {
                 loadingDialog?.dismiss()
                 loadingDialog = null
         }
-
         }
     }
 

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.example.satellitefinder.R
 import com.example.satellitefinder.databinding.ActivitySubscriptionBinding
 import com.example.satellitefinder.subscription.SubscriptionSkus
 import com.example.satellitefinder.subscription.SubscriptionViewModel
@@ -49,6 +50,9 @@ class SubscriptionActivity : AppCompatActivity() {
 
         }
 
+        binding.btnContinueWithAd.setOnClickListener {
+            finish()
+        }
         binding.restore.setOnClickListener {
             howToUnsubscribe()
         }
@@ -143,13 +147,13 @@ class SubscriptionActivity : AppCompatActivity() {
         binding.apply {
             when(s){
                 "yearly"->{
-                    ivSelectedYearly.visibility = View.VISIBLE
-                    ivSelectedMonthly.visibility = View.GONE
+                    ivSelectedYearly.setImageResource(R.drawable.ic_check)
+                    ivSelectedMonthly.setImageResource(R.drawable.ic_uncheck)
 
                 }
                 "monthly"->{
-                    ivSelectedMonthly.visibility = View.VISIBLE
-                    ivSelectedYearly.visibility = View.GONE
+                    ivSelectedMonthly.setImageResource(R.drawable.ic_check)
+                    ivSelectedYearly.setImageResource(R.drawable.ic_uncheck)
 
                 }
                            }

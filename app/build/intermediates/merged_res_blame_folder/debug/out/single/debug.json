@@ -1,0 +1,574 @@
+[
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_splash_illustration.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/splash_illustration.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_default.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_default.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/xml_remote_defaults.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/xml/remote_defaults.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_app_bg_n.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/app_bg_n.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_ratting_dialog.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/ratting_dialog.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_search_satellite.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_search_satellite.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_lang.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_lang.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_native_ad_layout_loader.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/native_ad_layout_loader.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_exit_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_exit_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_languages.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_languages.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_satellite_find.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_satellite_find.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_map_option.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_map_option.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_compass_bg_.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/compass_bg_.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_btn_sat_tracker_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/btn_sat_tracker_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/font_roboto.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/font/roboto.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_search.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_search.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_line.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/line.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_fragment_four.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/fragment_four.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_native_ad_layout_small.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/native_ad_layout_small.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_exit.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_exit.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_satellite_compass.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/satellite_compass.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_layout_satellite_info.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/layout_satellite_info.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_native_ad_layout_main.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/native_ad_layout_main.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_btn_my_location_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/btn_my_location_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_permission.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_permission.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_fragment__two.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/fragment__two.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_btn_bubble_level.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_btn_bubble_level.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_hybrid_view.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_hybrid_view.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_bubble_level.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_bubble_level.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_exit.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_exit.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_app_icon.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/app_icon.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/font_roboto_medium.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/font/roboto_medium.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_btn_compass_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/btn_compass_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_language_row.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/language_row.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_star.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_star.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_uncheck.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_uncheck.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_compass_bg_new.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/compass_bg_new.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_yearlybg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/yearlybg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_back.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_back.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_arrow_next.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/arrow_next.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_normal_view.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_normal_view.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_rate.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_rate.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_map_satellite.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_map_satellite.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_premium_btn_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/premium_btn_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_fragment__one.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/fragment__one.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_layout_list_ad_loader.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/layout_list_ad_loader.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_list_ad_item.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/list_ad_item.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_btn_sat_map.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_btn_sat_map.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_line.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_line.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/xml_backup_rules.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_premium_new_white.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_premium_new_white.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_compass_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_compass_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_subscription_illus.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/subscription_illus.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/font_poppins_semibold.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/font/poppins_semibold.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_current_location.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_current_location.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_list_ad.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/list_ad.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_current_location.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_current_location.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_go_premium_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/go_premium_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_fragment__three.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/fragment__three.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_app_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/app_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_mp.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_mp.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_permission_illus.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/permission_illus.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_compass_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/compass_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_exit_dialog.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/exit_dialog.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_more.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_more.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_tracker.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_tracker.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_btn_compass__2_.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_btn_compass__2_.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_terrain_view.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_terrain_view.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/raw_animation.json.flat",
+        "source": "com.example.satellitefinder.app-main-69:/raw/animation.json"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_compass.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_compass.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_map_.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_map_.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_close.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_subscription.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_subscription.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_pp.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_pp.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_cancel.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_cancel.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_sat_antena_matched.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_sat_antena_matched.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_bubble_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_bubble_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-anydpi-v33_ic_launcher.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-anydpi-v33/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_map.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_map.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_splash_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/splash_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_sat_on_map.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_sat_on_map.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_button_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/button_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_native_ad_layout_loader_small.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/native_ad_layout_loader_small.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_menu.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_menu.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_layout_map_view.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/layout_map_view.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_my_location.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_my_location.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_satellites.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_satellites.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_pro.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_pro.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_on_boarding_row.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/on_boarding_row.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_mylocation.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_mylocation.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_share.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_share.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/menu_search_menu.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/menu/search_menu.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_cancel_round.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_cancel_round.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_bubble.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_bubble.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ob_two.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ob_two.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_btn_sat_tracker.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_btn_sat_tracker.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ob_four.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ob_four.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_on_boarding_screen.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_on_boarding_screen.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_my_location_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_my_location_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_view.png.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_view.png"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_ad_loading_dialog.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/ad_loading_dialog.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_satellite_item.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/satellite_item.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_btn_my_location.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_btn_my_location.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_more.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_more.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_premium_new_circle.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_premium_new_circle.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_exit_logo.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_exit_logo.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_compass_needle.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/compass_needle.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.satellitefinder.app-main-69:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_compass.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_compass.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_selected.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_selected.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_level_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/level_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_main.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_check.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_check.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ob_one.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ob_one.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_map_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_map_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_water_drop.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/water_drop.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_uncheck_sub.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_uncheck_sub.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_sat_antena.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_sat_antena.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_fragment_item.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/fragment_item.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/layout_activity_splash.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ob_three.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ob_three.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_tracker_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_tracker_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_btn_sat_map_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/btn_sat_map_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_languages.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_languages.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_satellite_match.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_satellite_match.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_compass_.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_compass_.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_setting.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_setting.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_btn_bubble_level_bg.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/btn_bubble_level_bg.xml"
+    },
+    {
+        "merged": "com.example.satellitefinder.app-merged_res-67:/drawable_ic_unselected.xml.flat",
+        "source": "com.example.satellitefinder.app-main-69:/drawable/ic_unselected.xml"
+    }
+]

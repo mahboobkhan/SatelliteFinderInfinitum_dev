@@ -15,29 +15,42 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityMapSatelliteBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
+import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
+import com.example.satellitefinder.ui.dialogs.InfoSheet
 import com.example.satellitefinder.ui.dialogs.MapTypesDialog
-import com.example.satellitefinder.utils.*
+import com.example.satellitefinder.utils.LanguagesHelper
+import com.example.satellitefinder.utils.SatellitesPositionData
+import com.example.satellitefinder.utils.canWeShowAds
+import com.example.satellitefinder.utils.currentLocation
+import com.example.satellitefinder.utils.requestLocationPermissions
+import com.example.satellitefinder.utils.satelliteAdCounter
+import com.example.satellitefinder.utils.screenEventAnalytics
+import com.example.satellitefinder.utils.showGpsDialog
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.CustomCap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
     private var isGPSEnabled = false
@@ -56,17 +69,17 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
     private var googleMap1: GoogleMap? = null
     var supportMapFragment: SupportMapFragment? = null
     private val M_REQUEST_PERMISSION = 10
-    lateinit var typesDialog:MapTypesDialog
-    lateinit var infoDialog:InfoDialog
+    lateinit var typesDialog: MapTypesDialog
+    lateinit var infoDialog: InfoDialog
 
     private var reviewManager: ReviewManager? = null
     private var reviewInfo: ReviewInfo? = null
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
-
-    private val binding:ActivityMapSatelliteBinding by lazy{
+    private var adCountInfo = 0
+    private val binding: ActivityMapSatelliteBinding by lazy {
         ActivityMapSatelliteBinding.inflate(layoutInflater)
     }
+
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         newBase?.let {
@@ -76,8 +89,8 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (remoteConfigViewModel.getRemoteConfig(this@MapSatelliteActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()){
-            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
+        if (canWeShowAds(RemoteConfig.interAll)) {
+            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
 
@@ -117,106 +130,131 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         binding.btnSelectSatellite.setOnClickListener {
-
-
-                selectSatellite()
-
+            selectSatellite()
         }
 
         binding.btnCurrentLocation.setOnClickListener {
-            if (adCount >= 2) {
-                adCount = 1
 
-                showPriorityAdmobInterstitial(true,getString(R.string.interstialId),
-                    showListener = {currentLocation()},
-                    closeListener = {currentLocation()},
-                    failListener = {currentLocation()})
+            if (canWeShowAds(RemoteConfig.interAll)) {
+                //              adCount = 0
+                // loadAndShowSplashInterstitial(getString(R.string.interstialId))
+                showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId),
+                    showListener = { currentLocation() },
+                    closeListener = { currentLocation() },
+                    failListener = { currentLocation() })
+
+                currentLocation()
 
             } else {
-                adCount += 1
+//                adCount +=1
                 currentLocation()
+
             }
 
+
         }
-        binding.btnSatelliteInfo.setOnClickListener {
-                satelliteInfo()
+
+        binding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
+
+        binding.btnInfo.setOnClickListener {
+            if (adCountInfo >= 2) {
+                showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
+                    InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
+                        satelliteInfo(sheetBinding)
+                    }
+                }, failListener = {
+                    InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
+                        satelliteInfo(sheetBinding)
+                    }
+                }, showListener = {
+                    adCountInfo = 0
+                })
+            } else {
+                adCountInfo++
+                InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
+                    satelliteInfo(sheetBinding)
+                }
+            }
+        }
+
         binding.btnMapTypes.setOnClickListener {
             typesDialog.showDialog {
-                 when(it){
-                     "hybrid" ->{
-                         if (adCount >= 2 && !isAlreadyPurchased()) {
-                             adCount = 1
+                when (it) {
+                    "hybrid" -> {
+                        if (canWeShowAds(RemoteConfig.interAll)) {
+                            // adCount = 0
+                            showPriorityInterstitialAdWithCounter(true,
+                                getString(R.string.interstialId),
+                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID },
+                                closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID },
+                                failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID }
+                            )
+                        } else {
+                            googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID
+                        }
 
-                             showPriorityAdmobInterstitial( true,
-                                 getString(R.string.interstialId),
-                                 showListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID},
-                                 closeListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID},
-                                 failListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID}
-                             )
+                    }
 
-                         } else {
-                             adCount += 1
-                             googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID
-                         }
+                    "normal" -> {
+                        if (canWeShowAds(RemoteConfig.interAll)) {
+                            showPriorityInterstitialAdWithCounter(true,
+                                getString(R.string.interstialId),
+                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
+                                closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
+                                failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL }
+                            )
+                        } else {
+                            googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL
+                        }
+                    }
 
-                     }
-                     "normal" ->{
-                         if (adCount >= 2 && !isAlreadyPurchased()) {
-                             adCount = 1
+                    "satellite" -> {
+                        if (canWeShowAds(RemoteConfig.interAll)) {
+                            showPriorityInterstitialAdWithCounter(
+                                true,
+                                getString(R.string.interstialId),
+                                showListener = {
+                                    googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                                },
+                                closeListener = {
+                                    googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                                },
+                                failListener = {
+                                    googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                                }
+                            )
 
-                             showPriorityAdmobInterstitial( true,
-                                 getString(R.string.interstialId),
-                                 showListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL},
-                                 closeListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL},
-                                 failListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL}
-                             )
+                        } else {
+                            googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
+                        }
 
-                         } else {
-                             adCount += 1
-                             googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL
-                         }
+                    }
+
+                    "terrain" -> {
+                        if (canWeShowAds(RemoteConfig.interAll)) {
+                            showPriorityInterstitialAdWithCounter(true,
+                                getString(R.string.interstialId),
+                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN },
+                                closeListener = {
+                                    googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                                },
+                                failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN }
+                            )
 
 
-                     }
-                     "satellite" ->{
-                         if (adCount >= 2 && !isAlreadyPurchased()) {
-                             adCount = 1
+                        } else {
+                            googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN
+                        }
 
-                             showPriorityAdmobInterstitial( true,
-                                 getString(R.string.interstialId),
-                                 showListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE},
-                                 closeListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE},
-                                 failListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE}
-                             )
+                    }
 
-                         } else {
-                             adCount += 1
-                             googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
-                         }
-
-                     }
-                     "terrain" ->{
-                         if (adCount >= 2 && !isAlreadyPurchased()) {
-                             adCount = 1
-
-                             showPriorityAdmobInterstitial( true,
-                                 getString(R.string.interstialId),
-                                 showListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN},
-                                 closeListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN},
-                                 failListener = {googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN}
-                             )
-
-                         } else {
-                             adCount += 1
-                             googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN
-                         }
-
-                     }
-
-                 }
+                }
             }
         }
+
+        onBackPressedDispatcher.addCallback(this@MapSatelliteActivity, callback)
     }
 
 
@@ -260,7 +298,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap1 = googleMap
+        this.googleMap1 = googleMap
         setupMap()
     }
 
@@ -279,11 +317,13 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 }
             }
+
             else -> {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults)
             }
         }
     }
+
     private fun currentLocation() {
         currentLocation?.let {
             val latLng = LatLng(it.latitude, it.longitude)
@@ -307,30 +347,14 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun satelliteInfo() {
-
+    private fun satelliteInfo(sheetBinding: SatelliteInfoSheetBinding) {
         if (currentLocation != null && satellitePosition != null) {
-            if (adCount >= 2 &&  remoteConfigViewModel.getRemoteConfig(this@MapSatelliteActivity)?.InterstitialMain?.value == 1) {
-                adCount = 1
-
-                showPriorityAdmobInterstitial( true,
-                    getString(R.string.interstialId),
-                    closeListener = {infoDialog.showDialog(satellitePosition!!)
-                },
-                    showListener = { infoDialog.showDialog(satellitePosition!!)
-                },
-                    failListener = {infoDialog.showDialog(satellitePosition!!)
-                })
-            } else {
-                adCount += 1
-                infoDialog.showDialog(satellitePosition!!)
+            sheetBinding.apply {
+                satAzimut.text = satellitePosition?.getSatelliteAzimut().toString()
+                satellitePositionTv.text = satellitePosition?.getSatLongitude().toString()
+                satElevation.text = satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }.toString()
+                satelliteLNBskewTv.text = satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
             }
-        } else {
-            Toast.makeText(
-                this@MapSatelliteActivity,
-                "Please select satellite first",
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 
@@ -380,7 +404,8 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             // If GPS enabled, get latitude/longitude using GPS Services
             if (isGPSEnabled) {
                 if (mLocation == null) {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION
+                    if (ContextCompat.checkSelfPermission(
+                            this, Manifest.permission.ACCESS_FINE_LOCATION
                         ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                             this,
                             Manifest.permission.ACCESS_COARSE_LOCATION
@@ -422,15 +447,15 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val mLocationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            try{
+            try {
                 sourceLatitude = "" + location.latitude
                 sourceLongitude = "" + location.longitude
                 currentLocation = location
                 myCurrentLocation = LatLng(location.latitude, location.longitude)
                 Log.e("mLocationListener ", "  source_lat   $sourceLatitude")
                 Log.e("mLocationListener ", "  source_lng   $sourceLongitude")
-            }catch (e:Exception){
-                Log.e(TAG, "onLocationChanged: $e" )
+            } catch (e: Exception) {
+                Log.e(TAG, "onLocationChanged: $e")
             }
         }
 
@@ -447,6 +472,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             getMyLocation()
         }
     }
+
     companion object {
         private const val MIN_DISTANCE_FOR_UPDATES: Long = 1000 // 10 meters
 
@@ -454,62 +480,86 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                 ).toLong()
     }
 
-    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            // There are no request codes
-            val data: Intent? = result.data
-            if (data?.getSerializableExtra("satObject") != null) {
-                satellitePosition = data.getSerializableExtra("satObject") as SatellitesPositionData?
-                binding.satelliteTitle.text = satellitePosition?.getSatellite().toString() + ""
-                currentSatelliteLatitude = satellitePosition!!.getSatLatitude()
-                currentSatelliteLonigtude = satellitePosition!!.getSatLongitude()
-                val markerOptions = MarkerOptions().position(
-                    LatLng(
-                        myCurrentLocation!!.latitude,
-                        myCurrentLocation!!.longitude
-                    )
-                ).title("Your Position")
-                if (googleMap1 != null) {
-                    googleMap1?.clear()
-                    googleMap1?.animateCamera(
-                        CameraUpdateFactory.newLatLngZoom(
-                            LatLng(
-                                myCurrentLocation!!.latitude,
-                                myCurrentLocation!!.longitude
-                            ), 17f
+    private var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                // There are no request codes
+                val data: Intent? = result.data
+                if (data?.getSerializableExtra("satObject") != null) {
+                    satellitePosition =
+                        data.getSerializableExtra("satObject") as SatellitesPositionData?
+                    binding.satelliteTitle.text = satellitePosition?.getSatellite().toString() + ""
+                    currentSatelliteLatitude = satellitePosition!!.getSatLatitude()
+                    currentSatelliteLonigtude = satellitePosition!!.getSatLongitude()
+//                    satelliteInfo()
+                    binding.btnInfo.visibility = View.VISIBLE
+                    val markerOptions = MarkerOptions().position(
+                        LatLng(
+                            myCurrentLocation!!.latitude,
+                            myCurrentLocation!!.longitude
                         )
-                    )
-                    //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
-                    googleMap1?.addMarker(markerOptions)
-                    googleMap1?.addPolyline(
-                        PolylineOptions()
-                            .add(
-                                LatLng(myCurrentLocation!!.latitude, myCurrentLocation!!.longitude),
-                                LatLng(currentSatelliteLatitude!!, currentSatelliteLonigtude!!)
-                            ).width(10f).color(
-                                Color.BLACK
+                    ).title("Your Position")
+                    if (googleMap1 != null) {
+                        googleMap1?.clear()
+                        googleMap1?.animateCamera(
+                            CameraUpdateFactory.newLatLngZoom(
+                                LatLng(
+                                    myCurrentLocation!!.latitude,
+                                    myCurrentLocation!!.longitude
+                                ), 17f
                             )
-                    ) ?.endCap = CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_satellite_on_map))
+                        )
+                        //googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                        googleMap1?.addMarker(markerOptions)
+                        googleMap1?.addPolyline(
+                            PolylineOptions()
+                                .add(
+                                    LatLng(
+                                        myCurrentLocation!!.latitude,
+                                        myCurrentLocation!!.longitude
+                                    ),
+                                    LatLng(currentSatelliteLatitude!!, currentSatelliteLonigtude!!)
+                                ).width(10f).color(
+                                    Color.BLACK
+                                )
+                        )?.endCap =
+                            CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_sat_on_map))
 
+                    }
                 }
+                else {
+                    binding.btnInfo.visibility = View.GONE
+                }
+            } else {
+                binding.btnInfo.visibility = View.GONE
             }
+        }
+
+    private fun showNativeAd() {
+        if (canWeShowAds(RemoteConfig.mapSatelliteNative)) {
+            newLoadAndShowNativeAd(
+                binding.layoutNative,
+                R.layout.native_ad_layout_small,
+                getString(R.string.mapScreenNativeId),
+                adLoading = {
+                    binding.layoutNative.visibility = View.VISIBLE
+                },
+                failToLoad = {
+                    binding.layoutNative.visibility = View.GONE
+                })
+
         }
     }
 
-    private fun showNativeAd(){
-        if (remoteConfigViewModel.getRemoteConfig(this@MapSatelliteActivity)?.mapSatelliteNative?.value == 1 && !isAlreadyPurchased()){
-        newLoadAndShowNativeAd(
-            binding.layoutNative,
-            R.layout.native_ad_layout_small,
-            getString(R.string.mapScreenNativeId),
-            adLoading = {
-                binding.layoutNative.visibility = View.VISIBLE
-            },
-            failToLoad = {
-                binding.layoutNative.visibility = View.GONE
-            })
-
-    }
+    private val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        satelliteAdCounter = 0
+    }
 }

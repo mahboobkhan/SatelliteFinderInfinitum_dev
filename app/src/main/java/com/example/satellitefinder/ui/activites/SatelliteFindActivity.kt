@@ -20,18 +20,29 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivitySatelliteFindBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
+import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
+import com.example.satellitefinder.ui.dialogs.InfoSheet
 import com.example.satellitefinder.ui.dialogs.RattingDialog
-import com.example.satellitefinder.utils.*
+import com.example.satellitefinder.utils.MySharePrefrencesHelper
+import com.example.satellitefinder.utils.SatellitesPositionData
+import com.example.satellitefinder.utils.canWeShowAds
+import com.example.satellitefinder.utils.currentLocation
+import com.example.satellitefinder.utils.isRatting
+import com.example.satellitefinder.utils.requestLocationPermissions
+import com.example.satellitefinder.utils.satelliteAdCounter
+import com.example.satellitefinder.utils.screenEventAnalytics
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -40,15 +51,12 @@ import com.google.android.gms.tasks.Task
 import com.google.android.play.core.review.ReviewInfo
 import com.google.android.play.core.review.ReviewManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Locale
 
 class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEventListener {
     private val binding:ActivitySatelliteFindBinding by lazy{
         ActivitySatelliteFindBinding.inflate(layoutInflater)
     }
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
     private var mComAziMuth = 0
     private var sensorManager: SensorManager? = null
@@ -84,11 +92,13 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     private var mapFragment: SupportMapFragment? = null
     private val M_REQUEST_PERMISSION = 10
     private lateinit var dialog:InfoDialog
+    private var adCountInfo = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (remoteConfigViewModel.getRemoteConfig(this@SatelliteFindActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.interAll)){
 
-            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
+            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId),)
         }
         setContentView(binding.root)
 
@@ -128,16 +138,40 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         dialog = InfoDialog(this@SatelliteFindActivity)
         binding.apply {
 
-            btnSatelliteInfo.setOnClickListener{
+          /*  btnSatelliteInfo.setOnClickListener{
 
                     satelliteInfo()
 
+            }*/
+
+            ivBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed()
             }
 
             btnSelectSatellite.setOnClickListener {
-
                  selectSatellite()
 
+            }
+
+            btnInfo.setOnClickListener {
+                if (canWeShowAds(RemoteConfig.interAll) && adCountInfo >= 2) {
+                    showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
+                        InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
+                            satelliteInfo(sheetBinding)
+                        }
+                    }, failListener = {
+                        InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
+                            satelliteInfo(sheetBinding)
+                        }
+                    }, showListener = {
+                        adCountInfo = 0
+                    })
+                } else {
+                    adCountInfo++
+                    InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
+                        satelliteInfo(sheetBinding)
+                    }
+                }
             }
         }
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -160,6 +194,8 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         stopSensor()
         vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
 
+        onBackPressedDispatcher.addCallback(this@SatelliteFindActivity, callback)
+
     }
 
     private fun selectSatellite() {
@@ -176,30 +212,14 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     }
 
     @SuppressLint("SetTextI18n")
-    private fun satelliteInfo() {
-
+    private fun satelliteInfo(sheetBinding: SatelliteInfoSheetBinding) {
         if (currentLocation != null && satellitePosition != null) {
-//            dialog.showDialog(satellitePosition!!)
-
-
-            if (adCount >= 2 && remoteConfigViewModel.getRemoteConfig(this@SatelliteFindActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()) {
-                adCount = 1
-
-                showPriorityAdmobInterstitial(showListener = {dialog.showDialog(satellitePosition!!)
-                }, closeListener = { dialog.showDialog(satellitePosition!!)
-                }, failListener = {dialog.showDialog(satellitePosition!!)
-                })
-
-            } else {
-                adCount += 1
-                dialog.showDialog(satellitePosition!!)
+            sheetBinding.apply {
+                satAzimut.text = satellitePosition?.getSatelliteAzimut().toString()
+                satellitePositionTv.text = satellitePosition?.getSatLongitude().toString()
+                satElevation.text = satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }.toString()
+                satelliteLNBskewTv.text = satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
             }
-        } else {
-            Toast.makeText(
-                this@SatelliteFindActivity,
-                "Please select satellite ",
-                Toast.LENGTH_SHORT
-            ).show()
         }
     }
 
@@ -212,8 +232,11 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                 binding.satelliteTitle.text = satellitePosition!!.getSatellite().toString() + ""
                 binding.textCompass.visibility = View.VISIBLE
                 mSatelliteAzimuth = satellitePosition!!.getSatelliteAzimut()
+                binding.btnInfo.visibility = View.VISIBLE
+//                satelliteInfo()
             }
             catch (e:Exception){
+                binding.btnInfo.visibility = View.GONE
                 Log.e("TAG", ": $e" )
             }
 
@@ -303,11 +326,11 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             vibrate()
             binding.satelliteAzimuthIv.setImageResource(R.drawable.ic_satellite_match)
             binding.compassAzimuthTv.text = "Perfect"
-            binding.compassAzimuthTv.setTextColor(Color.RED)
+            binding.texCompAzimuth.background = getDrawable(R.drawable.ic_sat_antena_matched)
             val speakingtext = "match"
             mTextToSpeech!!.speak(speakingtext, TextToSpeech.QUEUE_FLUSH, null)
         } else {
-            binding.satelliteAzimuthIv.setImageResource(R.drawable.ic_satellite_default)
+            binding.texCompAzimuth.background = getDrawable(R.drawable.ic_sat_antena)
             binding.compassAzimuthTv.setTextColor(Color.BLUE)
         }
     }
@@ -337,8 +360,6 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         super.onPause()
         stopSensor()
     }
-
-
 
     private fun mapInitialization() {
         if (mMap == null) {
@@ -505,7 +526,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     }
 
     private fun showNativeAd(){
-        if (remoteConfigViewModel.getRemoteConfig(this@SatelliteFindActivity)?.satelliteFindNative?.value == 1 && !isAlreadyPurchased()) {
+        if (canWeShowAds(RemoteConfig.satelliteFindNative)) {
             newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_small,
@@ -519,20 +540,23 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         }
     }
 
-
-    override fun onBackPressed() {
-
-        if (!MySharePrefrencesHelper.getBoolean(this@SatelliteFindActivity, isRatting)){
-            val ratingDailog = RattingDialog(this){
-                super.onBackPressed()
+    private val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (!MySharePrefrencesHelper.getBoolean(this@SatelliteFindActivity, isRatting)){
+                val ratingDailog = RattingDialog(this@SatelliteFindActivity){
+                    finish()
+                }
+                ratingDailog.show()
+            } else {
+                finish()
             }
 
-            ratingDailog.show()
-
-        }else{
-            super.onBackPressed()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
         }
-
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        satelliteAdCounter = 0
+    }
 }

@@ -6,26 +6,23 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.satellitefinder.R
-import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityLanguagesBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.ui.adapters.LanguagesAdapter
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.LanguagesModel
 import com.example.satellitefinder.utils.MySharePrefrencesHelper
-import com.example.satellitefinder.utils.isAlreadyPurchased
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isFromLang
-import com.example.satellitefinder.utils.isInternetConnected
 import com.example.satellitefinder.utils.screenEventAnalytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LanguagesActivity : AppCompatActivity() {
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
     private var adapter: LanguagesAdapter? = null
     private var myLangugesList = mutableListOf<LanguagesModel>()
@@ -37,9 +34,8 @@ class LanguagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (remoteConfigViewModel.getRemoteConfig(this@LanguagesActivity)?.InterstitialMain?.value == 1 &&  !isAlreadyPurchased()){
-
-            showPriorityAdmobInterstitial(true,getString(R.string.interstialId))
+        if (canWeShowAds(RemoteConfig.interAll)){
+            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
 
         setContentView(binding.root)
@@ -83,7 +79,7 @@ class LanguagesActivity : AppCompatActivity() {
     }
 
     private fun showNativeAd(){
-        if (remoteConfigViewModel.getRemoteConfig(this@LanguagesActivity)?.languagesNative?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.languagesNative)){
         newLoadAndShowNativeAd(
             binding.layoutNative,
             R.layout.native_ad_layout_small,

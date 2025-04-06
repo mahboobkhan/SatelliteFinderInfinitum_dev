@@ -1,0 +1,23 @@
+com.example.satellitefinder.test
+string appID
+string appOpenId
+string bannerId
+string compassScreenNativeId
+string currentLocationNativeId
+string exitNativeId
+string findSatelliteNativeId
+string interstialId
+string languagesNativeId
+string mainNativeId
+string mapScreenNativeId
+string map_key
+string moreScreenNativeId
+string obNativeFull
+string onBoardingNativeId
+string permissionNativeId
+string searchSatelliteNativeId
+string selectSatelliteNativeId
+string splashInterstial
+string splashNativeId
+style WhiteBackgroundDialogTheme
+style WhiteBackgroundTheme

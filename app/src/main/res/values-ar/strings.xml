@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">لا تفقد إشارتك مرة أخرى. استخدم خرائط الأقمار الصناعية للعثور على صحنك</string>
     <string name="location_info">معلومات الموقع</string>
     <string name="rate_now">قيم الآن</string>
+    <string name="bubble_level">مستوى الفقاعة</string>
+    <string name="get_the_perfect_level_with_ease">احصل على المستوى المثالي بسهولة</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">هل أنت متأكد من رغبتك في الخروج من التطبيق؟</string>
+    <string name="my_location">موقعي</string>
+    <string name="rate_us">قيّمنا</string>
+    <string name="share_app">مشاركة التطبيق</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="go_premium">اشترك في النسخة المميزة</string>
+    <string name="not_supported">الاتجاه غير مدعوم</string>
+    <string name="calibrate_info">اضغط على القائمة للمعايرة...</string>
+    <string name="lock_info">انقر لقفل اتجاه المستوى</string>
 
 </resources>

@@ -38,4 +38,19 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Never lose your signal again. Use satellite maps to find your dish.</string>
     <string name="location_info">Location Info</string>
     <string name="rate_now">Rate now</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="remote2" translatable="false">Satellite_Finder_Counter</string>
+    <string name="bubble_level">Bubble Level</string>
+    <string name="get_the_perfect_level_with_ease">Get the Perfect Level with Ease</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Are You Sure you want to exit from app?</string>
+    <string name="my_location">My Location</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="go_premium">Go Premium</string>
+    <string name="not_supported">Orientation not supported</string>
+    <string name="calibrate_info">press MENU to calibrate...</string>
+    <string name="lock_info">tap to lock level orientation</string>
+
 </resources>

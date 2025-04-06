@@ -7,23 +7,20 @@ import android.view.View
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.databinding.ActivitySearchSatelliteBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.ui.adapters.SearchSatelliteAdapter
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.SatellitesInformationData
 import com.example.satellitefinder.utils.SatellitesPositionData
-import com.example.satellitefinder.utils.isAlreadyPurchased
-import com.example.satellitefinder.utils.isInternetConnected
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.screenEventAnalytics
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Collections
 
 class SearchSatelliteActivity : AppCompatActivity() {
     lateinit var adapter: SearchSatelliteAdapter
     lateinit var mSearchView: SearchView
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
     private val binding:ActivitySearchSatelliteBinding by lazy{
         ActivitySearchSatelliteBinding.inflate(layoutInflater)
@@ -41,7 +38,7 @@ class SearchSatelliteActivity : AppCompatActivity() {
 
         supportActionBar?.show()
         supportActionBar?.title = "Tap to search Satellite"
-        if (isInternetConnected() && remoteConfigViewModel.getRemoteConfig(this@SearchSatelliteActivity)?.searchSatelliteNative?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.searchSatelliteNative)){
             binding.layoutNative.visibility = View.VISIBLE
             newLoadAndShowNativeAd(binding.layoutNative,R.layout.native_ad_layout_small,getString(R.string.searchSatelliteNativeId))
 

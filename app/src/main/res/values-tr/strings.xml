@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Sinyalinizi bir daha kaybetmeyin. Anteninizi bulmak için uydu haritalarını kullanın.</string>
     <string name="location_info">Konum Bilgisi</string>
     <string name="rate_now">Şimdi Puanla</string>
+    <string name="bubble_level">Kabarcık Su Terazisi</string>
+    <string name="get_the_perfect_level_with_ease">Kolayca Mükemmel Su Terazisini Elde Edin</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Uygulamadan çıkmak istediğinizden emin misiniz?</string>
+    <string name="my_location">Konumum</string>
+    <string name="rate_us">Bizi Puanlayın</string>
+    <string name="share_app">Uygulamayı Paylaşın</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="go_premium">Premium\'a Geçin</string>
+    <string name="not_supported">Yönlendirme desteklenmiyor</string>
+    <string name="calibrate_info">kalibre etmek için MENÜ\'ye basın...</string>
+    <string name="lock_info">seviye yönünü kilitlemek için dokunun</string>
 
 </resources>

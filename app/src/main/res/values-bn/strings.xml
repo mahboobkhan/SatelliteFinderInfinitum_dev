@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">আর কখনই আপনার সিগনাল হারাতে হবে না। আপনার ডিশ খুঁজতে স্যাটেলাইট ম্যাপ ব্যবহার করুন</string>
     <string name="location_info">লোকেশন তথ্য</string>
     <string name="rate_now">এখন রেট করুন</string>
+    <string name="bubble_level">বাবল লেভেল</string>
+    <string name="get_the_perfect_level_with_ease">সহজেই নিখুঁত লেভেল পান</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">আপনি কি অ্যাপ থেকে বেরিয়ে আসার ব্যাপারে নিশ্চিত?</string>
+    <string name="my_location">আমার অবস্থান</string>
+    <string name="rate_us">আমাদের রেট দিন</string>
+    <string name="share_app">অ্যাপ শেয়ার করুন</string>
+    <string name="privacy_policy">গোপনীয়তা নীতি</string>
+    <string name="go_premium">প্রিমিয়াম যান</string>
+    <string name="not_supported">ওরিয়েন্টেশন সমর্থিত নয়</string>
+    <string name="calibrate_info">ক্যালিব্রেট করতে মেনু টিপুন...</string>
+    <string name="lock_info">লেভেল ওরিয়েন্টেশন লক করতে ট্যাপ করুন</string>
 
 </resources>

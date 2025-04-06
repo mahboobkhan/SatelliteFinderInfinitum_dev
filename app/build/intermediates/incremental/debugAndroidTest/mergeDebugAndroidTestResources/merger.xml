@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.annotation:annotation-experimental:1.4.0$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\dell\.gradle\caches\8.9\transforms\d4e1aa8607933b336571eab077295898\transformed\annotation-experimental-1.4.0\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.annotation:annotation-experimental:1.4.0" from-dependency="true" generated-set="androidx.annotation:annotation-experimental:1.4.0$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\dell\.gradle\caches\8.9\transforms\d4e1aa8607933b336571eab077295898\transformed\annotation-experimental-1.4.0\res"><file path="C:\Users\dell\.gradle\caches\8.9\transforms\d4e1aa8607933b336571eab077295898\transformed\annotation-experimental-1.4.0\res\values\values.xml" qualifiers=""/></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.5.0$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidx.test:core:1.5.0" from-dependency="true" generated-set="androidx.test:core:1.5.0$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res"><file path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res\values\values.xml" qualifiers=""><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file><file path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res\values-v18\values.xml" qualifiers="v18"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file><file path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res\values-v21\values.xml" qualifiers="v21"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Holo.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Holo.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file><file path="C:\Users\dell\.gradle\caches\8.9\transforms\3bcec1d06e76be029b3f0c0c931d48e4\transformed\core-1.5.0\res\values-v28\values.xml" qualifiers="v28"><style name="WhiteBackgroundDialogTheme" parent="@android:style/Theme.Material.Dialog.NoActionBar">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style><style name="WhiteBackgroundTheme" parent="@android:style/Theme.Material.NoActionBar.Fullscreen">
+<item name="android:windowNoTitle">true</item>
+<item name="android:windowFullscreen">false</item>
+<item name="android:windowOverscan">true</item>
+<item name="android:fadingEdge">none</item>
+<item name="android:windowBackground">@android:color/white</item>
+<item name="android:windowContentTransitions">false</item>
+<item name="android:windowAnimationStyle">@null</item>
+</style></file></source></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidTest$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTest\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidTest" generated-set="androidTest$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTest\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidTestDebug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTestDebug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="androidTestDebug" generated-set="androidTestDebug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTestDebug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\generated\res\resValues\androidTest\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="generated" generated-set="generated$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\generated\res\resValues\androidTest\debug"><file path="D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\generated\res\resValues\androidTest\debug\values\gradleResValues.xml" qualifiers=""><string name="appID" translatable="false">ca-app-pub-3940256099942544~3347511713</string><string name="appOpenId" translatable="false">ca-app-pub-3940256099942544/3419835294</string><string name="bannerId" translatable="false">ca-app-pub-3940256099942544/6300978111</string><string name="compassScreenNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="currentLocationNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="exitNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="findSatelliteNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="interstialId" translatable="false">ca-app-pub-3940256099942544/1033173712</string><string name="languagesNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="mainNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="mapScreenNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="map_key" translatable="false">AIzaSyDaqZoqVd78v5joc49oPR1rDTH70yZGw50</string><string name="moreScreenNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="obNativeFull" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="onBoardingNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="permissionNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="searchSatelliteNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="selectSatelliteNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string><string name="splashInterstial" translatable="false">ca-app-pub-3940256099942544/1033173712</string><string name="splashNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string></file></source></dataSet><mergedItems/></merger>

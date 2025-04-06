@@ -2,30 +2,28 @@ package com.example.satellitefinder.ui.activites
 
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
+import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivitySatellitesBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.ui.adapters.SatellitesAdapter
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.SatellitesInformationData
 import com.example.satellitefinder.utils.SatellitesPositionData
-import com.example.satellitefinder.utils.isAlreadyPurchased
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isInternetConnected
+import com.example.satellitefinder.utils.satelliteAdCounter
 import com.example.satellitefinder.utils.screenEventAnalytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import loadAndReturnAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Collections
 
 class SatellitesActivity : AppCompatActivity() {
@@ -36,7 +34,6 @@ class SatellitesActivity : AppCompatActivity() {
     private val binding: ActivitySatellitesBinding by lazy {
         ActivitySatellitesBinding.inflate(layoutInflater)
     }
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
 
     override fun attachBaseContext(newBase: Context?) {
@@ -48,9 +45,9 @@ class SatellitesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (remoteConfigViewModel.getRemoteConfig(this@SatellitesActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.interAll)) {
 
-            showPriorityAdmobInterstitial(true, getString(R.string.interstialId))
+            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
 
@@ -62,19 +59,25 @@ class SatellitesActivity : AppCompatActivity() {
             resultLauncher.launch(intent)
         }
 
-         adapter = SatellitesAdapter(this@SatellitesActivity, object :SatellitesAdapter.ActionListener{
-            override fun onSendData(satellitePositionData: SatellitesPositionData?) {
-                val intent = intent
-                intent.putExtra("satObject", satellitePositionData)
-                setResult(RESULT_OK, intent)
-                finish()
+        adapter =
+            SatellitesAdapter(this@SatellitesActivity) {
+                if (canWeShowAds(RemoteConfig.interAll) && satelliteAdCounter == 0) {
+                    showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
+                        sendDataResult(it)
+                    }, failListener = {
+                        sendDataResult(it)
+                    }, showListener = {
+                        satelliteAdCounter = 1
+                    })
+                } else {
+                    sendDataResult(it)
+                }
             }
-        })
 
-        if (remoteConfigViewModel.getRemoteConfig(this@SatellitesActivity)?.selectSatelliteNative?.value == 1 && !isAlreadyPurchased()){
+        if (canWeShowAds(RemoteConfig.selectSatelliteNative)) {
             isNativeAdEnable = true
             isAutoAdsRemoved = false
-        }else{
+        } else {
             isNativeAdEnable = false
             isAutoAdsRemoved = true
         }
@@ -83,19 +86,30 @@ class SatellitesActivity : AppCompatActivity() {
             mSatelliteList.clear()
             mSatelliteList = loadSatellitesData()
         }.invokeOnCompletion {
-        CoroutineScope(Dispatchers.Main).launch {
-            adapter.setData(isNativeAdEnable,isAutoAdsRemoved,mSatelliteList,isInternetConnected(),5,this@SatellitesActivity)
-            delay(3000)
-            binding.loadingLayout.visibility = View.GONE
-            binding.satellitesList.visibility = View.VISIBLE
-            binding.satellitesList.adapter = adapter
+            CoroutineScope(Dispatchers.Main).launch {
+                adapter.setData(
+                    isNativeAdEnable,
+                    isAutoAdsRemoved,
+                    mSatelliteList,
+                    isInternetConnected(),
+                    5,
+                    this@SatellitesActivity
+                )
+                delay(3000)
+                binding.loadingLayout.visibility = View.GONE
+                binding.satellitesList.visibility = View.VISIBLE
+                binding.satellitesList.adapter = adapter
 
+            }
         }
-        }
-
-
     }
 
+    private fun sendDataResult(satellitePositionData: SatellitesPositionData?) {
+        val intent = intent
+        intent.putExtra("satObject", satellitePositionData)
+        setResult(RESULT_OK, intent)
+        finish()
+    }
 
     private var resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->

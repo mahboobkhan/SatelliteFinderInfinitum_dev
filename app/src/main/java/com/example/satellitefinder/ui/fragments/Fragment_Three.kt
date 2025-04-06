@@ -6,29 +6,58 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.loadAndReturnAd
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.admobAds.obNativeAd1
+import com.example.satellitefinder.admobAds.obNativeAd2
+import com.example.satellitefinder.admobAds.obNativeAd3
+import com.example.satellitefinder.admobAds.obNativeAd4
+import com.example.satellitefinder.admobAds.showLoadedNativeAd
+import com.example.satellitefinder.databinding.FragmentOneBinding
+import com.example.satellitefinder.databinding.FragmentThreeBinding
+import com.example.satellitefinder.ui.activites.OnBoardingScreen
+import com.example.satellitefinder.utils.canWeShowAds
 
 
 class Fragment_Three : Fragment() {
-
+    private lateinit var binding: FragmentThreeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment__three, container, false)
+        binding = FragmentThreeBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Fragment_Three.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance() = Fragment_Three()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.tvNext.setOnClickListener {
+            OnBoardingScreen.viewPager?.currentItem = 4
+        }
+
+        showNativeAd()
+    }
+
+    private fun showNativeAd() {
+        activity?.apply {
+            if (canWeShowAds(RemoteConfig.onBoardingNative)) {
+                binding.layoutNative.visibility = View.VISIBLE
+                obNativeAd3?.let { ad ->
+                    showLoadedNativeAd(this, binding.layoutNative, R.layout.native_ad_layout_small, ad)
+                } ?: run {
+                    newLoadAndShowNativeAd(binding.layoutNative, R.layout.native_ad_layout_small, getString(R.string.onBoardingNativeId))
+                }
+
+                //Pre load 4th
+                loadAndReturnAd(this, getString(R.string.onBoardingNativeId)) { adState ->
+                    obNativeAd4 = adState
+                }
+            } else {
+                binding.layoutNative.visibility = View.GONE
+            }
+        }
     }
 }

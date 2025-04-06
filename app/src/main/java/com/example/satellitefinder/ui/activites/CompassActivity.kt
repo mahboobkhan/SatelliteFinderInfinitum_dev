@@ -7,20 +7,18 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCompassBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.utils.LanguagesHelper
-import com.example.satellitefinder.utils.isAlreadyPurchased
-import com.example.satellitefinder.utils.isInternetConnected
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.screenEventAnalytics
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CompassActivity : AppCompatActivity(), SensorEventListener {
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
     var mCompassAzimuth = 0
     private var sensorManager: SensorManager? = null
@@ -36,9 +34,10 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
     private var myAccelerometer: Sensor? = null
     private var myMagnetometer: Sensor? = null
 
-   val binding : ActivityCompassBinding by lazy {
-       ActivityCompassBinding.inflate(layoutInflater)
-   }
+    val binding: ActivityCompassBinding by lazy {
+        ActivityCompassBinding.inflate(layoutInflater)
+    }
+
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         newBase?.let {
@@ -48,21 +47,21 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (remoteConfigViewModel.getRemoteConfig(this@CompassActivity)?.InterstitialMain?.value == 1 && !isAlreadyPurchased()){
-
-            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
+        if (canWeShowAds(RemoteConfig.interAll)) {
+            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         checkDeviceSensorAvailable()
 
-       showNativeAd()
+        showNativeAd()
 
         screenEventAnalytics("CompassActivity")
-        binding.btnBack.setOnClickListener {
-            finish()
+        binding.ivBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
         }
 
+        onBackPressedDispatcher.addCallback(this@CompassActivity, callback)
     }
 
     override fun onStop() {
@@ -78,7 +77,9 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
     private fun checkDeviceSensorAvailable() {
         if (sensorManager!!.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
             if (sensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD) == null || sensorManager!!.getDefaultSensor(
-                    Sensor.TYPE_ACCELEROMETER) == null) {
+                    Sensor.TYPE_ACCELEROMETER
+                ) == null
+            ) {
                 /*noSensorAlert()*/
             } else {
                 myAccelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -147,19 +148,27 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
-    private fun showNativeAd(){
-        if (remoteConfigViewModel.getRemoteConfig(this@CompassActivity)?.compassNative?.value == 1 && !isAlreadyPurchased()){
-        newLoadAndShowNativeAd(
-            binding.layoutNative,
-            R.layout.native_ad_layout_small,
-            getString(R.string.compassScreenNativeId),
-            adLoading = {
-                binding.layoutNative.visibility = View.VISIBLE
-            },
-            failToLoad = {
-                binding.layoutNative.visibility = View.GONE
-            })
-    }
+    private fun showNativeAd() {
+        if (canWeShowAds(RemoteConfig.compassNative)) {
+            newLoadAndShowNativeAd(
+                binding.layoutNative,
+                R.layout.native_ad_layout_small,
+                getString(R.string.compassScreenNativeId),
+                adLoading = {
+                    binding.layoutNative.visibility = View.VISIBLE
+                },
+                failToLoad = {
+                    binding.layoutNative.visibility = View.GONE
+                })
+        }
     }
 
+
+    private val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finish()
+
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+        }
+    }
 }

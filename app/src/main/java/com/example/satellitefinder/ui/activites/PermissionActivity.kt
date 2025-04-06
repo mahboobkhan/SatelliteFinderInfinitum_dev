@@ -5,44 +5,67 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.loadAndShowInterstitial
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.ActivityPermissionBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.utils.AdState
 import com.example.satellitefinder.utils.baseConfig
-import com.example.satellitefinder.utils.isAlreadyPurchased
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.requestLocationPermissions
-import com.google.android.gms.ads.nativead.NativeAd
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import showLoadedNativeAd
 
 class PermissionActivity : AppCompatActivity() {
 
     val binding:ActivityPermissionBinding by lazy{
         ActivityPermissionBinding.inflate(layoutInflater)
     }
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
 
     companion object{
         var permissionNativeAd: AdState? =null
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-               showNativeAd()
+        showNativeAd()
 
         binding.btnAllow.setOnClickListener {
             baseConfig.isOnPermissionDone = true
 
             requestLocationPermissions {
-                if (it){
-                    startActivity(Intent(this@PermissionActivity,MainActivity::class.java))
-                    finish()
+                if (it) {
+                    if (canWeShowAds(RemoteConfig.interSplash)) {
+                        loadAndShowInterstitial(getString(R.string.splashInterstial), closeListener = {
+                            moveNext()
+                        }, failListener = {
+                            moveNext()
+                        })
+                    } else {
+                        moveNext()
+                    }
                 }
             }
         }
+
+        binding.btnNotNow.setOnClickListener {
+            if (canWeShowAds(RemoteConfig.interSplash)) {
+                loadAndShowInterstitial(getString(R.string.splashInterstial), closeListener = {
+                    moveNext()
+                }, failListener = {
+                    moveNext()
+                })
+            } else {
+                moveNext()
+            }
+        }
+    }
+
+    private fun moveNext() {
+        startActivity(Intent(this@PermissionActivity,MainActivity::class.java))
+        finish()
     }
 
     override fun onDestroy() {
@@ -50,7 +73,7 @@ class PermissionActivity : AppCompatActivity() {
         permissionNativeAd = null
     }
     private fun showNativeAd(){
-        if (remoteConfigViewModel.getRemoteConfig(this@PermissionActivity)?.permissionNative?.value == 1 && !isAlreadyPurchased()) {
+        if (canWeShowAds(RemoteConfig.permissionNative)) {
             if (permissionNativeAd == null) {
                 newLoadAndShowNativeAd(
                     binding.layoutNative,

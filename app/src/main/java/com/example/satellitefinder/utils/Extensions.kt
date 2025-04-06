@@ -17,12 +17,10 @@ import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
-import com.example.satellitefinder.BuildConfig
 import com.example.satellitefinder.R
-import com.google.android.gms.ads.nativead.NativeAd
+import com.example.satellitefinder.utils.MyApplication.Companion.canRequestAdByConsent
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.permissionx.guolindev.PermissionX
-import java.lang.reflect.Method
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -31,6 +29,34 @@ var currentLocation: Location? = null
 var isSplash = false
 var adCount = 1
 var exitNativeAd: AdState? = null
+var remoteAdCounter = 4
+var isFirstTime = false
+var satelliteAdCounter = 0
+
+
+fun Activity.startActivityWithSlideTransition(
+    targetActivity: Class<out Activity>,
+    extras: Bundle? = null
+) {
+    val intent = Intent(this, targetActivity)
+    extras?.let { intent.putExtras(it) }
+    startActivity(intent)
+
+    // Apply slide transition
+    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+}
+
+fun Context.canWeShowAds(remoteValue: Boolean): Boolean {
+    return if (!isInternetConnected()) {
+        false
+    } else if (isAlreadyPurchased()) {
+        false
+    } else if (!canRequestAdByConsent) {
+        false
+    } else remoteValue
+}
+
+
 fun Context.getSharedPrefs(): SharedPreferences =
     getSharedPreferences(PREFS_KEY, Context.MODE_PRIVATE)
 
@@ -194,7 +220,7 @@ fun Context.sharesApp(text: String) {
         )
         var shareMessage = text
         shareMessage =
-            """${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}""".trimIndent()
+            """${shareMessage}https://play.google.com/store/apps/details?id=${packageName}""".trimIndent()
         shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
         startActivity(
             Intent.createChooser(

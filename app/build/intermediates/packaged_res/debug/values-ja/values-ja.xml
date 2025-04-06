@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ad_attribution">広告</string>
+    <string name="app_name">Satellite Tracker App</string>
+    <string name="cancel">キャンセル</string>
+    <string name="compass">コンパス</string>
+    <string name="do_you_like_our_app">アプリが気に入りましたか？</string>
+    <string name="do_you_want_to_exit">終了しますか？</string>
+    <string name="done">完了</string>
+    <string name="east">東</string>
+    <string name="exit">終了</string>
+    <string name="get_started">開始</string>
+    <string name="give_us_a_rating_so_we_know_if_you_like">気に入ったら評価してください</string>
+    <string name="hybrid">ハイブリッド</string>
+    <string name="install">インストール</string>
+    <string name="languages">言語</string>
+    <string name="location_info">位置情報</string>
+    <string name="more">詳細</string>
+    <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">もう一度信号を失うことはありません。サテライトマップを使用して料理を見つける。</string>
+    <string name="normal">通常</string>
+    <string name="north">北</string>
+    <string name="north_east">北東</string>
+    <string name="northwest">北西</string>
+    <string name="not_now"><u>今は違う</u></string>
+    <string name="rate_now">今すぐ評価</string>
+    <string name="satellite">衛星</string>
+    <string name="satellite_finder">サテライトファインダー</string>
+    <string name="satellite_info">衛星情報</string>
+    <string name="satellite_map">サテライトマップ</string>
+    <string name="select_map_type">マップタイプを選択</string>
+    <string name="select_satellite">衛星を選択</string>
+    <string name="south">南</string>
+    <string name="southeast">南東</string>
+    <string name="southwest">南西</string>
+    <string name="terrain">地形</string>
+    <string name="the_feature_that_guides_you_to_your_destination">目的地へ案内する機能。</string>
+    <string name="the_smart_solution_for_your_dish">あなたの料理のためのスマートな解決策</string>
+    <string name="this_action_may_contains_ad">このアクションには広告が含まれる可能性があります</string>
+    <string name="west">西</string>
+</resources>

@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">再也不要失去信号。使用卫星地图找到您的设备。</string>
     <string name="location_info">位置信息</string>
     <string name="rate_now">现在评分</string>
+    <string name="bubble_level">气泡水平仪</string>
+    <string name="get_the_perfect_level_with_ease">轻松获得完美水平仪</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">您确定要退出应用程序吗？</string>
+    <string name="my_location">我的位置</string>
+    <string name="rate_us">给我们评分</string>
+    <string name="share_app">分享应用程序</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="go_premium">升级为高级版</string>
+    <string name="not_supported">不支持方向</string>
+    <string name="calibrate_info">按菜单校准...</string>
+    <string name="lock_info">点击锁定水平方向</string>
 
 </resources>

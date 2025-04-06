@@ -1,22 +1,18 @@
+package com.example.satellitefinder.admobAds
+
 import android.app.Activity
 import android.content.Context
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
 import androidx.annotation.LayoutRes
-import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.populateUnifiedNativeAdView
 import com.example.satellitefinder.admobAds.showNativeLog
-
 import com.example.satellitefinder.utils.AdState
 import com.example.satellitefinder.utils.isInternetConnected
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.VideoController
 import com.google.android.gms.ads.VideoOptions
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
@@ -24,6 +20,12 @@ import com.google.android.gms.ads.nativead.NativeAdView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+var obNativeAd1: AdState? = null
+var obNativeAd2: AdState? = null
+var obNativeAdFull: AdState? = null
+var obNativeAd3: AdState? = null
+var obNativeAd4: AdState? = null
 
 fun loadAndReturnAd(
     context: Context, nativeIdLow: String, adResult: (AdState) -> Unit

@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">هرگز دوباره سیگنال خود را از دست ندهید. از نقشه‌های ماهواره‌ای برای پیدا کردن ظرف‌تان استفاده کنید.</string>
     <string name="location_info">اطلاعات مکان</string>
     <string name="rate_now">الان امتیاز دهید</string>
+    <string name="bubble_level">سطح حباب</string>
+    <string name="get_the_perfect_level_with_ease">به راحتی سطح عالی را بدست آورید</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">آیا مطمئن هستید که می خواهید از برنامه خارج شوید؟</string>
+    <string name="my_location">موقعیت مکانی من</string>
+    <string name="rate_us">به ما امتیاز دهید</string>
+    <string name="share_app">اشتراک گذاری برنامه</string>
+    <string name="privacy_policy">سیاست حفظ حریم خصوصی</string>
+    <string name="go_premium">برو پریمیوم</string>
+    <string name="not_supported">جهت پشتیبانی نمی شود</string>
+    <string name="calibrate_info">MENU را برای کالیبره کردن فشار دهید...</string>
+    <string name="lock_info">برای قفل کردن جهت سطح ضربه بزنید</string>
 
 </resources>

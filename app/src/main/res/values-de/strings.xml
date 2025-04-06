@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Verliere nie wieder dein Signal. Verwende Satellitenkarten, um deine Schüssel zu finden.</string>
     <string name="location_info">Ortungsinformation</string>
     <string name="rate_now">Jetzt bewerten</string>
+    <string name="bubble_level">Wasserwaage</string>
+    <string name="get_the_perfect_level_with_ease">Erstellen Sie ganz einfach die perfekte Wasserwaage</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Möchten Sie die App wirklich beenden?</string>
+    <string name="my_location">Mein Standort</string>
+    <string name="rate_us">Bewerten Sie uns</string>
+    <string name="share_app">App teilen</string>
+    <string name="privacy_policy">Datenschutz</string>
+    <string name="go_premium">Premium werden</string>
+    <string name="not_supported">Ausrichtung wird nicht unterstützt</string>
+    <string name="calibrate_info">Menü drücken zum Kalibrieren...</string>
+    <string name="lock_info">Tippen, um die Wasserwaagenausrichtung zu sperren</string>
 
 </resources>

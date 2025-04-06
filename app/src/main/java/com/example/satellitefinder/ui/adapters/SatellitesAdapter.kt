@@ -9,14 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.databinding.ListAdItemBinding
 import com.example.satellitefinder.databinding.SatelliteItemBinding
 import com.example.satellitefinder.ui.activites.SatellitesActivity
 import com.example.satellitefinder.utils.SatellitesPositionData
-import newLoadAndShowNativeAd
 import kotlin.math.roundToLong
 
-class SatellitesAdapter(val context: Context, private val actionListener: ActionListener) :
+class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositionData) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var entitiesList: MutableList<BaseItem> = ArrayList()
@@ -30,7 +30,7 @@ class SatellitesAdapter(val context: Context, private val actionListener: Action
             0 -> {
                 val inflate =
                     SatelliteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return SatelliteViewHolder(inflate, actionListener)
+                return SatelliteViewHolder(inflate)
             }
             else -> {
                 NativeViewHolder(ListAdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -41,7 +41,6 @@ class SatellitesAdapter(val context: Context, private val actionListener: Action
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = entitiesList[position]) {
             is NativeItem -> {
-
                 if (adsHashMap[position] != null) {
                     item.nativeAd = adsHashMap[position] as Any
                 }
@@ -64,9 +63,6 @@ class SatellitesAdapter(val context: Context, private val actionListener: Action
             entitiesList.size
         }
     }
-
-
-
 
     inner class NativeViewHolder(val binding: ListAdItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -97,14 +93,6 @@ class SatellitesAdapter(val context: Context, private val actionListener: Action
             (holder as NativeViewHolder)
             holder.bind()
         }
-    }
-
-
-
-
-
-    interface ActionListener {
-        fun onSendData(satellitePositionData: SatellitesPositionData?)
     }
 
     fun setData(
@@ -147,36 +135,21 @@ class SatellitesAdapter(val context: Context, private val actionListener: Action
             else -> 2
         }
     }
-}
 
- class SatelliteViewHolder(
-    val binding: SatelliteItemBinding,
-    var actionListner: SatellitesAdapter.ActionListener
-) : RecyclerView.ViewHolder(
-    binding.root
-) {
-    @SuppressLint("SetTextI18n")
-    fun bindData(item: SatellitesPositionData?, position: Int) {
-        val context = binding.root.context
-        item?.let {
-            binding.satTitle.text = it.getSatellite().toString()
-            binding.satElevation.text =
-                "Elevation: ${(it.getSatelliteElevation())?.roundToLong()}°"
-            binding.satAzimut.text = "Azimuth:${it.getSatelliteAzimut()}°"
-            binding.satAngel.text = "(${it.getSatelliteDirection()})"
+    inner class SatelliteViewHolder(val binding: SatelliteItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
+        fun bindData(item: SatellitesPositionData?, position: Int) {
+            item?.let { data ->
+                binding.satTitle.text = data.getSatellite().toString()
+                binding.satElevation.text =
+                    "Elevation: ${(data.getSatelliteElevation())?.roundToLong()}°"
+                binding.satAzimut.text = "Azimuth:${data.getSatelliteAzimut()}°"
+                binding.satAngel.text = "(${data.getSatelliteDirection()})"
 
-            binding.root.setOnClickListener { v: View? ->
-                if (context is SatellitesActivity) {
-                    val intent = context.intent
-                    intent.putExtra("satObject", it)
-                    context.setResult(Activity.RESULT_OK, intent)
-                    context.finish()
+                binding.root.setOnClickListener {
+                    onItemClick.invoke(data)
                 }
-                actionListner.onSendData(it)
             }
         }
-
     }
-
-
- }
+}

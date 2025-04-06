@@ -15,39 +15,31 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.satellitefinder.R
-import com.example.satellitefinder.admobAds.OpenApp
-
-import com.example.satellitefinder.admobAds.loadPriorityAdmobInterstitial
+import com.example.satellitefinder.admobAds.AdsConsentManager
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.loadAndReturnAd
+import com.example.satellitefinder.admobAds.loadAndShowInterstitial
+import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.admobAds.obNativeAd1
+import com.example.satellitefinder.admobAds.obNativeAd2
+import com.example.satellitefinder.admobAds.obNativeAdFull
 import com.example.satellitefinder.databinding.ActivitySplashBinding
-import com.example.satellitefinder.firebaseRemoteConfigurations.RemoteViewModel
 import com.example.satellitefinder.utils.LanguagesHelper
-import com.example.satellitefinder.utils.MyApplication
+import com.example.satellitefinder.utils.MyApplication.Companion.canRequestAdByConsent
 import com.example.satellitefinder.utils.baseConfig
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isFromLang
-import com.example.satellitefinder.utils.isInternetConnected
 import com.example.satellitefinder.utils.isPFromSplash
 import com.example.satellitefinder.utils.isSplash
-import com.google.android.gms.ads.MobileAds
-import com.google.android.ump.ConsentForm
-import com.google.android.ump.ConsentInformation
-import com.google.android.ump.ConsentRequestParameters
-import com.google.android.ump.UserMessagingPlatform
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import newLoadAndShowNativeAd
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.concurrent.atomic.AtomicBoolean
+import com.example.satellitefinder.utils.startActivityWithSlideTransition
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
+
     val binding: ActivitySplashBinding by lazy {
         ActivitySplashBinding.inflate(layoutInflater)
     }
-    val remoteConfigViewModel: RemoteViewModel by viewModel()
 
-    private lateinit var consentInformation: ConsentInformation
-    private var isMobileAdsInitializeCalled = AtomicBoolean(false)
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         newBase?.let {
@@ -66,6 +58,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+       // KoinStarter.start(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         isSplash = true
@@ -74,10 +67,10 @@ class SplashActivity : AppCompatActivity() {
 
 
         if (isFromLang) {
-            if (remoteConfigViewModel.getRemoteConfig(this@SplashActivity)?.splashNative?.value == 1){
+            if (canWeShowAds(RemoteConfig.nativeSplash)){
                 showNativeAd()
             }
-            startHandler(7000)
+            startHandler(5000)
         } else {
             requestConsentForm()
 
@@ -94,40 +87,43 @@ class SplashActivity : AppCompatActivity() {
 
 
         binding.btnGetStarted.setOnClickListener {
-            if (!baseConfig.isOnBoardingDone) {
-                startActivity(
-                    Intent(this, OnBoardingScreen::class.java).putExtra(
-                        "isFirstTime",
-                        true
-                    )
-                )
-                finish()
-            } else if (baseConfig.isOnPermissionDone) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+            if (canWeShowAds(RemoteConfig.interSplash)) {
+                loadAndShowInterstitial(getString(R.string.splashInterstial), closeListener = {
+                    moveNext()
+                }, failListener = {
+                    moveNext()
+                })
             } else {
-                startActivity(
-                    Intent(this@SplashActivity, PermissionActivity::class.java).putExtra(
-                        "isFirstTime",
-                        true
-                    )
-                )
-                finish()
+                moveNext()
             }
         }
 
 
     }
 
+    private fun moveNext() {
+        if (!baseConfig.isOnBoardingDone) {
+            val bundle = Bundle()
+            bundle.putBoolean("isFirstTime", true)
+            startActivityWithSlideTransition(OnBoardingScreen::class.java, bundle)
+            finish()
+        } else if (baseConfig.isOnPermissionDone) {
+            startActivityWithSlideTransition(MainActivity::class.java)
+            finish()
+        } else {
+            val bundle = Bundle()
+            bundle.putBoolean("isFirstTime", true)
+            startActivityWithSlideTransition(PermissionActivity::class.java, bundle)
+            finish()
+        }
+    }
+
     private fun loadAds() {
-        if (isInternetConnected()) {
-            showNativeAd()
-            if (baseConfig.isOnBoardingDone){
-                loadPriorityAdmobInterstitial(getString(R.string.splashInterstial))
-            }
+        showNativeAd()
+        if (canWeShowAds(RemoteConfig.interSplash)) {
+//            loadPriorityAdmobInterstitial(getString(R.string.splashInterstial))
 
-            startHandler(9000)
-
+            startHandler(7000)
         } else {
             binding.progress.visibility = View.GONE
             binding.btnGetStarted.visibility = View.VISIBLE
@@ -146,105 +142,78 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun showNativeAd() {
-        newLoadAndShowNativeAd(
-            binding.layoutNative,
-            R.layout.native_ad_layout_main,
-            getString(R.string.splashNativeId),
-            adLoading = {
-                binding.layoutNative.visibility = View.VISIBLE
-            },
-            failToLoad = {
-                binding.layoutNative.visibility = View.GONE
-            })
+        if (canWeShowAds(RemoteConfig.nativeSplash)) {
+            newLoadAndShowNativeAd(
+                binding.layoutNative,
+                R.layout.native_ad_layout_main,
+                getString(R.string.splashNativeId),
+                adLoading = {
+                    binding.layoutNative.visibility = View.VISIBLE
+                },
+                failToLoad = {
+                    binding.layoutNative.visibility = View.GONE
+                })
+        } else {
+            binding.layoutNative.visibility = View.GONE
+        }
 
+        if (canWeShowAds(RemoteConfig.onBoardingNative)) {
+            //Pre load ob Native
+            loadAndReturnAd(this, getString(R.string.onBoardingNativeId)) { adState ->
+                obNativeAd1 = adState
+            }
+
+            //Pre load ob Native Full
+            loadAndReturnAd(this, getString(R.string.obNativeFull)) { adState ->
+                obNativeAdFull = adState
+            }
+        }
     }
-
 
     private fun requestConsentForm() {
-        // Set tag for under age of consent. false means users are not under age
-        // of consent.
-        val params = ConsentRequestParameters
-            .Builder()
-            .setTagForUnderAgeOfConsent(false)
-            .build()
-
-        consentInformation = UserMessagingPlatform.getConsentInformation(this)
-        consentInformation.requestConsentInfoUpdate(
-            this,
-            params,
-            {
-                UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                    this@SplashActivity,
-                    ConsentForm.OnConsentFormDismissedListener { loadAndShowError ->
-                        // Consent gathering failed.
-                        Log.e(
-                            "TAG", String.format(
-                                "%s: %s",
-                                loadAndShowError?.errorCode,
-                                loadAndShowError?.message
-                            )
-                        )
-
-                        // Consent has been gathered.
-                        if (consentInformation.canRequestAds()) {
-                            initializeMobileAdsSdk()
+        RemoteConfig.fetchRecord(this) {
+            val adsConsentManager = AdsConsentManager(this)
+            adsConsentManager.requestUMP(object : AdsConsentManager.UMPResultListener {
+                override fun onCheckUMPSuccess(canRequestAds: Boolean) {
+                    canRequestAdByConsent = canRequestAds
+                    if (canRequestAds) {
+                        runOnUiThread { loadAds() }
+                    } else {
+                        runOnUiThread {
+                            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                            finish()
                         }
                     }
-                )
-            },
-            { requestConsentError ->
-                // Consent gathering failed.
-                Log.w(
-                    "TAG", String.format(
-                        "%s: %s",
-                        requestConsentError.errorCode,
-                        requestConsentError.message
-                    )
-                )
+                }
             })
-
-        // Check if you can initialize the Google Mobile Ads SDK in parallel
-        // while checking for new consent information. Consent obtained in
-        // the previous session can be used to request ads.
-        if (consentInformation.canRequestAds()) {
-            initializeMobileAdsSdk()
         }
-
     }
 
 
-    private fun initializeMobileAdsSdk() {
-        if (isMobileAdsInitializeCalled.getAndSet(true)) {
-            return
-        }
-
-        // Initialize the Google Mobile Ads SDK.
-        MobileAds.initialize(this)
-
-        initializeRemoteConfig()
-
-    }
-
-    private fun initializeRemoteConfig() {
+    /*private fun initializeRemoteConfig() {
         CoroutineScope(Dispatchers.IO).launch {
 
             remoteConfigViewModel.getRemoteConfigSplash(this@SplashActivity)
         }.invokeOnCompletion() {
 
             CoroutineScope(Dispatchers.Main).launch {
-                remoteConfigViewModel.remoteConfig.observe(this@SplashActivity, fun(remoteConfig) {
-                    if (remoteConfig?.InterstitialMain?.value == 1 || remoteConfigViewModel.getRemoteConfig(this@SplashActivity)?.splashNative?.value == 1) {
-                        loadAds()
-                        if (remoteConfigViewModel.getRemoteConfig(this@SplashActivity)?.openAppAdID?.value ==1){
-                            OpenApp(application as MyApplication)
+                remoteConfigViewModel.remoteConfig.observe(this@SplashActivity) { remoteConfig ->
+                    remoteConfigViewModel.remoteConfigCounter.observe(
+                        this@SplashActivity
+                    ) { remoteConfig2 ->
+                        if (remoteConfig?.InterstitialMain?.value == 1 || remoteConfig?.splashNative?.value == 1) {
+                            remoteAdCounter = remoteConfig2.mainScreenCounter.value
+                            loadAds()
+                            if (remoteConfig?.openAppAdID?.value == 1 || remoteConfig?.openAppAdID?.value == 1) {
+                                OpenApp(application as MyApplication)
+                            }
+                        } else {
+                            binding.layoutNative.visibility = View.GONE
+                            startHandler(5000)
                         }
-                    }else{
-                        binding.layoutNative.visibility = View.GONE
-                        startHandler(5000)
                     }
-
-                })
+                }
             }
         }
-    }
+    }*/
 }

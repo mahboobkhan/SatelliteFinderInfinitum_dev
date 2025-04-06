@@ -25,6 +25,20 @@
         android:theme="@style/Theme.SatelliteFinder"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activites.LevelerActivity"
+            android:exported="false"
+            android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activites.LevelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.ExitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.BubbleLevelActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activites.SubscriptionActivity"
             android:exported="false" />
         <activity

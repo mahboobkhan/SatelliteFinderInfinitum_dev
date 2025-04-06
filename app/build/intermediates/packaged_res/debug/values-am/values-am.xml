@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ad_attribution">ኤደት</string>
+    <string name="app_name">Satellite Tracker App</string>
+    <string name="cancel">ይቅር</string>
+    <string name="compass">ኮማፐስ</string>
+    <string name="do_you_like_our_app">እባኮት እናወዳለን እስከ ሆነው ይወዳል?</string>
+    <string name="do_you_want_to_exit">እባኮት ወደኋላ መሄድ ይፈልጋልን?</string>
+    <string name="done">አለበለበ</string>
+    <string name="east">ሰማይ</string>
+    <string name="exit">መሄድ</string>
+    <string name="get_started">እንደጀመረ ለመጀመሪያ</string>
+    <string name="give_us_a_rating_so_we_know_if_you_like">እባኮት አስተያየት አልሰጠንም በመሆኑ እስከ አሁን እንደምን ማወዳት ይሆን</string>
+    <string name="hybrid">ሐይቤርድ</string>
+    <string name="install">እንስማማለን</string>
+    <string name="languages">ቋንቋዎች</string>
+    <string name="location_info">ቦታ መረጃ</string>
+    <string name="more">ተጨማሪ</string>
+    <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">ምንዛሬ በጣም ማንዛሬ አይቆጣጠርም። ስለዚህ ሳተለይት መፑታዊ ቦታዎችን ተጠቀሙ</string>
+    <string name="normal">ሙቅ</string>
+    <string name="north">ሰማይ</string>
+    <string name="north_east">ሰሜን-ሰማይ</string>
+    <string name="northwest">ሰማይ-ሰሜን</string>
+    <string name="not_now"><u>እስከ አሁን አልተቻለን</u></string>
+    <string name="rate_now">አስተያየት</string>
+    <string name="satellite">ሳተለይት</string>
+    <string name="satellite_finder">ሳተለይት ፋይንድር</string>
+    <string name="satellite_info">ሳተለይት መረጃ</string>
+    <string name="satellite_map">ሳተለይት መፑ</string>
+    <string name="select_map_type">መፑ አምረጥ</string>
+    <string name="select_satellite">ሳተለይት ምረጥ</string>
+    <string name="south">ደቡብ</string>
+    <string name="southeast">ደቡብ-ሰማይ</string>
+    <string name="southwest">ደቡብ-ሰሜን</string>
+    <string name="terrain">ተርማን</string>
+    <string name="the_feature_that_guides_you_to_your_destination">ይህ ባህሪ ያንን ወደ መንገድዎ መመገቢ ይሆናል።</string>
+    <string name="the_smart_solution_for_your_dish">የምርጫዎችም እስከ ዚህ ነው ምንዛሬ መረጃ መከላከል</string>
+    <string name="this_action_may_contains_ad">ይህ ተጠቃሚ እትም አያውቅም መጠቀም እንደነበር ይህን መረጃ በመሆኑ ለመከላከል ይጠቀሙ</string>
+    <string name="west">ሰሜን</string>
+</resources>

@@ -1,0 +1,117 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.example.satellitefinder.test.app-merged_res-6:/values-v28_values-v28.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-3\\683fcd77f5f942d0714b939977749e48\\transformed\\core-1.5.0\\res\\values-v28\\values.xml",
+                    "from": {
+                        "startLines": "4,13",
+                        "startColumns": "0,0",
+                        "startOffsets": "180,659",
+                        "endLines": "12,21",
+                        "endColumns": "8,8",
+                        "endOffsets": "658,1135"
+                    },
+                    "to": {
+                        "startLines": "2,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,538",
+                        "endLines": "10,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "533,1014"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.example.satellitefinder.test.app-merged_res-6:/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-3\\683fcd77f5f942d0714b939977749e48\\transformed\\core-1.5.0\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "4,11",
+                        "startColumns": "0,0",
+                        "startOffsets": "176,544",
+                        "endLines": "10,17",
+                        "endColumns": "8,8",
+                        "endOffsets": "543,909"
+                    },
+                    "to": {
+                        "startLines": "21,28",
+                        "startColumns": "4,4",
+                        "startOffsets": "2041,2413",
+                        "endLines": "27,34",
+                        "endColumns": "8,8",
+                        "endOffsets": "2408,2778"
+                    }
+                },
+                {
+                    "source": "D:\\AndroidDevelopment\\Hamza\\SatelliteFinder\\app\\build\\generated\\res\\resValues\\androidTest\\debug\\values\\gradleResValues.xml",
+                    "from": {
+                        "startLines": "6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "161,299,441,582,736,892,1037,1191,1336,1486,1631,1781,1922,2073,2224,2375,2531,2687,2836",
+                        "endColumns": "93,97,96,109,111,100,109,100,105,100,105,96,106,106,106,111,111,104,102",
+                        "endOffsets": "250,392,533,687,843,988,1142,1287,1437,1582,1732,1873,2024,2175,2326,2482,2638,2787,2934"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,149,247,344,454,566,667,777,878,984,1085,1191,1288,1395,1502,1609,1721,1833,1938",
+                        "endColumns": "93,97,96,109,111,100,109,100,105,100,105,96,106,106,106,111,111,104,102",
+                        "endOffsets": "144,242,339,449,561,662,772,873,979,1080,1186,1283,1390,1497,1604,1716,1828,1933,2036"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.example.satellitefinder.test.app-merged_res-6:/values-v18_values-v18.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-3\\683fcd77f5f942d0714b939977749e48\\transformed\\core-1.5.0\\res\\values-v18\\values.xml",
+                    "from": {
+                        "startLines": "4,12",
+                        "startColumns": "0,0",
+                        "startOffsets": "180,596",
+                        "endLines": "11,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "595,1009"
+                    },
+                    "to": {
+                        "startLines": "2,10",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,475",
+                        "endLines": "9,17",
+                        "endColumns": "8,8",
+                        "endOffsets": "470,888"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "com.example.satellitefinder.test.app-merged_res-6:/values-v21_values-v21.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\Users\\dell\\.gradle\\caches\\transforms-3\\683fcd77f5f942d0714b939977749e48\\transformed\\core-1.5.0\\res\\values-v21\\values.xml",
+                    "from": {
+                        "startLines": "4,13",
+                        "startColumns": "0,0",
+                        "startOffsets": "180,655",
+                        "endLines": "12,21",
+                        "endColumns": "8,8",
+                        "endOffsets": "654,1127"
+                    },
+                    "to": {
+                        "startLines": "2,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,534",
+                        "endLines": "10,19",
+                        "endColumns": "8,8",
+                        "endOffsets": "529,1006"
+                    }
+                }
+            ]
+        }
+    ]
+}

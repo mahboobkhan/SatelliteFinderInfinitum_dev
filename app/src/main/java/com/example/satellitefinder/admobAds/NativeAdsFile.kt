@@ -1,21 +1,15 @@
 package com.example.satellitefinder.admobAds
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
 import android.util.Log
 import android.view.View
-import android.widget.*
-import androidx.annotation.LayoutRes
-import com.example.satellitefinder.BuildConfig
-import com.google.android.gms.ads.*
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdOptions
-import com.google.android.gms.ads.nativead.NativeAdView
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
 import com.example.satellitefinder.R
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.google.android.gms.ads.VideoController
+import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdView
 
 const val nativeAdFlow = "nativeAdFlow"
 fun showNativeLog(msg: String) {
@@ -56,14 +50,16 @@ fun populateUnifiedNativeAdView(
     nativeAd.callToAction?.let {
         (adView.callToActionView as Button).text = it
     } ?: hideView(adView.callToActionView)
-    val starRatingView = adView.findViewById<RatingBar>(R.id.ratingBar)
-    nativeAd.starRating?.let {
-        when {
-            it > 0 -> starRatingView.rating = it.toFloat()
-            else -> hideView(starRatingView)
-        }
-    } ?: myAddRating(starRatingView)
 
+    val starRatingView = adView.findViewById<RatingBar>(R.id.ratingBar)
+    starRatingView?.let { srv ->
+        nativeAd.starRating?.let {
+            when {
+                it > 0 -> srv.rating = it.toFloat()
+                else -> hideView(srv)
+            }
+        } ?: hideView(srv)
+    }
 
     adView.setNativeAd(nativeAd)
 
@@ -88,10 +84,7 @@ fun populateUnifiedNativeAdView(
 }
 
 fun myAddRating(starRatingView: RatingBar) {
-    when {
-        BuildConfig.DEBUG -> starRatingView.rating = 3.5F
-        else -> hideView(starRatingView)
-    }
+    hideView(starRatingView)
 }
 
 fun changeTextToEmpty(textView: TextView) {

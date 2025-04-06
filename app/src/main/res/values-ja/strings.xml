@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">もう一度信号を失うことはありません。サテライトマップを使用して料理を見つける。</string>
     <string name="location_info">位置情報</string>
     <string name="rate_now">今すぐ評価</string>
+    <string name="bubble_level">水準器</string>
+    <string name="get_the_perfect_level_with_ease">完璧な水準器を簡単に取得</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">アプリを終了してもよろしいですか?</string>
+    <string name="my_location">現在地</string>
+    <string name="rate_us">評価する</string>
+    <string name="share_app">アプリを共有する</string>
+    <string name="privacy_policy">プライバシー ポリシー</string>
+    <string name="go_premium">プレミアムになる</string>
+    <string name="not_supported">方向がサポートされていません</string>
+    <string name="calibrate_info">調整するにはメニューを押してください...</string>
+    <string name="lock_info">タップして水準器の方向をロックします</string>
 
 </resources>

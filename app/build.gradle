@@ -8,14 +8,14 @@ plugins {
 
 android {
     namespace 'com.example.satellitefinder'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.is.satellite.finder.gps.detector.app"
         minSdk 24
-        targetSdk 34
-        versionCode 30
-        versionName "1.3.6"
+        targetSdk 35
+        versionCode 38
+        versionName "1.4.5"
         setProperty"archivesBaseName", "Satellite Finder" + versionName + "_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -37,10 +37,12 @@ android {
             resValue "string", "moreScreenNativeId", "ca-app-pub-1806257797828593/5299668065"
             resValue "string", "compassScreenNativeId", "ca-app-pub-1806257797828593/1360423052"
             resValue "string", "onBoardingNativeId", "ca-app-pub-1806257797828593/7628497987"
+            resValue "string", "obNativeFull", "ca-app-pub-1806257797828593~8205549922"
             resValue "string", "searchSatelliteNativeId", "ca-app-pub-1806257797828593/6683633310"
             resValue "string", "languagesNativeId", "ca-app-pub-1806257797828593/7981526242"
             resValue "string", "currentLocationNativeId", "ca-app-pub-1806257797828593/5283056153"
             resValue "string", "exitNativeId", "ca-app-pub-1806257797828593/5679441704"
+            resValue "string", "bannerId", "ca-app-pub-1806257797828593/1172938953"
 
             resValue "string", "map_key", "AIzaSyDaqZoqVd78v5joc49oPR1rDTH70yZGw50"
         }
@@ -59,10 +61,13 @@ android {
             resValue "string", "moreScreenNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "compassScreenNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "onBoardingNativeId", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "obNativeFull", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "searchSatelliteNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "languagesNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "currentLocationNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "exitNativeId", "ca-app-pub-3940256099942544/2247696110"
+            resValue "string", "bannerId", "ca-app-pub-3940256099942544/6300978111"
+
 
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             resValue "string", "map_key", "AIzaSyDaqZoqVd78v5joc49oPR1rDTH70yZGw50"
@@ -91,6 +96,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.activity:activity:1.10.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -142,7 +148,7 @@ dependencies {
     implementation 'com.google.android.ump:user-messaging-platform:2.1.0'
 
     //remote Config
-    implementation 'com.google.firebase:firebase-config'
+    implementation 'com.google.firebase:firebase-config-ktx'
 
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'

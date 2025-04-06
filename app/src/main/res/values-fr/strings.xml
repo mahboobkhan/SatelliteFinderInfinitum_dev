@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Ne perdez plus jamais votre signal. Utilisez les cartes satellites pour trouver votre antenne.</string>
     <string name="location_info">Info Localisation</string>
     <string name="rate_now">Évaluer maintenant</string>
+    <string name="bubble_level">Niveau à bulle</string>
+    <string name="get_the_perfect_level_with_ease">Obtenez le niveau parfait en toute simplicité</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Êtes-vous sûr de vouloir quitter l\'application ?</string>
+    <string name="my_location">Ma position</string>
+    <string name="rate_us">Évaluez-nous</string>
+    <string name="share_app">Partager l\'application</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="go_premium">Passer à la version Premium</string>
+    <string name="not_supported">Orientation non prise en charge</string>
+    <string name="calibrate_info">Appuyez sur MENU pour calibrer…</string>
+    <string name="lock_info">Appuyez pour verrouiller l\'orientation du niveau</string>
 
 </resources>

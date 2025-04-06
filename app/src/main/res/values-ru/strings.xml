@@ -38,5 +38,16 @@
     <string name="never_lose_your_signal_again_use_satellite_maps_to_find_your_dish">Больше не теряйте сигнал. Используйте спутниковые карты, чтобы найти вашу антенну.</string>
     <string name="location_info">Информация о местоположении</string>
     <string name="rate_now">Оценить сейчас</string>
+    <string name="bubble_level">Пузырьковый уровень</string>
+    <string name="get_the_perfect_level_with_ease">Получите идеальный уровень с легкостью</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Вы уверены, что хотите выйти из приложения?</string>
+    <string name="my_location">Мое местоположение</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="share_app">Поделитесь приложением</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="go_premium">Перейти на Premium</string>
+    <string name="not_supported">Ориентация не поддерживается</string>
+    <string name="calibrate_info">Нажмите MENU для калибровки...</string>
+    <string name="lock_info">Нажмите, чтобы заблокировать ориентацию уровня</string>
 
 </resources>
