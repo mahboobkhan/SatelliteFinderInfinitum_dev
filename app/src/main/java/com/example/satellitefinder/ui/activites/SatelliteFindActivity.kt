@@ -151,6 +151,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             btnSelectSatellite.setOnClickListener {
                  selectSatellite()
 
+
             }
 
             btnInfo.setOnClickListener {
@@ -201,6 +202,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     private fun selectSatellite() {
         if (location != null) {
             val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
+
             resultLauncher.launch(intent)
         } else {
             Toast.makeText(
@@ -226,6 +228,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     @SuppressLint("SetTextI18n")
     var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
+            Log.d("testing Ad","OK Ad Show")
             val data: Intent? = result.data
             try{
                 satellitePosition = data?.getSerializableExtra("satObject") as SatellitesPositionData?

@@ -26,16 +26,17 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecyclerView.ViewHolder{
-        return when (viewType) {
-            0 -> {
-                val inflate =
-                    SatelliteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return SatelliteViewHolder(inflate)
-            }
-            else -> {
-                NativeViewHolder(ListAdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            }
-        }
+        val inflate =
+            SatelliteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return SatelliteViewHolder(inflate)
+//        return when (viewType) {
+//            0 -> {
+//
+//            }
+////            else -> {
+////                NativeViewHolder(ListAdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+////            }
+//        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -64,13 +65,13 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
         }
     }
 
-    inner class NativeViewHolder(val binding: ListAdItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind() {
-            activity?.newLoadAndShowNativeAd(
-                binding.adfram, R.layout.list_ad, context.getString(R.string.selectSatelliteNativeId), null)
-        }
-    }
+//    inner class NativeViewHolder(val binding: ListAdItemBinding) :
+//        RecyclerView.ViewHolder(binding.root) {
+//        fun bind() {
+////            activity?.newLoadAndShowNativeAd(
+////                binding.adfram, R.layout.list_ad, context.getString(R.string.selectSatelliteNativeId), null)
+//        }
+//    }
 
     class SatelliteItemView(val satellite:SatellitesPositionData) : BaseItem() {
         override fun itemType(): Int {
@@ -90,8 +91,8 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
         }
 
         override fun bindItem(holder: RecyclerView.ViewHolder?, position: Int) {
-            (holder as NativeViewHolder)
-            holder.bind()
+          //  (holder as NativeViewHolder)
+         //   holder.bind()
         }
     }
 

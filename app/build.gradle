@@ -14,8 +14,8 @@ android {
         applicationId "com.is.satellite.finder.gps.detector.app"
         minSdk 24
         targetSdk 35
-        versionCode 38
-        versionName "1.4.5"
+        versionCode 39
+        versionName "1.4.6"
         setProperty"archivesBaseName", "Satellite Finder" + versionName + "_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
