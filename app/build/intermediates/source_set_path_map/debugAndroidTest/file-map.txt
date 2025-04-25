@@ -1,9 +1,0 @@
-com.example.satellitefinder.test.app-core-1.5.0-0 C:\Users\dell\.gradle\caches\transforms-3\683fcd77f5f942d0714b939977749e48\transformed\core-1.5.0\res
-com.example.satellitefinder.test.app-annotation-experimental-1.4.0-1 C:\Users\dell\.gradle\caches\transforms-3\e1248d74a277c28224cd4c2dcdf61ca6\transformed\annotation-experimental-1.4.0\res
-com.example.satellitefinder.test.app-androidTest-2 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\generated\res\resValues\androidTest\debug
-com.example.satellitefinder.test.app-androidTest-3 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\generated\res\rs\androidTest\debug
-com.example.satellitefinder.test.app-mergeDebugAndroidTestResources-4 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
-com.example.satellitefinder.test.app-mergeDebugAndroidTestResources-5 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
-com.example.satellitefinder.test.app-merged_res-6 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\build\intermediates\merged_res\debugAndroidTest
-com.example.satellitefinder.test.app-androidTest-7 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTest\res
-com.example.satellitefinder.test.app-androidTestDebug-8 D:\AndroidDevelopment\Hamza\SatelliteFinder\app\src\androidTestDebug\res
