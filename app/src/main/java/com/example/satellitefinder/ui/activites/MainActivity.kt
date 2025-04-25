@@ -18,10 +18,12 @@ import com.example.satellitefinder.ui.adapters.NavigationAdapter
 import com.example.satellitefinder.ui.adapters.NavigationItemModel
 import com.example.satellitefinder.ui.dialogs.RattingDialog
 import com.example.satellitefinder.utils.ClickListener
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.RecyclerTouchListener
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.exitNativeAd
+import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.isSplash
 import com.example.satellitefinder.utils.privacyPolicy
 import com.example.satellitefinder.utils.rateUs
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
         isSplash = false
-
+        FirebaseEvents.logEventActivity("home_screen", "home_screen")
         screenEventAnalytics("MainActivity")
 
         showNativeAd()
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
         )
 
-        if (canWeShowAds(RemoteConfig.nativeExit)){
+        if (canWeShowAds(RemoteConfig.nativeExit)) {
             loadAndReturnAd(this@MainActivity, getString(R.string.exitNativeId)) {
                 exitNativeAd = it
             }
@@ -67,25 +69,43 @@ class MainActivity : AppCompatActivity() {
 
         binding.apply {
             btnFindSatellite.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_find_satellite",
+                    "home_screen_click_find_satellite"
+                )
                 startActivityWithSlideTransition(SatelliteFindActivity::class.java)
             }
 
             btnSatelliteMap.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_satellite_map",
+                    "home_screen_click_satellite_map"
+                )
                 startActivityWithSlideTransition(MapSatelliteActivity::class.java)
             }
             btnCompass.setOnClickListener {
+                FirebaseEvents.logEvent("home_screen_click_compass", "home_screen_click_compass")
                 startActivityWithSlideTransition(CompassActivity::class.java)
             }
 
             btnBubbleLevel.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_bubble_level",
+                    "home_screen_click_bubble_level"
+                )
                 startActivityWithSlideTransition(LevelActivity::class.java)
             }
 
             btnCurrent.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
                 startActivityWithSlideTransition(CurrentLocationActivity::class.java)
             }
 
             btnSetting.setOnClickListener {
+                FirebaseEvents.logEvent("home_screen_click_drawer", "home_screen_click_drawer")
                 if (layoutDrawer.isDrawerOpen(GravityCompat.START)) {
                     layoutDrawer.closeDrawer(GravityCompat.START)
                 } else {
@@ -94,9 +114,26 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            goVersion.setOnClickListener {
-                startActivityWithSlideTransition(SubscriptionActivity::class.java)
+
+            if (isAlreadyPurchased()){
+                btnPremium.visibility = View.GONE
+                goVersion.visibility = View.GONE
+            }else{
+                btnPremium.setOnClickListener {
+                    FirebaseEvents.logEvent("home_screen_click_premium", "home_screen_click_premium")
+                    startActivityWithSlideTransition(SubscriptionActivity::class.java)
+                }
+
+                goVersion.setOnClickListener {
+                    FirebaseEvents.logEvent(
+                        "home_screen_click_drawer_go_premium",
+                        "home_screen_click_drawer_go_premium"
+                    )
+                    startActivityWithSlideTransition(SubscriptionActivity::class.java)
+                }
             }
+
+
         }
 
         setUpDrawerLayout()
@@ -115,17 +152,36 @@ class MainActivity : AppCompatActivity() {
         binding.navigationRv.addOnItemTouchListener(RecyclerTouchListener(this, object :
             ClickListener {
             override fun onClick(view: View, position: Int) {
-                when(position) {
+                when (position) {
                     0 -> {
+                        FirebaseEvents.logEvent(
+                            "home_screen_click_language",
+                            "home_screen_click_language"
+                        )
                         startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
                     }
+
                     1 -> {
+                        FirebaseEvents.logEvent(
+                            "home_screen_click_rate_us",
+                            "home_screen_click_rate_us"
+                        )
                         rateUs()
                     }
+
                     2 -> {
+                        FirebaseEvents.logEvent(
+                            "home_screen_click_share_app",
+                            "home_screen_click_share_app"
+                        )
                         sharesApp("Install this free Satellite Finder App")
                     }
+
                     3 -> {
+                        FirebaseEvents.logEvent(
+                            "home_screen_click_privacy_policy",
+                            "home_screen_click_privacy_policy"
+                        )
                         privacyPolicy()
                     }
                 }
@@ -158,7 +214,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showNativeAd() {
-        if (canWeShowAds(RemoteConfig.mainNative)){
+        if (canWeShowAds(RemoteConfig.mainNative)) {
 
             newLoadAndShowNativeAd(
                 binding.layoutNative,
@@ -167,9 +223,9 @@ class MainActivity : AppCompatActivity() {
                 adLoading = {
                     binding.layoutNative.visibility = View.VISIBLE
                 },
-                failToLoad = {binding.layoutNative.visibility = View.GONE})
-        }else{
-            binding.layoutNative.visibility =  View.GONE
+                failToLoad = { binding.layoutNative.visibility = View.GONE })
+        } else {
+            binding.layoutNative.visibility = View.GONE
         }
 
     }

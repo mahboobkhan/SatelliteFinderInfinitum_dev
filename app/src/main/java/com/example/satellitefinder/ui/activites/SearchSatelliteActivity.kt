@@ -11,6 +11,7 @@ import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.databinding.ActivitySearchSatelliteBinding
 import com.example.satellitefinder.ui.adapters.SearchSatelliteAdapter
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.SatellitesInformationData
 import com.example.satellitefinder.utils.SatellitesPositionData
@@ -35,7 +36,7 @@ class SearchSatelliteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("search_sate_screen", "search_sate_screen")
         supportActionBar?.show()
         supportActionBar?.title = "Tap to search Satellite"
         if (canWeShowAds(RemoteConfig.searchSatelliteNative)){

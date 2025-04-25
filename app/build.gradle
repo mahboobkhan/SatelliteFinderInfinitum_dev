@@ -14,9 +14,9 @@ android {
         applicationId "com.is.satellite.finder.gps.detector.app"
         minSdk 24
         targetSdk 35
-        versionCode 39
-        versionName "1.4.6"
-        setProperty"archivesBaseName", "Satellite Finder" + versionName + "_"
+        versionCode 41
+        versionName "1.4.8"
+        setProperty "archivesBaseName", "Satellite Finder" + versionName + "_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -82,7 +82,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }

@@ -14,6 +14,7 @@ import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCompassBinding
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.screenEventAnalytics
@@ -54,10 +55,13 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         checkDeviceSensorAvailable()
 
+        FirebaseEvents.logEventActivity("compass_screen", "compass_screen")
+
         showNativeAd()
 
         screenEventAnalytics("CompassActivity")
         binding.ivBack.setOnClickListener {
+            FirebaseEvents.logEvent("compass_screen_click_back", "compass_screen_click_back")
             onBackPressedDispatcher.onBackPressed()
         }
 

@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,16 +24,13 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final ConstraintLayout abc;
-
-  @NonNull
-  public final TextView btnContinueWithAd;
-
-  @NonNull
   public final AppCompatButton btnUpgrade;
 
   @NonNull
   public final TextView heading;
+
+  @NonNull
+  public final ImageView ifvIcon;
 
   @NonNull
   public final ImageView illus;
@@ -44,65 +42,90 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
   public final ImageView ivSelectedMonthly;
 
   @NonNull
+  public final ImageView ivSelectedWeekly;
+
+  @NonNull
   public final ImageView ivSelectedYearly;
+
+  @NonNull
+  public final LinearLayout linearLayout3;
+
+  @NonNull
+  public final LinearLayout llRemoveAd;
 
   @NonNull
   public final MaterialCardView monthlyCard;
 
   @NonNull
-  public final TextView monthlyPrice1;
-
-  @NonNull
-  public final TextView privaryPolicy;
-
-  @NonNull
-  public final TextView restore;
-
-  @NonNull
-  public final TextView textView51;
-
-  @NonNull
-  public final TextView textView52;
+  public final TextView privacyPolicy;
 
   @NonNull
   public final TextView tv;
 
   @NonNull
-  public final TextView tvv;
+  public final TextView tvCancelAnytime;
 
   @NonNull
-  public final ConstraintLayout yearlyCard;
+  public final TextView tvMonthly;
 
   @NonNull
-  public final TextView yearlyPrice1;
+  public final TextView tvMonthlyPrice;
+
+  @NonNull
+  public final TextView tvPriceInfo;
+
+  @NonNull
+  public final TextView tvWeekly;
+
+  @NonNull
+  public final TextView tvWeeklyPrice;
+
+  @NonNull
+  public final TextView tvYearly;
+
+  @NonNull
+  public final TextView tvYearlyPrice;
+
+  @NonNull
+  public final MaterialCardView weeklyCard;
+
+  @NonNull
+  public final MaterialCardView yearlyCard;
 
   private ActivitySubscriptionBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout abc, @NonNull TextView btnContinueWithAd,
-      @NonNull AppCompatButton btnUpgrade, @NonNull TextView heading, @NonNull ImageView illus,
-      @NonNull ImageView ivClose, @NonNull ImageView ivSelectedMonthly,
-      @NonNull ImageView ivSelectedYearly, @NonNull MaterialCardView monthlyCard,
-      @NonNull TextView monthlyPrice1, @NonNull TextView privaryPolicy, @NonNull TextView restore,
-      @NonNull TextView textView51, @NonNull TextView textView52, @NonNull TextView tv,
-      @NonNull TextView tvv, @NonNull ConstraintLayout yearlyCard, @NonNull TextView yearlyPrice1) {
+      @NonNull AppCompatButton btnUpgrade, @NonNull TextView heading, @NonNull ImageView ifvIcon,
+      @NonNull ImageView illus, @NonNull ImageView ivClose, @NonNull ImageView ivSelectedMonthly,
+      @NonNull ImageView ivSelectedWeekly, @NonNull ImageView ivSelectedYearly,
+      @NonNull LinearLayout linearLayout3, @NonNull LinearLayout llRemoveAd,
+      @NonNull MaterialCardView monthlyCard, @NonNull TextView privacyPolicy, @NonNull TextView tv,
+      @NonNull TextView tvCancelAnytime, @NonNull TextView tvMonthly,
+      @NonNull TextView tvMonthlyPrice, @NonNull TextView tvPriceInfo, @NonNull TextView tvWeekly,
+      @NonNull TextView tvWeeklyPrice, @NonNull TextView tvYearly, @NonNull TextView tvYearlyPrice,
+      @NonNull MaterialCardView weeklyCard, @NonNull MaterialCardView yearlyCard) {
     this.rootView = rootView;
-    this.abc = abc;
-    this.btnContinueWithAd = btnContinueWithAd;
     this.btnUpgrade = btnUpgrade;
     this.heading = heading;
+    this.ifvIcon = ifvIcon;
     this.illus = illus;
     this.ivClose = ivClose;
     this.ivSelectedMonthly = ivSelectedMonthly;
+    this.ivSelectedWeekly = ivSelectedWeekly;
     this.ivSelectedYearly = ivSelectedYearly;
+    this.linearLayout3 = linearLayout3;
+    this.llRemoveAd = llRemoveAd;
     this.monthlyCard = monthlyCard;
-    this.monthlyPrice1 = monthlyPrice1;
-    this.privaryPolicy = privaryPolicy;
-    this.restore = restore;
-    this.textView51 = textView51;
-    this.textView52 = textView52;
+    this.privacyPolicy = privacyPolicy;
     this.tv = tv;
-    this.tvv = tvv;
+    this.tvCancelAnytime = tvCancelAnytime;
+    this.tvMonthly = tvMonthly;
+    this.tvMonthlyPrice = tvMonthlyPrice;
+    this.tvPriceInfo = tvPriceInfo;
+    this.tvWeekly = tvWeekly;
+    this.tvWeeklyPrice = tvWeeklyPrice;
+    this.tvYearly = tvYearly;
+    this.tvYearlyPrice = tvYearlyPrice;
+    this.weeklyCard = weeklyCard;
     this.yearlyCard = yearlyCard;
-    this.yearlyPrice1 = yearlyPrice1;
   }
 
   @Override
@@ -132,18 +155,6 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.abc;
-      ConstraintLayout abc = ViewBindings.findChildViewById(rootView, id);
-      if (abc == null) {
-        break missingId;
-      }
-
-      id = R.id.btnContinueWithAd;
-      TextView btnContinueWithAd = ViewBindings.findChildViewById(rootView, id);
-      if (btnContinueWithAd == null) {
-        break missingId;
-      }
-
       id = R.id.btnUpgrade;
       AppCompatButton btnUpgrade = ViewBindings.findChildViewById(rootView, id);
       if (btnUpgrade == null) {
@@ -153,6 +164,12 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
       id = R.id.heading;
       TextView heading = ViewBindings.findChildViewById(rootView, id);
       if (heading == null) {
+        break missingId;
+      }
+
+      id = R.id.ifvIcon;
+      ImageView ifvIcon = ViewBindings.findChildViewById(rootView, id);
+      if (ifvIcon == null) {
         break missingId;
       }
 
@@ -174,9 +191,27 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.ivSelectedWeekly;
+      ImageView ivSelectedWeekly = ViewBindings.findChildViewById(rootView, id);
+      if (ivSelectedWeekly == null) {
+        break missingId;
+      }
+
       id = R.id.ivSelectedYearly;
       ImageView ivSelectedYearly = ViewBindings.findChildViewById(rootView, id);
       if (ivSelectedYearly == null) {
+        break missingId;
+      }
+
+      id = R.id.linearLayout3;
+      LinearLayout linearLayout3 = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayout3 == null) {
+        break missingId;
+      }
+
+      id = R.id.llRemoveAd;
+      LinearLayout llRemoveAd = ViewBindings.findChildViewById(rootView, id);
+      if (llRemoveAd == null) {
         break missingId;
       }
 
@@ -186,33 +221,9 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.monthlyPrice1;
-      TextView monthlyPrice1 = ViewBindings.findChildViewById(rootView, id);
-      if (monthlyPrice1 == null) {
-        break missingId;
-      }
-
-      id = R.id.privaryPolicy;
-      TextView privaryPolicy = ViewBindings.findChildViewById(rootView, id);
-      if (privaryPolicy == null) {
-        break missingId;
-      }
-
-      id = R.id.restore;
-      TextView restore = ViewBindings.findChildViewById(rootView, id);
-      if (restore == null) {
-        break missingId;
-      }
-
-      id = R.id.textView51;
-      TextView textView51 = ViewBindings.findChildViewById(rootView, id);
-      if (textView51 == null) {
-        break missingId;
-      }
-
-      id = R.id.textView52;
-      TextView textView52 = ViewBindings.findChildViewById(rootView, id);
-      if (textView52 == null) {
+      id = R.id.privacy_policy;
+      TextView privacyPolicy = ViewBindings.findChildViewById(rootView, id);
+      if (privacyPolicy == null) {
         break missingId;
       }
 
@@ -222,28 +233,71 @@ public final class ActivitySubscriptionBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tvv;
-      TextView tvv = ViewBindings.findChildViewById(rootView, id);
-      if (tvv == null) {
+      id = R.id.tvCancelAnytime;
+      TextView tvCancelAnytime = ViewBindings.findChildViewById(rootView, id);
+      if (tvCancelAnytime == null) {
+        break missingId;
+      }
+
+      id = R.id.tvMonthly;
+      TextView tvMonthly = ViewBindings.findChildViewById(rootView, id);
+      if (tvMonthly == null) {
+        break missingId;
+      }
+
+      id = R.id.tvMonthlyPrice;
+      TextView tvMonthlyPrice = ViewBindings.findChildViewById(rootView, id);
+      if (tvMonthlyPrice == null) {
+        break missingId;
+      }
+
+      id = R.id.tvPriceInfo;
+      TextView tvPriceInfo = ViewBindings.findChildViewById(rootView, id);
+      if (tvPriceInfo == null) {
+        break missingId;
+      }
+
+      id = R.id.tvWeekly;
+      TextView tvWeekly = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeekly == null) {
+        break missingId;
+      }
+
+      id = R.id.tvWeeklyPrice;
+      TextView tvWeeklyPrice = ViewBindings.findChildViewById(rootView, id);
+      if (tvWeeklyPrice == null) {
+        break missingId;
+      }
+
+      id = R.id.tvYearly;
+      TextView tvYearly = ViewBindings.findChildViewById(rootView, id);
+      if (tvYearly == null) {
+        break missingId;
+      }
+
+      id = R.id.tvYearlyPrice;
+      TextView tvYearlyPrice = ViewBindings.findChildViewById(rootView, id);
+      if (tvYearlyPrice == null) {
+        break missingId;
+      }
+
+      id = R.id.weeklyCard;
+      MaterialCardView weeklyCard = ViewBindings.findChildViewById(rootView, id);
+      if (weeklyCard == null) {
         break missingId;
       }
 
       id = R.id.yearlyCard;
-      ConstraintLayout yearlyCard = ViewBindings.findChildViewById(rootView, id);
+      MaterialCardView yearlyCard = ViewBindings.findChildViewById(rootView, id);
       if (yearlyCard == null) {
         break missingId;
       }
 
-      id = R.id.yearlyPrice1;
-      TextView yearlyPrice1 = ViewBindings.findChildViewById(rootView, id);
-      if (yearlyPrice1 == null) {
-        break missingId;
-      }
-
-      return new ActivitySubscriptionBinding((ConstraintLayout) rootView, abc, btnContinueWithAd,
-          btnUpgrade, heading, illus, ivClose, ivSelectedMonthly, ivSelectedYearly, monthlyCard,
-          monthlyPrice1, privaryPolicy, restore, textView51, textView52, tv, tvv, yearlyCard,
-          yearlyPrice1);
+      return new ActivitySubscriptionBinding((ConstraintLayout) rootView, btnUpgrade, heading,
+          ifvIcon, illus, ivClose, ivSelectedMonthly, ivSelectedWeekly, ivSelectedYearly,
+          linearLayout3, llRemoveAd, monthlyCard, privacyPolicy, tv, tvCancelAnytime, tvMonthly,
+          tvMonthlyPrice, tvPriceInfo, tvWeekly, tvWeeklyPrice, tvYearly, tvYearlyPrice, weeklyCard,
+          yearlyCard);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

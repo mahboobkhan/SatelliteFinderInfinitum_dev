@@ -152,6 +152,15 @@
     <string name="southwest">S/W</string>
     <string name="splashInterstial" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="splashNativeId" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="subscription_cancel_anytime">Cancel Anytime</string>
+    <string name="subscription_continue">CONTINUE</string>
+    <string name="subscription_description"> %1$s/%2$s. Cancel subscription anytime, 24 hrs before renewal - Auto Renewal</string>
+    <string name="subscription_experience">Experience with 100% Ads-free</string>
+    <string name="subscription_join_our_premium">Join Our Premium</string>
+    <string name="subscription_monthly_package">Monthly Package</string>
+    <string name="subscription_privacy_policy">Privacy Policy</string>
+    <string name="subscription_weekly_package">Weekly Package</string>
+    <string name="subscription_yearly_package">Yearly Package</string>
     <string name="terrain">Terrain</string>
     <string name="the_feature_that_guides_you_to_your_destination">The feature that guides you to your destination.</string>
     <string name="the_smart_solution_for_your_dish">The smart solution for your dish</string>

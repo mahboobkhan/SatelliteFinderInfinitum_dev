@@ -11,9 +11,12 @@ import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.ActivityPermissionBinding
 import com.example.satellitefinder.utils.AdState
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.baseConfig
 import com.example.satellitefinder.utils.canWeShowAds
+import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.requestLocationPermissions
+import com.example.satellitefinder.utils.startActivityWithSlideTransition
 
 class PermissionActivity : AppCompatActivity() {
 
@@ -29,7 +32,7 @@ class PermissionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("permission_screen", "permission_screen")
         showNativeAd()
 
         binding.btnAllow.setOnClickListener {
@@ -64,8 +67,18 @@ class PermissionActivity : AppCompatActivity() {
     }
 
     private fun moveNext() {
-        startActivity(Intent(this@PermissionActivity,MainActivity::class.java))
-        finish()
+        if (isAlreadyPurchased()){
+            FirebaseEvents.logEvent("permission_screen_move_to_home", "permission_screen_move_to_home")
+            startActivityWithSlideTransition(MainActivity::class.java)
+            finish()
+        }else{
+            FirebaseEvents.logEvent("permission_screen_move_to_home", "permission_screen_move_to_home")
+            val subscriptionIntent = Intent(this, SubscriptionActivity::class.java)
+            subscriptionIntent.putExtra("fromSplash", true)
+            startActivity(subscriptionIntent)
+            finish()
+        }
+
     }
 
     override fun onDestroy() {

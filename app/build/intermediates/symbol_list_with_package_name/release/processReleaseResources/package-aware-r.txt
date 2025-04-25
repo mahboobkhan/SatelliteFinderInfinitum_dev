@@ -3822,6 +3822,7 @@ drawable app_icon
 drawable arrow_next
 drawable avd_hide_password
 drawable avd_show_password
+drawable bg_gradient_premium
 drawable btn_bubble_level_bg
 drawable btn_checkbox_checked_mtrl
 drawable btn_checkbox_checked_to_unchecked_mtrl_animation
@@ -3924,12 +3925,14 @@ drawable ic_mylocation
 drawable ic_normal_view
 drawable ic_pp
 drawable ic_prem
+drawable ic_premium_icon
 drawable ic_premium_new_circle
 drawable ic_premium_new_white
 drawable ic_privacy
 drawable ic_pro
 drawable ic_rate
 drawable ic_rate_us
+drawable ic_remote_ad
 drawable ic_sat_antena
 drawable ic_sat_antena_matched
 drawable ic_sat_on_map
@@ -3952,6 +3955,7 @@ drawable ic_terrain_view
 drawable ic_uncheck
 drawable ic_uncheck_sub
 drawable ic_unselected
+drawable img_subscription_header
 drawable level_1d
 drawable level_2d
 drawable level_bg
@@ -4052,6 +4056,7 @@ drawable tooltip_frame_dark
 drawable tooltip_frame_light
 drawable water_drop
 drawable yearlybg
+font poppins
 font poppins_semibold
 font roboto
 font roboto_medium
@@ -4070,7 +4075,6 @@ id SHOW_PROGRESS
 id SYM
 id TOP_END
 id TOP_START
-id abc
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -4187,7 +4191,6 @@ id btnBack
 id btnBubbleLevel
 id btnClose
 id btnCompass
-id btnContinueWithAd
 id btnCurrent
 id btnCurrentLocation
 id btnDone
@@ -4359,6 +4362,7 @@ id icon
 id icon_group
 id icon_only
 id ifRoom
+id ifvIcon
 id ignore
 id ignoreRequest
 id illus
@@ -4385,6 +4389,7 @@ id ivClose
 id ivExit
 id ivSearch
 id ivSelectedMonthly
+id ivSelectedWeekly
 id ivSelectedYearly
 id jumpToEnd
 id jumpToStart
@@ -4404,9 +4409,11 @@ id light
 id line1
 id line3
 id linear
+id linearLayout3
 id listMode
 id list_item
 id ll
+id llRemoveAd
 id loadingLayout
 id lottie_layer_name
 id m3_side_sheet
@@ -4455,7 +4462,6 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id monthlyCard
-id monthlyPrice1
 id motion_base
 id moveAntenaTv
 id mtrl_anchor_parent
@@ -4536,7 +4542,7 @@ id positiveBtn
 id positiveLayout
 id postLayout
 id pressed
-id privaryPolicy
+id privacy_policy
 id progress
 id progress_circular
 id progress_horizontal
@@ -4551,7 +4557,6 @@ id ratio
 id rectangles
 id report_drawn
 id restart
-id restore
 id reverse
 id reverseSawtooth
 id right
@@ -4564,7 +4569,6 @@ id rounded
 id row_index_key
 id satElevation
 id satTitle
-id sat_angel
 id sat_azimut
 id sateImageView
 id satellite
@@ -4691,8 +4695,6 @@ id textView2
 id textView3
 id textView4
 id textView5
-id textView51
-id textView52
 id textView6
 id textView7
 id textView8
@@ -4725,9 +4727,17 @@ id transition_scene_layoutid_cache
 id transition_transform
 id triangle
 id tv
+id tvCancelAnytime
 id tvCompassText
 id tvCta
 id tvExit
+id tvMonthly
+id tvMonthlyPrice
+id tvPriceInfo
+id tvWeekly
+id tvWeeklyPrice
+id tvYearly
+id tvYearlyPrice
 id tv_next
 id tv_title
 id tv_version
@@ -4749,6 +4759,7 @@ id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
 id vp_img
+id weeklyCard
 id west
 id wide
 id withText
@@ -4760,7 +4771,6 @@ id wrap_content_constrained
 id x_left
 id x_right
 id yearlyCard
-id yearlyPrice1
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -5323,6 +5333,15 @@ string southwest
 string splashInterstial
 string splashNativeId
 string status_bar_notification_info_overflow
+string subscription_cancel_anytime
+string subscription_continue
+string subscription_description
+string subscription_experience
+string subscription_join_our_premium
+string subscription_monthly_package
+string subscription_privacy_policy
+string subscription_weekly_package
+string subscription_yearly_package
 string terrain
 string the_feature_that_guides_you_to_your_destination
 string the_smart_solution_for_your_dish

@@ -11,6 +11,7 @@ import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityLanguagesBinding
 import com.example.satellitefinder.ui.adapters.LanguagesAdapter
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.LanguagesModel
 import com.example.satellitefinder.utils.MySharePrefrencesHelper
@@ -33,7 +34,7 @@ class LanguagesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        FirebaseEvents.logEventActivity("language_screen", "language_screen")
         if (canWeShowAds(RemoteConfig.interAll)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
@@ -56,12 +57,14 @@ class LanguagesActivity : AppCompatActivity() {
 
 
         binding.backArrow.setOnClickListener {
+            FirebaseEvents.logEvent("language_screen_click_back", "language_screen_click_back")
             finish()
         }
 
 
 
         binding.btnDone.setOnClickListener {
+            FirebaseEvents.logEvent("language_screen_click_done", "language_screen_click_done")
             CoroutineScope(Dispatchers.Main).launch {
                 delay(10)
                 if (selectedLanguageCode != MySharePrefrencesHelper.getKey(this@LanguagesActivity,"langCode", "en")) {

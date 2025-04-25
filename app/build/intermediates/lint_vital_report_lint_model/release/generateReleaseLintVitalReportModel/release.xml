@@ -1,0 +1,114 @@
+<variant
+    name="release"
+    package="com.example.satellitefinder"
+    minSdkVersion="24"
+    targetSdkVersion="35"
+    mergedManifest="build\intermediates\merged_manifest\release\processReleaseMainManifest\AndroidManifest.xml"
+    manifestMergeReport="build\outputs\logs\manifest-merger-release-report.txt"
+    proguardFiles="build\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.7.2;proguard-rules.pro"
+    partialResultsDir="build\intermediates\lint_vital_partial_results\release\lintVitalAnalyzeRelease\out">
+  <buildFeatures
+      viewBinding="true"
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifests="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\release\java;src\main\kotlin;src\release\kotlin"
+        resDirectories="src\main\res;src\release\res"
+        assetsDirectories="src\main\assets;src\release\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <testFixturesSourceProviders>
+  </testFixturesSourceProviders>
+  <resValues>
+    <resValue
+        type="string"
+        name="appID"
+        value="ca-app-pub-1806257797828593~8205549922" />
+    <resValue
+        type="string"
+        name="appOpenId"
+        value="ca-app-pub-1806257797828593/7439263162" />
+    <resValue
+        type="string"
+        name="bannerId"
+        value="ca-app-pub-1806257797828593/1172938953" />
+    <resValue
+        type="string"
+        name="compassScreenNativeId"
+        value="ca-app-pub-1806257797828593/1360423052" />
+    <resValue
+        type="string"
+        name="currentLocationNativeId"
+        value="ca-app-pub-1806257797828593/5283056153" />
+    <resValue
+        type="string"
+        name="exitNativeId"
+        value="ca-app-pub-1806257797828593/5679441704" />
+    <resValue
+        type="string"
+        name="findSatelliteNativeId"
+        value="ca-app-pub-1806257797828593/9238913078" />
+    <resValue
+        type="string"
+        name="interstialId"
+        value="ca-app-pub-1806257797828593/2570079860" />
+    <resValue
+        type="string"
+        name="languagesNativeId"
+        value="ca-app-pub-1806257797828593/7981526242" />
+    <resValue
+        type="string"
+        name="mainNativeId"
+        value="ca-app-pub-1806257797828593/7056119781" />
+    <resValue
+        type="string"
+        name="mapScreenNativeId"
+        value="ca-app-pub-1806257797828593/8261707479" />
+    <resValue
+        type="string"
+        name="map_key"
+        value="AIzaSyDaqZoqVd78v5joc49oPR1rDTH70yZGw50" />
+    <resValue
+        type="string"
+        name="moreScreenNativeId"
+        value="ca-app-pub-1806257797828593/5299668065" />
+    <resValue
+        type="string"
+        name="obNativeFull"
+        value="ca-app-pub-1806257797828593~8205549922" />
+    <resValue
+        type="string"
+        name="onBoardingNativeId"
+        value="ca-app-pub-1806257797828593/7628497987" />
+    <resValue
+        type="string"
+        name="permissionNativeId"
+        value="ca-app-pub-1806257797828593/1696299122" />
+    <resValue
+        type="string"
+        name="searchSatelliteNativeId"
+        value="ca-app-pub-1806257797828593/6683633310" />
+    <resValue
+        type="string"
+        name="selectSatelliteNativeId"
+        value="ca-app-pub-1806257797828593/7566421526" />
+    <resValue
+        type="string"
+        name="splashInterstial"
+        value="ca-app-pub-1806257797828593/3920468054" />
+    <resValue
+        type="string"
+        name="splashNativeId"
+        value="ca-app-pub-1806257797828593/8274365516" />
+  </resValues>
+  <artifact
+      classOutputs="build\intermediates\javac\release\compileReleaseJavaWithJavac\classes;build\tmp\kotlin-classes\release;build\tmp\kapt3\classes\release;build\kotlinToolingMetadata;build\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\processReleaseResources\R.jar"
+      type="MAIN"
+      applicationId="com.is.satellite.finder.gps.detector.app"
+      generatedSourceFolders="build\generated\source\kapt\release;build\generated\ap_generated_sources\release\out;build\generated\data_binding_base_class_source_out\release\out"
+      generatedResourceFolders="build\generated\res\google-services\release;build\generated\crashlytics\res\release;build\generated\res\resValues\release"
+      desugaredMethodsFiles="C:\Users\ASDF\.gradle\caches\8.9\transforms\693ded54ac4bb30e4733622d53fcc7dc\transformed\D8BackportedDesugaredMethods.txt">
+  </artifact>
+</variant>

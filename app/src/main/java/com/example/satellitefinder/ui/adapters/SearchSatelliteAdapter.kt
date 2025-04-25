@@ -25,10 +25,10 @@ class SearchSatelliteAdapter(private val actionListner: ActionListener
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.satTitle.text = itemsList[position].getSatellite().toString()
+        holder.binding.satTitle.text = itemsList[position].getSatellite().toString()+"(" + itemsList[position].getSatelliteDirection() + ")"
         holder.binding.satElevation.text = "Elevation:" + Math.round(itemsList[position].getSatelliteElevation()!!) + "°"
         holder.binding.satAzimut.text = "Azimuth:" + itemsList[position].getSatelliteAzimut() + "°"
-        holder.binding.satAngel.text = "(" + itemsList[position].getSatelliteDirection() + ")"
+//        holder.binding.satAngel.text = "(" + itemsList[position].getSatelliteDirection() + ")"
 
         holder.itemView.setOnClickListener { v: View? ->
             if (holder.itemView.context is SearchSatelliteActivity) {

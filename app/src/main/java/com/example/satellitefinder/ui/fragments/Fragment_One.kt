@@ -14,6 +14,7 @@ import com.example.satellitefinder.admobAds.obNativeAd2
 import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.FragmentOneBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 
 class Fragment_One : Fragment() {
@@ -31,6 +32,7 @@ class Fragment_One : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvNext.setOnClickListener {
+            FirebaseEvents.logEvent("intro_screen_click_next_1", "intro_screen_click_next_1")
             OnBoardingScreen.viewPager?.currentItem = 1
         }
 

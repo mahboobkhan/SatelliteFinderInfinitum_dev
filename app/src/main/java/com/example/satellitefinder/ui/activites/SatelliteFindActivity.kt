@@ -35,6 +35,7 @@ import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
 import com.example.satellitefinder.ui.dialogs.InfoSheet
 import com.example.satellitefinder.ui.dialogs.RattingDialog
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.MySharePrefrencesHelper
 import com.example.satellitefinder.utils.SatellitesPositionData
 import com.example.satellitefinder.utils.canWeShowAds
@@ -101,7 +102,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId),)
         }
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("sate_finder_screen", "sate_finder_screen")
 
         showNativeAd()
 
@@ -145,16 +146,19 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             }*/
 
             ivBack.setOnClickListener {
+                FirebaseEvents.logEvent("sate_finder_screen_click_back", "sate_finder_screen_click_back")
                 onBackPressedDispatcher.onBackPressed()
             }
 
             btnSelectSatellite.setOnClickListener {
+                FirebaseEvents.logEvent("sate_finder_screen_click_select_sate", "sate_finder_screen_click_select_sate")
+
                  selectSatellite()
-
-
             }
 
             btnInfo.setOnClickListener {
+                FirebaseEvents.logEvent("sate_finder_screen_click_info", "sate_finder_screen_click_info")
+
                 if (canWeShowAds(RemoteConfig.interAll) && adCountInfo >= 2) {
                     showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
                         InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->

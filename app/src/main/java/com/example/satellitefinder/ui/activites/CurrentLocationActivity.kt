@@ -18,6 +18,7 @@ import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCurrentLocationBinding
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.requestLocationPermissions
 import com.example.satellitefinder.utils.screenEventAnalytics
@@ -51,6 +52,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseEvents.logEventActivity("cur_location_screen", "cur_location_screen")
         if (canWeShowAds(RemoteConfig.interAll)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
@@ -75,6 +77,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
         }
 
         binding.btnBack.setOnClickListener {
+            FirebaseEvents.logEvent("cur_location_screen_click_back", "cur_location_screen_click_back")
             onBackPressedDispatcher.onBackPressed()
         }
 

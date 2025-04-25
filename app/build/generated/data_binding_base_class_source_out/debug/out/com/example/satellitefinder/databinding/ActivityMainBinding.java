@@ -36,6 +36,9 @@ public final class ActivityMainBinding implements ViewBinding {
   public final TextView btnFindSatellite;
 
   @NonNull
+  public final ImageView btnPremium;
+
+  @NonNull
   public final LinearLayout btnSatelliteMap;
 
   @NonNull
@@ -70,16 +73,18 @@ public final class ActivityMainBinding implements ViewBinding {
 
   private ActivityMainBinding(@NonNull DrawerLayout rootView, @NonNull LinearLayout btnBubbleLevel,
       @NonNull LinearLayout btnCompass, @NonNull LinearLayout btnCurrent,
-      @NonNull TextView btnFindSatellite, @NonNull LinearLayout btnSatelliteMap,
-      @NonNull ImageView btnSetting, @NonNull LinearLayout goVersion, @NonNull TextView heading,
-      @NonNull ImageView iv, @NonNull DrawerLayout layoutDrawer,
-      @NonNull MaterialCardView layoutNative, @NonNull LinearLayout navigationLayout,
-      @NonNull RecyclerView navigationRv, @NonNull TextView tvTitle, @NonNull TextView tvVersion) {
+      @NonNull TextView btnFindSatellite, @NonNull ImageView btnPremium,
+      @NonNull LinearLayout btnSatelliteMap, @NonNull ImageView btnSetting,
+      @NonNull LinearLayout goVersion, @NonNull TextView heading, @NonNull ImageView iv,
+      @NonNull DrawerLayout layoutDrawer, @NonNull MaterialCardView layoutNative,
+      @NonNull LinearLayout navigationLayout, @NonNull RecyclerView navigationRv,
+      @NonNull TextView tvTitle, @NonNull TextView tvVersion) {
     this.rootView = rootView;
     this.btnBubbleLevel = btnBubbleLevel;
     this.btnCompass = btnCompass;
     this.btnCurrent = btnCurrent;
     this.btnFindSatellite = btnFindSatellite;
+    this.btnPremium = btnPremium;
     this.btnSatelliteMap = btnSatelliteMap;
     this.btnSetting = btnSetting;
     this.goVersion = goVersion;
@@ -141,6 +146,12 @@ public final class ActivityMainBinding implements ViewBinding {
       id = R.id.btnFindSatellite;
       TextView btnFindSatellite = ViewBindings.findChildViewById(rootView, id);
       if (btnFindSatellite == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPremium;
+      ImageView btnPremium = ViewBindings.findChildViewById(rootView, id);
+      if (btnPremium == null) {
         break missingId;
       }
 
@@ -207,8 +218,8 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       return new ActivityMainBinding((DrawerLayout) rootView, btnBubbleLevel, btnCompass,
-          btnCurrent, btnFindSatellite, btnSatelliteMap, btnSetting, goVersion, heading, iv,
-          layoutDrawer, layoutNative, navigationLayout, navigationRv, tvTitle, tvVersion);
+          btnCurrent, btnFindSatellite, btnPremium, btnSatelliteMap, btnSetting, goVersion, heading,
+          iv, layoutDrawer, layoutNative, navigationLayout, navigationRv, tvTitle, tvVersion);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

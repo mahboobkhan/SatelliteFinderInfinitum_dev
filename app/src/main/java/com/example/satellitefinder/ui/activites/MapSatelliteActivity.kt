@@ -30,6 +30,7 @@ import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
 import com.example.satellitefinder.ui.dialogs.InfoSheet
 import com.example.satellitefinder.ui.dialogs.MapTypesDialog
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.SatellitesPositionData
 import com.example.satellitefinder.utils.canWeShowAds
@@ -93,7 +94,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("satellite_map_screen", "satellite_map_screen")
         reviewManager = ReviewManagerFactory.create(this)
 
         val request: Task<ReviewInfo> = reviewManager!!.requestReviewFlow()
@@ -130,11 +131,12 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         binding.btnSelectSatellite.setOnClickListener {
+            FirebaseEvents.logEvent("satellite_map_screen_click_search", "satellite_map_screen_click_search")
             selectSatellite()
         }
 
         binding.btnCurrentLocation.setOnClickListener {
-
+            FirebaseEvents.logEvent("satellite_map_screen_click_cur_location", "satellite_map_screen_click_cur_location")
             if (canWeShowAds(RemoteConfig.interAll)) {
                 //              adCount = 0
                 // loadAndShowSplashInterstitial(getString(R.string.interstialId))
@@ -155,10 +157,12 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.ivBack.setOnClickListener {
+            FirebaseEvents.logEvent("satellite_map_screen_click_back", "satellite_map_screen_click_back")
             onBackPressedDispatcher.onBackPressed()
         }
 
         binding.btnInfo.setOnClickListener {
+            FirebaseEvents.logEvent("satellite_map_screen_click_info", "satellite_map_screen_click_info")
             if (adCountInfo >= 2) {
                 showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
                     InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
@@ -180,6 +184,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.btnMapTypes.setOnClickListener {
+            FirebaseEvents.logEvent("satellite_map_screen_click_map_type", "satellite_map_screen_click_map_type")
             typesDialog.showDialog {
                 when (it) {
                     "hybrid" -> {

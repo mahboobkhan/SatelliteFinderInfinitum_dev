@@ -8,6 +8,7 @@ import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.ActivityExitBinding
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.exitNativeAd
 import com.example.satellitefinder.utils.screenEventAnalytics
@@ -19,7 +20,7 @@ class ExitActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityExitBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("exit_screen", "exit_screen")
         initEvents()
         showNativeAd()
         onBackPressedDispatcher.addCallback(this@ExitActivity, callback)
@@ -28,19 +29,23 @@ class ExitActivity : AppCompatActivity() {
     private fun initEvents() {
         binding.apply {
             btnCancel.setOnClickListener {
+                FirebaseEvents.logEvent("exit_screen_click_close", "exit_screen_click_close")
                 onBackPressedDispatcher.onBackPressed()
             }
 
             btnStay.setOnClickListener {
+                FirebaseEvents.logEvent("exit_screen_click_stay", "exit_screen_click_stay")
                 onBackPressedDispatcher.onBackPressed()
             }
 
             btnTry.setOnClickListener {
+                FirebaseEvents.logEvent("exit_screen_click_try_now", "exit_screen_click_try_now")
                 startActivityWithSlideTransition(SatelliteFindActivity::class.java)
                 finish()
             }
 
             btnLeave.setOnClickListener {
+                FirebaseEvents.logEvent("exit_screen_click_leave", "exit_screen_click_leave")
                 finishAffinity()
             }
         }

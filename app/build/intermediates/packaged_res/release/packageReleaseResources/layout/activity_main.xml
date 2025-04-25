@@ -12,210 +12,220 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/heading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:padding="@dimen/_10sdp"
-        android:text="@string/satellite_finder"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_18ssp"
-        app:layout_constraintStart_toEndOf="@id/btnSetting"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/btnSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"
-        android:src="@drawable/ic_menu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heading">
-
         <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="0dp"
+            android:id="@+id/heading"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="The smart solution for your dish"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/satellite_finder"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toStartOf="@id/iv"
+            android:textSize="@dimen/_18ssp"
+            app:layout_constraintStart_toEndOf="@id/btnSetting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnSetting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/btnFindSatellite"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:background="@drawable/ic_satellite_tracker_bg"
-            android:fontFamily="@font/poppins_semibold"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:text="@string/satellite_finder"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toStartOf="@id/iv"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
-
         <ImageView
-            android:id="@+id/iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:src="@drawable/ic_satellite_tracker"
-            app:layout_constraintBottom_toBottomOf="@id/btnFindSatellite"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-
-        <LinearLayout
-            android:id="@+id/btnCurrent"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_90sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:background="@drawable/ic_my_location_bg"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/btnCompass"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnFindSatellite">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_my_location" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:text="@string/my_location"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnCompass"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_90sdp"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:background="@drawable/ic_compass_bg"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/btnCurrent"
-            app:layout_constraintEnd_toStartOf="@+id/btnBubbleLevel"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnCurrent"
-            app:layout_constraintTop_toTopOf="@+id/btnCurrent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_compass_" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:text="@string/compass"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnBubbleLevel"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_90sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:background="@drawable/ic_bubble_bg"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/btnCurrent"
+            android:id="@+id/btnPremium"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:padding="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:src="@drawable/ic_premium_new_white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnCompass"
-            app:layout_constraintTop_toTopOf="@+id/btnCurrent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_bubble" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:text="@string/bubble_level"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/btnSatelliteMap"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_60sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:background="@drawable/ic_satellite_map_bg"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCurrent">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_satellite_map_"
-                android:layout_marginStart="@dimen/_20sdp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/heading">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_16sdp"
-                android:text="@string/satellite_map"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="The smart solution for your dish"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp" />
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@id/iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/btnFindSatellite"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/ic_satellite_tracker_bg"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/satellite_finder"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@id/iv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/layout_native"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/ad_bg"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:src="@drawable/ic_satellite_tracker"
+                app:layout_constraintBottom_toBottomOf="@id/btnFindSatellite"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            <include layout="@layout/native_ad_layout_loader" />
 
-        </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:id="@+id/btnCurrent"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/ic_my_location_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/btnCompass"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnFindSatellite">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_my_location" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="@string/my_location"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnCompass"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:background="@drawable/ic_compass_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCurrent"
+                app:layout_constraintEnd_toStartOf="@+id/btnBubbleLevel"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnCurrent"
+                app:layout_constraintTop_toTopOf="@+id/btnCurrent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_compass_" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="@string/compass"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnBubbleLevel"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_90sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/ic_bubble_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/btnCurrent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btnCompass"
+                app:layout_constraintTop_toTopOf="@+id/btnCurrent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_bubble" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="@string/bubble_level"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnSatelliteMap"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/ic_satellite_map_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnCurrent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:src="@drawable/ic_satellite_map_" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_16sdp"
+                    android:text="@string/satellite_map"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp" />
+
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/layout_native"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/ad_bg"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <include layout="@layout/native_ad_layout_loader" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -227,33 +237,33 @@
         android:background="@drawable/drawer_bg"
         android:orientation="vertical">
 
-        <include layout="@layout/layout_drawer"/>
+        <include layout="@layout/layout_drawer" />
 
         <LinearLayout
             android:id="@+id/go_version"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_marginEnd="@dimen/_20sdp"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_prem"/>
+                android:src="@drawable/ic_prem" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/go_premium"
-                android:textSize="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:textColor="#F7B96A"
-                android:gravity="center_vertical"
                 android:fontFamily="@font/roboto_medium"
-                android:includeFontPadding="false"/>
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="@string/go_premium"
+                android:textColor="#F7B96A"
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 
@@ -262,31 +272,31 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:scrollbarThumbHorizontal="@null"
-            android:scrollbarThumbVertical="@null"/>
+            android:scrollbarThumbVertical="@null" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:layout_marginStart="@dimen/_10sdp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_info"/>
+                android:src="@drawable/ic_info" />
 
             <TextView
                 android:id="@+id/tv_version"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_12sdp"
                 android:layout_marginStart="@dimen/_10sdp"
-                android:textColor="@color/textColor"
-                android:gravity="center_vertical"
                 android:fontFamily="@font/roboto_medium"
-                android:includeFontPadding="false"/>
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:textColor="@color/textColor"
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 

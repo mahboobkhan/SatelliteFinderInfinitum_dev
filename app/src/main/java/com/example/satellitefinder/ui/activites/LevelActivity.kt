@@ -11,6 +11,7 @@ import com.example.satellitefinder.databinding.ActivityLevelBinding
 import com.example.satellitefinder.leveler.orientation.Orientation
 import com.example.satellitefinder.leveler.orientation.OrientationListener
 import com.example.satellitefinder.leveler.orientation.OrientationProvider
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 
 class LevelActivity : AppCompatActivity(), OrientationListener {
@@ -28,10 +29,11 @@ class LevelActivity : AppCompatActivity(), OrientationListener {
         super.onCreate(savedInstanceState)
         binding = ActivityLevelBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("level_screen", "level screen")
         provider = OrientationProvider.getInstance(this)
 
         binding.ivBack.setOnClickListener {
+            FirebaseEvents.logEvent("level_screen_click_back", "level_screen_click_back")
             onBackPressedDispatcher.onBackPressed()
         }
 

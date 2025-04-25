@@ -179,17 +179,24 @@ class SubscriptionRepository (private val application: Context, val subscription
             }
         } else {
 
-            val monthly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[0])
-            monthly?.let {
+            val weekly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[0])
+            weekly?.let {
                 if (!it.canPurchase) {
                     subscriptionDb.skuDetailsDao().insertOrUpdate(SUBS_SKUS[0], true)
                 }
             }
 
-            val annual = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[1])
-            annual?.let {
+            val monthly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[1])
+            monthly?.let {
                 if (!it.canPurchase) {
                     subscriptionDb.skuDetailsDao().insertOrUpdate(SUBS_SKUS[1], true)
+                }
+            }
+
+            val annual = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[2])
+            annual?.let {
+                if (!it.canPurchase) {
+                    subscriptionDb.skuDetailsDao().insertOrUpdate(SUBS_SKUS[2], true)
                 }
             }
         }
@@ -199,8 +206,8 @@ class SubscriptionRepository (private val application: Context, val subscription
         CoroutineScope(Job() + Dispatchers.IO).launch {
             when (purchase.products[0]) {
                 SUBS_SKUS[0] -> {
-                    val monthly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[0])
-                    monthly?.let {
+                    val weekly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[0])
+                    weekly?.let {
                         if (it.canPurchase) {
                             subscriptionDb.skuDetailsDao()
                                 .insertOrUpdate(purchase.products[0], false)
@@ -208,7 +215,16 @@ class SubscriptionRepository (private val application: Context, val subscription
                     }
                 }
                 SUBS_SKUS[1] -> {
-                    val annual = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[1])
+                    val monthly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[1])
+                    monthly?.let {
+                        if (it.canPurchase) {
+                            subscriptionDb.skuDetailsDao()
+                                .insertOrUpdate(purchase.products[0], false)
+                        }
+                    }
+                }
+                SUBS_SKUS[2] -> {
+                    val annual = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[2])
                     annual?.let {
                         if (it.canPurchase) {
                             subscriptionDb.skuDetailsDao()
@@ -217,15 +233,7 @@ class SubscriptionRepository (private val application: Context, val subscription
                     }
                 }
 
-                SUBS_SKUS[2] -> {
-                    val weekly = subscriptionDb.skuDetailsDao().getById(SUBS_SKUS[2])
-                    weekly?.let {
-                        if (it.canPurchase) {
-                            subscriptionDb.skuDetailsDao()
-                                .insertOrUpdate(purchase.products[0], false)
-                        }
-                    }
-                }
+
 
             }
         }

@@ -1,22 +1,20 @@
 package com.example.satellitefinder.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.loadAndReturnAd
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
-import com.example.satellitefinder.admobAds.obNativeAd1
-import com.example.satellitefinder.admobAds.obNativeAd2
 import com.example.satellitefinder.admobAds.obNativeAd3
 import com.example.satellitefinder.admobAds.obNativeAd4
 import com.example.satellitefinder.admobAds.showLoadedNativeAd
-import com.example.satellitefinder.databinding.FragmentOneBinding
 import com.example.satellitefinder.databinding.FragmentThreeBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 
 
@@ -35,6 +33,7 @@ class Fragment_Three : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvNext.setOnClickListener {
+            FirebaseEvents.logEvent("intro_screen_click_next_3", "intro_screen_click_next_3")
             OnBoardingScreen.viewPager?.currentItem = 4
         }
 
@@ -46,9 +45,18 @@ class Fragment_Three : Fragment() {
             if (canWeShowAds(RemoteConfig.onBoardingNative)) {
                 binding.layoutNative.visibility = View.VISIBLE
                 obNativeAd3?.let { ad ->
-                    showLoadedNativeAd(this, binding.layoutNative, R.layout.native_ad_layout_small, ad)
+                    showLoadedNativeAd(
+                        this,
+                        binding.layoutNative,
+                        R.layout.native_ad_layout_small,
+                        ad
+                    )
                 } ?: run {
-                    newLoadAndShowNativeAd(binding.layoutNative, R.layout.native_ad_layout_small, getString(R.string.onBoardingNativeId))
+                    newLoadAndShowNativeAd(
+                        binding.layoutNative,
+                        R.layout.native_ad_layout_small,
+                        getString(R.string.onBoardingNativeId)
+                    )
                 }
 
                 //Pre load 4th

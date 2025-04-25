@@ -1,84 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_60sdp"
-    app:cardUseCompatPadding="true"
     app:cardBackgroundColor="@color/card_bg"
     app:cardCornerRadius="@dimen/_10sdp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardUseCompatPadding="true">
 
-     <androidx.constraintlayout.widget.ConstraintLayout
-         android:id="@+id/parent"
-         android:layout_width="match_parent"
-         android:padding="@dimen/_5sdp"
-         android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_5sdp">
 
 
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:text="satellite name"
+        <TextView
+            android:id="@+id/satTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:maxLines="2"
+            android:text="satellite name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/ll"
             app:layout_constraintStart_toStartOf="parent"
-             android:textSize="@dimen/_14ssp"
-             android:layout_marginStart="@dimen/_10sdp"
-             android:fontFamily="@font/roboto_medium"
-             android:maxLines="1"
-             app:layout_constraintEnd_toStartOf="@id/sat_angel"
-             app:layout_constraintBottom_toBottomOf="parent"
-             android:textColor="@color/white"
-             android:id="@+id/satTitle"
-             app:layout_constraintTop_toTopOf="parent"/>
-
-         <TextView
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_weight="1"
-             android:hint="(71.7  E)"
-             android:layout_marginStart="@dimen/_5sdp"
-             app:layout_constraintStart_toEndOf="@id/satTitle"
-             android:textSize="@dimen/_11ssp"
-             android:textColor="@color/white"
-             app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintBottom_toBottomOf="parent"
-             android:id="@+id/sat_angel"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-         <LinearLayout
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:orientation="vertical"
-             android:id="@+id/ll"
-             android:layout_marginEnd="@dimen/_5sdp"
-             app:layout_constraintTop_toTopOf="parent"
-             app:layout_constraintBottom_toBottomOf="parent"
-             android:layout_marginStart="@dimen/_10sdp"
-             app:layout_constraintEnd_toEndOf="parent"
-             >
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_weight="1"
-                 android:hint="Elevation:51"
-                 android:textSize="@dimen/_11ssp"
-                 android:textColor="@color/white"
-                 android:id="@+id/satElevation"/>
-
+            <TextView
+                android:id="@+id/satElevation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Elevation:51"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
 
 
-
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_weight="1"
-                 android:hint="(71.7  E)"
-                 android:textColor="@color/white"
-                 android:textSize="@dimen/_11ssp"
-                 android:id="@+id/sat_azimut"/>
-
+            <TextView
+                android:id="@+id/sat_azimut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="(71.7  E)"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11ssp" />
 
 
-         </LinearLayout>
-     </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

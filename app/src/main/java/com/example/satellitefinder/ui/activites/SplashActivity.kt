@@ -24,10 +24,12 @@ import com.example.satellitefinder.admobAds.obNativeAd1
 import com.example.satellitefinder.admobAds.obNativeAd2
 import com.example.satellitefinder.admobAds.obNativeAdFull
 import com.example.satellitefinder.databinding.ActivitySplashBinding
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.MyApplication.Companion.canRequestAdByConsent
 import com.example.satellitefinder.utils.baseConfig
 import com.example.satellitefinder.utils.canWeShowAds
+import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.isFromLang
 import com.example.satellitefinder.utils.isPFromSplash
 import com.example.satellitefinder.utils.isSplash
@@ -64,7 +66,7 @@ class SplashActivity : AppCompatActivity() {
         isSplash = true
         isPFromSplash = true
 
-
+        FirebaseEvents.logEventActivity("splash_screen", "splash_screen")
 
         if (isFromLang) {
             if (canWeShowAds(RemoteConfig.nativeSplash)){
@@ -87,6 +89,7 @@ class SplashActivity : AppCompatActivity() {
 
 
         binding.btnGetStarted.setOnClickListener {
+            FirebaseEvents.logEvent("splash_screen_click_start", "splash_screen_click_start")
             if (canWeShowAds(RemoteConfig.interSplash)) {
                 loadAndShowInterstitial(getString(R.string.splashInterstial), closeListener = {
                     moveNext()
@@ -103,14 +106,26 @@ class SplashActivity : AppCompatActivity() {
 
     private fun moveNext() {
         if (!baseConfig.isOnBoardingDone) {
+            FirebaseEvents.logEvent("splash_screen_move_to_intro", "splash_screen_move_to_intro")
             val bundle = Bundle()
             bundle.putBoolean("isFirstTime", true)
             startActivityWithSlideTransition(OnBoardingScreen::class.java, bundle)
             finish()
         } else if (baseConfig.isOnPermissionDone) {
-            startActivityWithSlideTransition(MainActivity::class.java)
-            finish()
+
+            if (isAlreadyPurchased()){
+                FirebaseEvents.logEvent("splash_screen_move_to_home", "splash_screen_move_to_home")
+                startActivityWithSlideTransition(MainActivity::class.java)
+                finish()
+            }else{
+                FirebaseEvents.logEvent("splash_screen_move_to_home", "splash_screen_move_to_home")
+                val subscriptionIntent = Intent(this, SubscriptionActivity::class.java)
+                subscriptionIntent.putExtra("fromSplash", true)
+                startActivity(subscriptionIntent)
+                finish()
+            }
         } else {
+            FirebaseEvents.logEvent("splash_screen_move_to_permission", "splash_screen_move_to_permission")
             val bundle = Bundle()
             bundle.putBoolean("isFirstTime", true)
             startActivityWithSlideTransition(PermissionActivity::class.java, bundle)

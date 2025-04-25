@@ -8,6 +8,7 @@ import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.loadAndReturnAd
 import com.example.satellitefinder.databinding.ActivityOnBoardingScreenBinding
 import com.example.satellitefinder.ui.adapters.ViewPagerAdapter
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isFirstTime
 
@@ -26,7 +27,7 @@ class OnBoardingScreen : AppCompatActivity() {
         isFirstTime = true
 
         setContentView(binding.root)
-
+        FirebaseEvents.logEventActivity("intro_screen", "intro_screen")
         if (canWeShowAds(RemoteConfig.permissionNative)) {
             loadAndReturnAd(
                 this@OnBoardingScreen,

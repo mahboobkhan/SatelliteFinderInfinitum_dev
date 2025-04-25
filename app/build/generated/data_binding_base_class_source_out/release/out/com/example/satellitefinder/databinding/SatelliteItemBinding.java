@@ -28,9 +28,6 @@ public final class SatelliteItemBinding implements ViewBinding {
   public final ConstraintLayout parent;
 
   @NonNull
-  public final TextView satAngel;
-
-  @NonNull
   public final TextView satAzimut;
 
   @NonNull
@@ -40,12 +37,11 @@ public final class SatelliteItemBinding implements ViewBinding {
   public final TextView satTitle;
 
   private SatelliteItemBinding(@NonNull MaterialCardView rootView, @NonNull LinearLayout ll,
-      @NonNull ConstraintLayout parent, @NonNull TextView satAngel, @NonNull TextView satAzimut,
-      @NonNull TextView satElevation, @NonNull TextView satTitle) {
+      @NonNull ConstraintLayout parent, @NonNull TextView satAzimut, @NonNull TextView satElevation,
+      @NonNull TextView satTitle) {
     this.rootView = rootView;
     this.ll = ll;
     this.parent = parent;
-    this.satAngel = satAngel;
     this.satAzimut = satAzimut;
     this.satElevation = satElevation;
     this.satTitle = satTitle;
@@ -90,12 +86,6 @@ public final class SatelliteItemBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.sat_angel;
-      TextView satAngel = ViewBindings.findChildViewById(rootView, id);
-      if (satAngel == null) {
-        break missingId;
-      }
-
       id = R.id.sat_azimut;
       TextView satAzimut = ViewBindings.findChildViewById(rootView, id);
       if (satAzimut == null) {
@@ -114,7 +104,7 @@ public final class SatelliteItemBinding implements ViewBinding {
         break missingId;
       }
 
-      return new SatelliteItemBinding((MaterialCardView) rootView, ll, parent, satAngel, satAzimut,
+      return new SatelliteItemBinding((MaterialCardView) rootView, ll, parent, satAzimut,
           satElevation, satTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);

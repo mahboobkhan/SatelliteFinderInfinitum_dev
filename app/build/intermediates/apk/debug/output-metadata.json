@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 38,
-      "versionName": "1.4.5",
-      "outputFile": "Satellite Finder1.4.5_-debug.apk"
+      "versionCode": 41,
+      "versionName": "1.4.8",
+      "outputFile": "Satellite Finder1.4.8_-debug.apk"
     }
   ],
   "elementType": "File",

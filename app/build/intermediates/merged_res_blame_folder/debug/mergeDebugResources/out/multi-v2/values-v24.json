@@ -4,7 +4,17 @@
             "outputFile": "com.example.satellitefinder.app-mergeDebugResources-64:/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\dell\\.gradle\\caches\\8.9\\transforms\\f46e1698a47cf8dc62dd228142a16b8a\\transformed\\material-1.9.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\ASDF\\.gradle\\caches\\8.9\\transforms\\f744d43af0c1d411168c289d9586e894\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ASDF\\.gradle\\caches\\8.9\\transforms\\f46e1698a47cf8dc62dd228142a16b8a\\transformed\\material-1.9.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,9,12,15",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -23,7 +33,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\dell\\.gradle\\caches\\8.9\\transforms\\eb25e826b4f4d33d0be187f65c70d28b\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\ASDF\\.gradle\\caches\\8.9\\transforms\\eb25e826b4f4d33d0be187f65c70d28b\\transformed\\media-1.0.0\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -37,16 +47,6 @@
                         "startOffsets": "1547,1613,1674,1740",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "1608,1669,1735,1802"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\dell\\.gradle\\caches\\8.9\\transforms\\f744d43af0c1d411168c289d9586e894\\transformed\\appcompat-1.6.1\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
                     }
                 }
             ]

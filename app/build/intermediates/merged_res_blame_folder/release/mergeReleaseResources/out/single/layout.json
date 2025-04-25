@@ -1,170 +1,166 @@
 [
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment_item.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment_item.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/on_boarding_row.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/on_boarding_row.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_compass.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_compass.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/layout_drawer.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/layout_drawer.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_layout_loader_small.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_layout_loader_small.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_current_location.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_current_location.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_satellite_find.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_satellite_find.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/ad_loading_dialog.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/ad_loading_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_search_satellite.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_search_satellite.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/exit_dialog.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/exit_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\layout_map_view.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\layout_map_view.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_splash.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_splash.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\ad_loading_dialog.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\ad_loading_dialog.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/list_ad.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/list_ad.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_main.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_satellite_find.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_satellite_find.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_layout_main.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_layout_main.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_search_satellite.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_search_satellite.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_subscription.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_subscription.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_main.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_main.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\exit_dialog.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\exit_dialog.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/language_row.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/language_row.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_more.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_more.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/navigation_item.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/navigation_item.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_satellites.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_satellites.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/layout_list_ad_loader.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/layout_list_ad_loader.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\satellite_item.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\satellite_item.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment__two.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment__two.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_languages.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_languages.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/layout_map_view.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/layout_map_view.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\ratting_dialog.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\ratting_dialog.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment_ob_a_d.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment_ob_a_d.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_current_location.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_current_location.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/layout_satellite_info.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/layout_satellite_info.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_exit.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_exit.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_layout_main.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_layout_main.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_level.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_level.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_more.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_more.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_on_boarding_screen.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_on_boarding_screen.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_layout_small.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_layout_small.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\language_row.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\language_row.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment__three.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment__three.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment__two.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment__two.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment__one.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment__one.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_layout_small.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_layout_small.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_languages.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_languages.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\navigation_item.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\navigation_item.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/ratting_dialog.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/ratting_dialog.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\satellite_info_sheet.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\satellite_info_sheet.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_satellites.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_satellites.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\list_ad_item.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\list_ad_item.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_compass.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_compass.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\layout_satellite_info.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\layout_satellite_info.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_layout_loader_small.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_layout_loader_small.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\list_ad.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\list_ad.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/satellite_info_sheet.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/satellite_info_sheet.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\on_boarding_row.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\on_boarding_row.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_layout_loader.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_layout_loader.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\layout_list_ad_loader.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\layout_list_ad_loader.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_layout_full.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_layout_full.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment__three.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment__three.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/native_ad_full_shimmer_layout.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/native_ad_full_shimmer_layout.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment_four.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment_four.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/list_ad_item.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/list_ad_item.xml"
     },
     {
         "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_permission.xml",
         "source": "com.example.satellitefinder.app-main-67:/layout/activity_permission.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\layout_drawer.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\layout_drawer.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment_item.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment_item.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment__one.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment__one.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_level.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_level.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_layout_loader.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_layout_loader.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/fragment_four.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/fragment_four.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_map_satellite.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_map_satellite.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_on_boarding_screen.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_on_boarding_screen.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_splash.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_map_satellite.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_map_satellite.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\activity_permission.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\activity_permission.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_exit.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_exit.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_full_shimmer_layout.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_full_shimmer_layout.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/activity_subscription.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/activity_subscription.xml"
     },
     {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\fragment_ob_a_d.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\fragment_ob_a_d.xml"
-    },
-    {
-        "merged": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-mergeReleaseResources-65:\\layout\\native_ad_layout_full.xml",
-        "source": "C:\\Users\\dell\\.gradle\\daemon\\8.9\\com.example.satellitefinder.app-main-67:\\layout\\native_ad_layout_full.xml"
+        "merged": "com.example.satellitefinder.app-mergeReleaseResources-65:/layout/satellite_item.xml",
+        "source": "com.example.satellitefinder.app-main-67:/layout/satellite_item.xml"
     }
 ]

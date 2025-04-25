@@ -17,6 +17,7 @@ import com.example.satellitefinder.databinding.FragmentFourBinding
 import com.example.satellitefinder.databinding.FragmentOneBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
 import com.example.satellitefinder.ui.activites.PermissionActivity
+import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.baseConfig
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.startActivityWithSlideTransition
@@ -37,6 +38,7 @@ class FragmentFour : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvNext.setOnClickListener {
+            FirebaseEvents.logEvent("intro_screen_click_start", "intro_screen_click_start")
             context?.baseConfig?.isOnBoardingDone = true
             activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
         }

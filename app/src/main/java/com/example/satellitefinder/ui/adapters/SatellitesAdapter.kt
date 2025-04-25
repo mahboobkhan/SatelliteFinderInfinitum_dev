@@ -109,7 +109,7 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
 
         itemList.forEachIndexed { index, entity ->
 
-            if (isNativeAdEnable && isNetworkAvilable && !isAutoAdsRemoved) {
+            /*if (isNativeAdEnable && isNetworkAvilable && !isAutoAdsRemoved) {
                 if (index == 2) {
                     entitiesList.add(NativeItem(null))
 
@@ -119,7 +119,7 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
                 entitiesList.add(SatelliteItemView(entity))
                 notifyDataSetChanged()
 
-            } else
+            } else*/
                 entitiesList.add(SatelliteItemView(entity))
             notifyDataSetChanged()
 
@@ -141,11 +141,11 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
         @SuppressLint("SetTextI18n")
         fun bindData(item: SatellitesPositionData?, position: Int) {
             item?.let { data ->
-                binding.satTitle.text = data.getSatellite().toString()
+                binding.satTitle.text = data.getSatellite().toString()+"(${data.getSatelliteDirection()})"
                 binding.satElevation.text =
                     "Elevation: ${(data.getSatelliteElevation())?.roundToLong()}°"
                 binding.satAzimut.text = "Azimuth:${data.getSatelliteAzimut()}°"
-                binding.satAngel.text = "(${data.getSatelliteDirection()})"
+//                binding.satAngel.text = "(${data.getSatelliteDirection()})"
 
                 binding.root.setOnClickListener {
                     onItemClick.invoke(data)
