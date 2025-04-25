@@ -53,7 +53,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseEvents.logEventActivity("cur_location_screen", "cur_location_screen")
-        if (canWeShowAds(RemoteConfig.interAll)){
+        if (canWeShowAds(RemoteConfig.interCurrentLocation)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
 

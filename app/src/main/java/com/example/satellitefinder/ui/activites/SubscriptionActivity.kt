@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.android.billingclient.api.ProductDetails
 import com.example.satellitefinder.R
 import com.example.satellitefinder.databinding.ActivitySubscriptionBinding
 import com.example.satellitefinder.subscription.SubscriptionSkus
@@ -19,6 +20,7 @@ import com.example.satellitefinder.utils.isInternetConnected
 import com.example.satellitefinder.utils.privacyPolicy
 import com.example.satellitefinder.utils.showToast
 import com.example.satellitefinder.utils.startActivityWithSlideTransition
+import com.google.gson.Gson
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -112,7 +114,7 @@ class SubscriptionActivity : AppCompatActivity() {
         binding.btnUpgrade.isEnabled = !isAlreadyPurchased()
 
         binding.btnUpgrade.setOnClickListener {
-            if (isInternetConnected()){
+            if (isInternetConnected()) {
                 FirebaseEvents.logEvent(
                     "premium_screen_click_continue_$selectedPackage",
                     "premium_screen_click_continue_$selectedPackage"
@@ -143,7 +145,7 @@ class SubscriptionActivity : AppCompatActivity() {
 
 
                 }
-            }else{
+            } else {
                 showToast("Please check internet connection")
             }
 
@@ -188,24 +190,51 @@ class SubscriptionActivity : AppCompatActivity() {
                     }
                 }
                 if (augmentedSkuDetails.sku == SubscriptionSkus.yearlySubscriptionId) {
+
                     val yearlyPrice = augmentedSkuDetails.price?.split(".")?.get(0) ?: ""
+                    val yearlyPriceOriginal = augmentedSkuDetails.introductoryPrice?.split(".")?.get(0) ?: ""
+                    val discount = calculateDiscountPercentage(yearlyPriceOriginal, yearlyPrice)
                     Log.d("showprices12", "setupObserver: 12222${yearlyPrice}")
                     //binding.yearlyPrice.text = getString(R.string.yearly_price_text, yearlyPrice)
                     binding.tvYearlyPrice.text = yearlyPrice
+                    binding.tvYearlyOfferPer.text = "$discount% OFF"
                     if (!augmentedSkuDetails.canPurchase) {
                         MySharePrefrencesHelper.putBillingBoolean(this, true)
                         showToast("SuccessFully Purchased")
                         goToHome()
                         showToast("Restarting application")
                     }
+
+//                    val originalJsonString = augmentedSkuDetails.originalJson
+//
+//                    val parsedDetails = Gson().fromJson(originalJsonString, ProductDetails::class.java)
+//
+//// Now access pricing info safely
+//                    val price = parsedDetails.subscriptionOfferDetails
+//                        ?.firstOrNull()
+//                        ?.pricingPhases?.pricingPhaseList
+//                        ?.firstOrNull()
+//                        ?.formattedPrice
+//
+//                    Log.d("offerPrice", "setupObserver: $price")
                 }
+
 
 
             }
 
         }
     }
+    fun calculateDiscountPercentage(originalPriceStr: String, offerPriceStr: String): Int {
+        // Remove currency symbols and any non-numeric characters except dot
+        val original = originalPriceStr.replace(Regex("[^\\d.]"), "").toDoubleOrNull() ?: return 0
+        val offer = offerPriceStr.replace(Regex("[^\\d.]"), "").toDoubleOrNull() ?: return 0
 
+        if (original == 0.0) return 0
+
+        val discountPercent = ((original - offer) / original) * 100
+        return discountPercent.toInt()
+    }
     private fun goToHome() {
         val i = Intent(this, MainActivity::class.java)
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

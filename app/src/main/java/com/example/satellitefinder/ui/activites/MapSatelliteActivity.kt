@@ -90,7 +90,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interAll)) {
+        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
             showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
@@ -137,7 +137,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.btnCurrentLocation.setOnClickListener {
             FirebaseEvents.logEvent("satellite_map_screen_click_cur_location", "satellite_map_screen_click_cur_location")
-            if (canWeShowAds(RemoteConfig.interAll)) {
+            if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                 //              adCount = 0
                 // loadAndShowSplashInterstitial(getString(R.string.interstialId))
                 showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId),
@@ -188,7 +188,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             typesDialog.showDialog {
                 when (it) {
                     "hybrid" -> {
-                        if (canWeShowAds(RemoteConfig.interAll)) {
+                        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             // adCount = 0
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
@@ -203,7 +203,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
 
                     "normal" -> {
-                        if (canWeShowAds(RemoteConfig.interAll)) {
+                        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
                                 showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
@@ -216,7 +216,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
 
                     "satellite" -> {
-                        if (canWeShowAds(RemoteConfig.interAll)) {
+                        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(
                                 true,
                                 getString(R.string.interstialId),
@@ -238,7 +238,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
 
                     "terrain" -> {
-                        if (canWeShowAds(RemoteConfig.interAll)) {
+                        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
                                 showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN },

@@ -13,6 +13,36 @@
         <key>interstitialID</key>
         <value>true</value>
     </entry>
+    <entry>
+        <key>interCompass</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>interCurrentLocation</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>interLanguage</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>interSatelliteMap</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>interFindSatellite</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>interSatellites</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>interSatellitesClick</key>
+        <value>true</value>
+    </entry>
+
 
     <entry>
         <key>splashNativeId</key>
@@ -36,7 +66,7 @@
     </entry>
     <entry>
         <key>selectSatelliteNativeId</key>
-        <value>true</value>
+        <value>false</value>
     </entry>
     <entry>
         <key>searchSatelliteNativeId</key>

@@ -10,6 +10,7 @@ import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.ProductDetails
 import com.example.satellitefinder.subscription.SkuDetailsModel
 import com.example.satellitefinder.utils.parseDuration
+import com.google.gson.Gson
 
 
 @Dao
@@ -39,7 +40,7 @@ interface SubscriptionDao {
             title = title,
             description = description,
             originalJson = originalJson,
-            introductoryPrice = pricingPhases?.get(0)?.formattedPrice,
+            introductoryPrice = pricingPhases?.last()?.formattedPrice,
             freeTrialPeriod = parseDuration(trialPeriod).toString(),
             priceCurrencyCode = pricingPhases?.get(0)?.priceCurrencyCode
         )

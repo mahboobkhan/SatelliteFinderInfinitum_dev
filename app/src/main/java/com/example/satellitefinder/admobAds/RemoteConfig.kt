@@ -14,6 +14,13 @@ object RemoteConfig {
     var appOpen: Boolean = true
 
     var interAll: Boolean = true
+    var interCompass: Boolean = true
+    var interCurrentLocation: Boolean = true
+    var interLanguage: Boolean = true
+    var interSatelliteMap: Boolean = true
+    var interFindSatellite: Boolean = true
+    var interSatellites: Boolean = false
+    var interSatellitesClick: Boolean = false
     var interSplash: Boolean = true
 
     var nativeSplash: Boolean = true
@@ -23,7 +30,7 @@ object RemoteConfig {
     var satelliteFindNative: Boolean = true
     var compassNative: Boolean = true
     var currentLocationNative: Boolean = true
-    var selectSatelliteNative: Boolean = true
+    var selectSatelliteNative: Boolean = false
     var searchSatelliteNative: Boolean = true
     var mapSatelliteNative: Boolean = true
     var moreNative: Boolean = true
@@ -58,6 +65,13 @@ object RemoteConfig {
             appOpen = remoteConfig["appOpenID"].asBoolean()
             interSplash = remoteConfig["splashInterstitialID"].asBoolean()
             interAll = remoteConfig["interstitialID"].asBoolean()
+            interCompass = remoteConfig["interCompass"].asBoolean()
+            interCurrentLocation = remoteConfig["interCurrentLocation"].asBoolean()
+            interLanguage = remoteConfig["interLanguage"].asBoolean()
+            interSatelliteMap = remoteConfig["interSatelliteMap"].asBoolean()
+            interFindSatellite = remoteConfig["interFindSatellite"].asBoolean()
+            interSatellites = remoteConfig["interSatellites"].asBoolean()
+            interSatellitesClick = remoteConfig["interSatellitesClick"].asBoolean()
 
             nativeSplash = remoteConfig["splashNativeId"].asBoolean()
             mainNative = remoteConfig["mainNativeId"].asBoolean()

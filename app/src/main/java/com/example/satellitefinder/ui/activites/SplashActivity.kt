@@ -21,7 +21,6 @@ import com.example.satellitefinder.admobAds.loadAndReturnAd
 import com.example.satellitefinder.admobAds.loadAndShowInterstitial
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.obNativeAd1
-import com.example.satellitefinder.admobAds.obNativeAd2
 import com.example.satellitefinder.admobAds.obNativeAdFull
 import com.example.satellitefinder.databinding.ActivitySplashBinding
 import com.example.satellitefinder.utils.FirebaseEvents
@@ -60,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       // KoinStarter.start(this)
+        // KoinStarter.start(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         isSplash = true
@@ -69,7 +68,7 @@ class SplashActivity : AppCompatActivity() {
         FirebaseEvents.logEventActivity("splash_screen", "splash_screen")
 
         if (isFromLang) {
-            if (canWeShowAds(RemoteConfig.nativeSplash)){
+            if (canWeShowAds(RemoteConfig.nativeSplash)) {
                 showNativeAd()
             }
             startHandler(5000)
@@ -113,11 +112,11 @@ class SplashActivity : AppCompatActivity() {
             finish()
         } else if (baseConfig.isOnPermissionDone) {
 
-            if (isAlreadyPurchased()){
+            if (isAlreadyPurchased()) {
                 FirebaseEvents.logEvent("splash_screen_move_to_home", "splash_screen_move_to_home")
                 startActivityWithSlideTransition(MainActivity::class.java)
                 finish()
-            }else{
+            } else {
                 FirebaseEvents.logEvent("splash_screen_move_to_home", "splash_screen_move_to_home")
                 val subscriptionIntent = Intent(this, SubscriptionActivity::class.java)
                 subscriptionIntent.putExtra("fromSplash", true)
@@ -125,7 +124,10 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         } else {
-            FirebaseEvents.logEvent("splash_screen_move_to_permission", "splash_screen_move_to_permission")
+            FirebaseEvents.logEvent(
+                "splash_screen_move_to_permission",
+                "splash_screen_move_to_permission"
+            )
             val bundle = Bundle()
             bundle.putBoolean("isFirstTime", true)
             startActivityWithSlideTransition(PermissionActivity::class.java, bundle)

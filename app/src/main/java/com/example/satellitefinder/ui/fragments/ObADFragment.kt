@@ -20,7 +20,7 @@ class ObADFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentObADBinding.inflate(inflater, container, false)
         return binding.root
@@ -40,8 +40,10 @@ class ObADFragment : Fragment() {
         activity?.apply {
             if (canWeShowAds(RemoteConfig.onBoardingNative)) {
                 obNativeAdFull?.let {
-                    showLoadedNativeAd(this, binding.nativeAdContainer,
-                        R.layout.native_ad_layout_full, it)
+                    showLoadedNativeAd(
+                        this, binding.nativeAdContainer,
+                        R.layout.native_ad_layout_full, it
+                    )
                 } ?: run {
                     newLoadAndShowNativeAd(
                         binding.nativeAdContainer,

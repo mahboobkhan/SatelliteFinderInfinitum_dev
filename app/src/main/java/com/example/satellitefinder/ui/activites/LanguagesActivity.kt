@@ -35,7 +35,7 @@ class LanguagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseEvents.logEventActivity("language_screen", "language_screen")
-        if (canWeShowAds(RemoteConfig.interAll)){
+        if (canWeShowAds(RemoteConfig.interLanguage)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
         }
 

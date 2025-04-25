@@ -48,7 +48,7 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interAll)) {
+        if (canWeShowAds(RemoteConfig.interCompass)) {
             showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)

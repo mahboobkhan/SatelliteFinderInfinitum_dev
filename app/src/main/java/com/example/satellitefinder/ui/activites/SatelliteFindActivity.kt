@@ -97,8 +97,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interAll)){
-
+        if (canWeShowAds(RemoteConfig.interFindSatellite)){
             showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId),)
         }
         setContentView(binding.root)
@@ -159,7 +158,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             btnInfo.setOnClickListener {
                 FirebaseEvents.logEvent("sate_finder_screen_click_info", "sate_finder_screen_click_info")
 
-                if (canWeShowAds(RemoteConfig.interAll) && adCountInfo >= 2) {
+                if (canWeShowAds(RemoteConfig.interFindSatellite) && adCountInfo >= 2) {
                     showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
                         InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
                             satelliteInfo(sheetBinding)

@@ -45,9 +45,8 @@ class SatellitesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interAll)) {
-
-           // showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
+        if (canWeShowAds(RemoteConfig.interSatellites)) {
+            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
         }
         setContentView(binding.root)
 
@@ -61,7 +60,7 @@ class SatellitesActivity : AppCompatActivity() {
 
         adapter =
             SatellitesAdapter(this@SatellitesActivity) {
-                if (canWeShowAds(RemoteConfig.interAll) && satelliteAdCounter == 0) {
+                if (canWeShowAds(RemoteConfig.interSatellitesClick) && satelliteAdCounter == 0) {
                     Log.d("testing Ad","working to Show Ad")
                     showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
                         sendDataResult(it)
