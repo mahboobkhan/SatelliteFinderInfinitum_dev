@@ -149,6 +149,31 @@
                 app:layout_constraintStart_toEndOf="@+id/tvWeekly"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/tvWeeklyOriginalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textColor="#CCCCCC"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewLineWeek"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="@id/tvWeeklyOriginalPrice"
+                app:layout_constraintEnd_toEndOf="@id/tvWeeklyOriginalPrice"
+                app:layout_constraintStart_toStartOf="@id/tvWeeklyOriginalPrice"
+                app:layout_constraintTop_toTopOf="@id/tvWeeklyOriginalPrice" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -209,6 +234,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvMonthly"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMonthlyOriginalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textColor="#CCCCCC"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewLineMon"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="@id/tvMonthlyOriginalPrice"
+                app:layout_constraintEnd_toEndOf="@id/tvMonthlyOriginalPrice"
+                app:layout_constraintStart_toStartOf="@id/tvMonthlyOriginalPrice"
+                app:layout_constraintTop_toTopOf="@id/tvMonthlyOriginalPrice" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -272,6 +322,31 @@
                 app:layout_constraintStart_toEndOf="@+id/tvYearly"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/tvYearlyOriginalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:gravity="end"
+                android:maxLines="1"
+                android:textColor="#CCCCCC"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/viewLine"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_1sdp"
+                android:background="#CCCCCC"
+                app:layout_constraintBottom_toBottomOf="@id/tvYearlyOriginalPrice"
+                app:layout_constraintEnd_toEndOf="@id/tvYearlyOriginalPrice"
+                app:layout_constraintStart_toStartOf="@id/tvYearlyOriginalPrice"
+                app:layout_constraintTop_toTopOf="@id/tvYearlyOriginalPrice" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -283,6 +358,7 @@
         android:elevation="@dimen/_10sdp"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_3sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/yearlyCard"
         app:layout_constraintEnd_toEndOf="@id/yearlyCard"
         app:layout_constraintStart_toStartOf="@id/yearlyCard"
@@ -291,6 +367,66 @@
 
         <TextView
             android:id="@+id/tvYearlyOfferPer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:fontFamily="@font/poppins"
+            android:text="50 % OFF"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clMonthlyOfferOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_offer"
+        android:elevation="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_3sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/monthlyCard"
+        app:layout_constraintEnd_toEndOf="@id/monthlyCard"
+        app:layout_constraintStart_toStartOf="@id/monthlyCard"
+        app:layout_constraintTop_toTopOf="@id/monthlyCard">
+
+
+        <TextView
+            android:id="@+id/tvMonthlyOfferPer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:fontFamily="@font/poppins"
+            android:text="50 % OFF"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clWeeklyOfferOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_offer"
+        android:elevation="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_3sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/weeklyCard"
+        app:layout_constraintEnd_toEndOf="@id/weeklyCard"
+        app:layout_constraintStart_toStartOf="@id/weeklyCard"
+        app:layout_constraintTop_toTopOf="@id/weeklyCard">
+
+
+        <TextView
+            android:id="@+id/tvWeeklyOfferPer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_5sdp"

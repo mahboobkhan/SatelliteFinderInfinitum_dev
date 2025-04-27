@@ -49,6 +49,9 @@ open class InterstitialAdClass {
             object : InterstitialAdLoadCallback() {
 
                 override fun onAdFailedToLoad(ad: LoadAdError) {
+                    interstitialAdPriority = null
+                    dismissLoadingDialog(activity)
+                    failListener?.invoke()
                     showInterstitialAdLog("High Ad failed to load because $ad")
                 }
 
@@ -63,7 +66,10 @@ open class InterstitialAdClass {
                                 showInterstitialAdLog("priority Ad closed by user")
                                 isInterstitialAdOnScreen = false
                                 interstitialAdPriority = null
-                                loadAgainPriorityInterstitialAd(activity, activity.getString(R.string.interstialId))
+                                loadAgainPriorityInterstitialAd(
+                                    activity,
+                                    activity.getString(R.string.interstialId)
+                                )
                             }
 
                             override fun onAdFailedToShowFullScreenContent(p0: AdError) {
@@ -91,7 +97,10 @@ open class InterstitialAdClass {
                         someOpPerformed = false
 
                         Handler().postDelayed({
-                            if (ProcessLifecycleOwner.get().lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) {
+                            if (ProcessLifecycleOwner.get().lifecycle.currentState.isAtLeast(
+                                    Lifecycle.State.RESUMED
+                                )
+                            ) {
                                 it.show(activity)
                             } else {
                                 dismissLoadingDialog(activity)
@@ -242,7 +251,7 @@ open class InterstitialAdClass {
             if (!activity.isDestroyed) {
                 loadingDialog?.dismiss()
                 loadingDialog = null
-        }
+            }
         }
     }
 

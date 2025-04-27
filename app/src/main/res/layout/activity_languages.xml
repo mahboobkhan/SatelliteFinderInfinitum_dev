@@ -32,9 +32,9 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:fontFamily="@font/roboto_medium"
+            android:text="@string/languages"
             android:textColor="@color/white"
             android:textSize="@dimen/_18ssp"
-            android:text="@string/languages"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnDone"
             app:layout_constraintStart_toEndOf="@+id/backArrow"
@@ -45,17 +45,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:padding="@dimen/_5sdp"
-           android:text="@string/done"
-            app:cornerRadius="@dimen/_8sdp"
-            android:textAllCaps="false"
             android:backgroundTint="#33364E"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/done"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            app:strokeColor="@color/white"
-            app:strokeWidth="@dimen/_1sdp"
+            app:cornerRadius="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@dimen/_1sdp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,8 +63,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/top"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/language_rv"
@@ -72,12 +72,11 @@
             android:layout_height="0dp"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/_30sdp"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/layout_native"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/language_row"
             app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/language_row" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/layout_native"
@@ -96,7 +95,6 @@
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

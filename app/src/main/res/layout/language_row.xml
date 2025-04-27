@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true"
     app:cardBackgroundColor="@color/card_bg"
-    app:cardCornerRadius="@dimen/_10sdp">
+    app:cardCornerRadius="@dimen/_10sdp"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -24,11 +24,10 @@
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
             android:fontFamily="@font/roboto_medium"
+            android:gravity="start"
             android:text="English"
             android:textColor="@color/textColor"
             android:textSize="@dimen/_12sdp"
-            android:layoutDirection="locale"
-            android:textDirection="locale"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/radio_btn"
             app:layout_constraintStart_toStartOf="parent"
