@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.ActivityExitBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
-import com.example.satellitefinder.utils.exitNativeAd
 import com.example.satellitefinder.utils.screenEventAnalytics
 import com.example.satellitefinder.utils.startActivityWithSlideTransition
 
@@ -53,14 +54,41 @@ class ExitActivity : AppCompatActivity() {
 
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.nativeExit)) {
-            binding.layoutNative.visibility = View.VISIBLE
+//            binding.layoutNative.visibility = View.VISIBLE
             screenEventAnalytics("Exit Dialog")
 
-            if (exitNativeAd != null) {
+            /*if (exitNativeAd != null) {
                 showLoadedNativeAd(this, binding.layoutNative, R.layout.native_ad_layout_main, exitNativeAd!!)
             } else {
                 binding.layoutNative.visibility = View.GONE
-            }
+            }*/
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutMainBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@ExitActivity.application, "exit").loadNativeAd(
+                adsKey = getString(R.string.exitNativeId),
+                remoteConfig = RemoteConfig.nativeExit,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = null,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
         } else {
             binding.layoutNative.visibility = View.GONE
         }

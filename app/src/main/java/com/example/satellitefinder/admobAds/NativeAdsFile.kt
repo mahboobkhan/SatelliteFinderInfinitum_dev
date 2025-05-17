@@ -51,7 +51,7 @@ fun populateUnifiedNativeAdView(
         (adView.callToActionView as Button).text = it
     } ?: hideView(adView.callToActionView)
 
-    val starRatingView = adView.findViewById<RatingBar>(R.id.ratingBar)
+    /*val starRatingView = adView.findViewById<RatingBar>(R.id.ratingBar)
     starRatingView?.let { srv ->
         nativeAd.starRating?.let {
             when {
@@ -59,7 +59,7 @@ fun populateUnifiedNativeAdView(
                 else -> hideView(srv)
             }
         } ?: hideView(srv)
-    }
+    }*/
 
     adView.setNativeAd(nativeAd)
 

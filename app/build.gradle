@@ -14,8 +14,8 @@ android {
         applicationId "com.is.satellite.finder.gps.detector.app"
         minSdk 24
         targetSdk 35
-        versionCode 42
-        versionName "1.4.9"
+        versionCode 43
+        versionName "1.4.10"
         setProperty "archivesBaseName", "Satellite Finder" + versionName + "_"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -51,7 +51,7 @@ android {
             resValue "string", "appID", "ca-app-pub-3940256099942544~3347511713"
             resValue "string", "interstialId", "ca-app-pub-3940256099942544/1033173712"
             resValue "string", "splashInterstial", "ca-app-pub-3940256099942544/1033173712"
-            resValue "string", "appOpenId", "ca-app-pub-3940256099942544/3419835294"
+            resValue "string", "appOpenId", "ca-app-pub-3940256099942544/9257395921"
             resValue "string", "splashNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "mainNativeId", "ca-app-pub-3940256099942544/2247696110"
             resValue "string", "findSatelliteNativeId", "ca-app-pub-3940256099942544/2247696110"
@@ -75,6 +75,12 @@ android {
 
 
     }
+    bundle {
+        language {
+            enableSplit = false
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -84,6 +90,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -127,6 +134,7 @@ dependencies {
 
     //Ads
     implementation 'com.google.android.gms:play-services-ads:22.2.0'
+    implementation 'com.integer.ads:integet-ads:1.0.7'
 //Work Manager
     implementation 'androidx.work:work-runtime-ktx:2.8.1'
 

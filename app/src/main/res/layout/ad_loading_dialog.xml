@@ -5,6 +5,7 @@
     android:background="@drawable/app_bg_n"
     android:orientation="vertical"
     android:gravity="center"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent">
 
 

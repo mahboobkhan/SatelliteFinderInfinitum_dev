@@ -10,6 +10,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/integers1994/Ads")
+            credentials {
+                username = "integers1994"
+                password = ""
+            }
+        }
     }
 }
 rootProject.name = "SatelliteFinder"

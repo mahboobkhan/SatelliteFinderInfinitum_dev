@@ -20,12 +20,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityMapSatelliteBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
 import com.example.satellitefinder.ui.dialogs.InfoSheet
@@ -90,9 +92,6 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
-            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
-        }
         setContentView(binding.root)
         FirebaseEvents.logEventActivity("satellite_map_screen", "satellite_map_screen")
         reviewManager = ReviewManagerFactory.create(this)
@@ -131,21 +130,27 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         binding.btnSelectSatellite.setOnClickListener {
-            FirebaseEvents.logEvent("satellite_map_screen_click_search", "satellite_map_screen_click_search")
+            FirebaseEvents.logEvent(
+                "satellite_map_screen_click_search",
+                "satellite_map_screen_click_search"
+            )
             selectSatellite()
         }
 
         binding.btnCurrentLocation.setOnClickListener {
-            FirebaseEvents.logEvent("satellite_map_screen_click_cur_location", "satellite_map_screen_click_cur_location")
+            FirebaseEvents.logEvent(
+                "satellite_map_screen_click_cur_location",
+                "satellite_map_screen_click_cur_location"
+            )
             if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                 //              adCount = 0
                 // loadAndShowSplashInterstitial(getString(R.string.interstialId))
                 showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId),
-                    showListener = { currentLocation() },
+                    showListener = { },
                     closeListener = { currentLocation() },
                     failListener = { currentLocation() })
 
-                currentLocation()
+//                currentLocation()
 
             } else {
 //                adCount +=1
@@ -157,24 +162,35 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.ivBack.setOnClickListener {
-            FirebaseEvents.logEvent("satellite_map_screen_click_back", "satellite_map_screen_click_back")
+            FirebaseEvents.logEvent(
+                "satellite_map_screen_click_back",
+                "satellite_map_screen_click_back"
+            )
             onBackPressedDispatcher.onBackPressed()
         }
 
         binding.btnInfo.setOnClickListener {
-            FirebaseEvents.logEvent("satellite_map_screen_click_info", "satellite_map_screen_click_info")
+            FirebaseEvents.logEvent(
+                "satellite_map_screen_click_info",
+                "satellite_map_screen_click_info"
+            )
             if (adCountInfo >= 2) {
-                showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
-                    InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
-                        satelliteInfo(sheetBinding)
-                    }
-                }, failListener = {
-                    InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
-                        satelliteInfo(sheetBinding)
-                    }
-                }, showListener = {
-                    adCountInfo = 0
-                })
+                showPriorityAdmobInterstitial(
+                    true,
+                    getString(R.string.interstialId),
+                    closeListener = {
+                        InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
+                            satelliteInfo(sheetBinding)
+                        }
+                    },
+                    failListener = {
+                        InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
+                            satelliteInfo(sheetBinding)
+                        }
+                    },
+                    showListener = {
+                        adCountInfo = 0
+                    })
             } else {
                 adCountInfo++
                 InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
@@ -184,7 +200,10 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.btnMapTypes.setOnClickListener {
-            FirebaseEvents.logEvent("satellite_map_screen_click_map_type", "satellite_map_screen_click_map_type")
+            FirebaseEvents.logEvent(
+                "satellite_map_screen_click_map_type",
+                "satellite_map_screen_click_map_type"
+            )
             typesDialog.showDialog {
                 when (it) {
                     "hybrid" -> {
@@ -192,7 +211,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                             // adCount = 0
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
-                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID },
+                                showListener = { },
                                 closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID },
                                 failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID }
                             )
@@ -206,7 +225,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
-                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
+                                showListener = { },
                                 closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
                                 failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL }
                             )
@@ -221,7 +240,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                                 true,
                                 getString(R.string.interstialId),
                                 showListener = {
-                                    googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
+
                                 },
                                 closeListener = {
                                     googleMap1?.mapType = GoogleMap.MAP_TYPE_SATELLITE
@@ -241,7 +260,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(true,
                                 getString(R.string.interstialId),
-                                showListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN },
+                                showListener = {},
                                 closeListener = {
                                     googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN
                                 },
@@ -340,8 +359,19 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun selectSatellite() {
         if (mLocation != null) {
-            val intent = Intent(this@MapSatelliteActivity, SatellitesActivity::class.java)
-            resultLauncher.launch(intent)
+            if (canWeShowAds(RemoteConfig.interSatellites)){
+                showPriorityInterstitialAdWithCounter(closeListener = {
+                    val intent = Intent(this@MapSatelliteActivity, SatellitesActivity::class.java)
+                    resultLauncher.launch(intent)
+                }, failListener = {
+                    val intent = Intent(this@MapSatelliteActivity, SatellitesActivity::class.java)
+                    resultLauncher.launch(intent)
+                })
+
+            }else{
+                val intent = Intent(this@MapSatelliteActivity, SatellitesActivity::class.java)
+                resultLauncher.launch(intent)
+            }
         } else {
             Toast.makeText(
                 this@MapSatelliteActivity,
@@ -357,8 +387,11 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             sheetBinding.apply {
                 satAzimut.text = satellitePosition?.getSatelliteAzimut().toString()
                 satellitePositionTv.text = satellitePosition?.getSatLongitude().toString()
-                satElevation.text = satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }.toString()
-                satelliteLNBskewTv.text = satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
+                satElevation.text =
+                    satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }
+                        .toString()
+                satelliteLNBskewTv.text =
+                    satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
             }
         }
     }
@@ -531,8 +564,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                             CustomCap(BitmapDescriptorFactory.fromResource(R.drawable.ic_sat_on_map))
 
                     }
-                }
-                else {
+                } else {
                     binding.btnInfo.visibility = View.GONE
                 }
             } else {
@@ -542,7 +574,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.mapSatelliteNative)) {
-            newLoadAndShowNativeAd(
+            /*newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_small,
                 getString(R.string.mapScreenNativeId),
@@ -551,8 +583,37 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                 },
                 failToLoad = {
                     binding.layoutNative.visibility = View.GONE
-                })
+                })*/
 
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutSmallBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@MapSatelliteActivity.application, "map_satellite").loadNativeAd(
+                adsKey = getString(R.string.mapScreenNativeId),
+                remoteConfig = RemoteConfig.mapSatelliteNative,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = bindAdNative.adBody,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
+        } else {
+            binding.layoutNative.visibility = View.GONE
         }
     }
 

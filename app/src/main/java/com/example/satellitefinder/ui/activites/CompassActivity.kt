@@ -9,11 +9,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCompassBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.canWeShowAds
@@ -48,9 +50,6 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interCompass)) {
-            showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId))
-        }
         setContentView(binding.root)
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         checkDeviceSensorAvailable()
@@ -154,7 +153,7 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.compassNative)) {
-            newLoadAndShowNativeAd(
+            /*newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_small,
                 getString(R.string.compassScreenNativeId),
@@ -163,7 +162,36 @@ class CompassActivity : AppCompatActivity(), SensorEventListener {
                 },
                 failToLoad = {
                     binding.layoutNative.visibility = View.GONE
-                })
+                })*/
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutSmallBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@CompassActivity.application, "compass").loadNativeAd(
+                adsKey = getString(R.string.compassScreenNativeId),
+                remoteConfig = RemoteConfig.compassNative,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = bindAdNative.adBody,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
+        } else {
+            binding.layoutNative.visibility = View.GONE
         }
     }
 

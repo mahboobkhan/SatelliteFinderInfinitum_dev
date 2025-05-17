@@ -1,12 +1,13 @@
 package com.example.satellitefinder.ui.activites
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.adssdk.banner_ads.BannerAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.showBannerAD
 import com.example.satellitefinder.databinding.ActivityLevelBinding
 import com.example.satellitefinder.leveler.orientation.Orientation
 import com.example.satellitefinder.leveler.orientation.OrientationListener
@@ -84,8 +85,32 @@ class LevelActivity : AppCompatActivity(), OrientationListener {
     }
 
     private fun showBannerAd() {
-        if (canWeShowAds(RemoteConfig.banner)) {
-            showBannerAD(binding.bannerAdContainer,this@LevelActivity, getString(R.string.bannerId))
+        if (canWeShowAds(RemoteConfig.levelBanner)) {
+            /*showBannerAD(
+                binding.bannerAdContainer,
+                this@LevelActivity,
+                getString(R.string.bannerId)
+            )
+*/
+            binding.bannerAdContainer.visibility = View.VISIBLE
+            BannerAdUtils(activity = this, screenName = "level")
+                .loadBanner(
+                    adsKey = getString(R.string.bannerId),
+                    remoteConfig = RemoteConfig.levelBanner,
+                    adsView = binding.bannerAdContainer,
+                    shimmerLayout = binding.clShimmer,
+                    onAdClicked = {},
+                    onAdFailedToLoads = { _, _ -> },
+                    onAdImpression = {},
+                    onAdLoaded = { _, _ -> },
+                    onAdOpened = {},
+                    onAdValidate = {
+                        binding.bannerAdContainer.visibility = View.GONE
+                        binding.clShimmer.visibility = View.GONE
+                    })
+        } else {
+            binding.bannerAdContainer.visibility = View.GONE
+            binding.clShimmer.visibility = View.GONE
         }
     }
 }

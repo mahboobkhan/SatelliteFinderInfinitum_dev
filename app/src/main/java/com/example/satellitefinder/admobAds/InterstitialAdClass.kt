@@ -237,7 +237,7 @@ open class InterstitialAdClass {
     }
 
     private var loadingDialog: Dialog? = null
-    private fun showLoadingDialog(activity: Activity) {
+     fun showLoadingDialog(activity: Activity) {
         loadingDialog = Dialog(activity, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
         loadingDialog?.setContentView(R.layout.ad_loading_dialog)
         loadingDialog?.setCancelable(false)
@@ -246,7 +246,7 @@ open class InterstitialAdClass {
         }
     }
 
-    private fun dismissLoadingDialog(activity: Activity) {
+     fun dismissLoadingDialog(activity: Activity) {
         if (loadingDialog != null && loadingDialog?.isShowing == true) {
             if (!activity.isDestroyed) {
                 loadingDialog?.dismiss()

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/app_bg_n"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activites.LanguagesActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -84,6 +85,7 @@
             android:layout_height="wrap_content"
             android:elevation="@dimen/_3sdp"
             android:visibility="visible"
+            app:cardBackgroundColor="@color/ad_bg"
             app:cardCornerRadius="@dimen/_5sdp"
             app:cardElevation="@dimen/_3sdp"
             app:layout_constraintBottom_toBottomOf="parent"

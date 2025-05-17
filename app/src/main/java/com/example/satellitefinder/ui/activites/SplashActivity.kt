@@ -11,18 +11,24 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.AdsConsentManager
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.loadAndReturnAd
+import com.example.satellitefinder.admobAds.loadAdmobInterstitial
 import com.example.satellitefinder.admobAds.loadAndShowInterstitial
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
-import com.example.satellitefinder.admobAds.obNativeAd1
-import com.example.satellitefinder.admobAds.obNativeAdFull
+import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.databinding.ActivitySplashBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.MyApplication.Companion.canRequestAdByConsent
@@ -62,20 +68,13 @@ class SplashActivity : AppCompatActivity() {
         // KoinStarter.start(this)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
         isSplash = true
         isPFromSplash = true
 
         FirebaseEvents.logEventActivity("splash_screen", "splash_screen")
 
-        if (isFromLang) {
-            if (canWeShowAds(RemoteConfig.nativeSplash)) {
-                showNativeAd()
-            }
-            startHandler(5000)
-        } else {
-            requestConsentForm()
 
-        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) ==
                 PackageManager.PERMISSION_GRANTED
@@ -90,7 +89,7 @@ class SplashActivity : AppCompatActivity() {
         binding.btnGetStarted.setOnClickListener {
             FirebaseEvents.logEvent("splash_screen_click_start", "splash_screen_click_start")
             if (canWeShowAds(RemoteConfig.interSplash)) {
-                loadAndShowInterstitial(getString(R.string.splashInterstial), closeListener = {
+                showPriorityAdmobInterstitial(adIDLow = getString(R.string.splashInterstial), closeListener = {
                     moveNext()
                 }, failListener = {
                     moveNext()
@@ -139,8 +138,11 @@ class SplashActivity : AppCompatActivity() {
         showNativeAd()
         if (canWeShowAds(RemoteConfig.interSplash)) {
 //            loadPriorityAdmobInterstitial(getString(R.string.splashInterstial))
-
             startHandler(7000)
+            loadAdmobInterstitial(getString(R.string.splashInterstial), onAdLoaded = {
+                binding.progress.visibility = View.GONE
+                binding.btnGetStarted.visibility = View.VISIBLE
+            })
         } else {
             binding.progress.visibility = View.GONE
             binding.btnGetStarted.visibility = View.VISIBLE
@@ -160,7 +162,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.nativeSplash)) {
-            newLoadAndShowNativeAd(
+            /*newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_main,
                 getString(R.string.splashNativeId),
@@ -169,12 +171,39 @@ class SplashActivity : AppCompatActivity() {
                 },
                 failToLoad = {
                     binding.layoutNative.visibility = View.GONE
-                })
+                })*/
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutMainBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@SplashActivity.application, "splash").loadNativeAd(
+                adsKey = getString(R.string.splashNativeId),
+                remoteConfig = RemoteConfig.nativeSplash,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = null,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
         } else {
             binding.layoutNative.visibility = View.GONE
         }
 
-        if (canWeShowAds(RemoteConfig.onBoardingNative)) {
+        /*if (canWeShowAds(RemoteConfig.onBoardingNative)) {
             //Pre load ob Native
             loadAndReturnAd(this, getString(R.string.onBoardingNativeId)) { adState ->
                 obNativeAd1 = adState
@@ -184,7 +213,7 @@ class SplashActivity : AppCompatActivity() {
             loadAndReturnAd(this, getString(R.string.obNativeFull)) { adState ->
                 obNativeAdFull = adState
             }
-        }
+        }*/
     }
 
     private fun requestConsentForm() {
@@ -233,4 +262,17 @@ class SplashActivity : AppCompatActivity() {
             }
         }
     }*/
+
+    override fun onResume() {
+        super.onResume()
+        if (isFromLang) {
+            if (canWeShowAds(RemoteConfig.nativeSplash)) {
+                showNativeAd()
+            }
+            startHandler(5000)
+        } else {
+            requestConsentForm()
+
+        }
+    }
 }

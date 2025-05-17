@@ -1,10 +1,10 @@
 package com.example.satellitefinder.ui.dialogs
 
 import android.app.Activity
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.adssdk.banner_ads.BannerAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.showBannerAD
@@ -37,8 +37,28 @@ class InfoSheet(private val activity: Activity) {
     }
 
     private fun showBannerAd(binding: SatelliteInfoSheetBinding) {
-        if (activity.canWeShowAds(RemoteConfig.banner)) {
-            showBannerAD(binding.bannerAdContainer,activity, activity.getString(R.string.bannerId))
+        if (activity.canWeShowAds(RemoteConfig.infoSheetBanner)) {
+            showBannerAD(binding.bannerAdContainer, activity, activity.getString(R.string.bannerId))
+            binding.bannerAdContainer.visibility = View.VISIBLE
+            BannerAdUtils(activity = activity, screenName = "info_sheet")
+                .loadBanner(
+                    adsKey = activity.getString(R.string.bannerId),
+                    remoteConfig = RemoteConfig.infoSheetBanner,
+                    adsView = binding.bannerAdContainer,
+                    shimmerLayout = binding.clShimmer,
+                    onAdClicked = {},
+                    onAdFailedToLoads = { _, _ -> },
+                    onAdImpression = {},
+                    onAdLoaded = { _, _ -> },
+                    onAdOpened = {},
+                    onAdValidate = {
+                        binding.bannerAdContainer.visibility = View.GONE
+                        binding.clShimmer.visibility = View.GONE
+                    }
+                )
+        } else {
+            binding.bannerAdContainer.visibility = View.GONE
+            binding.clShimmer.visibility = View.GONE
         }
     }
 }

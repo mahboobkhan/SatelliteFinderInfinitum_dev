@@ -25,12 +25,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivitySatelliteFindBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.ui.dialogs.InfoDialog
 import com.example.satellitefinder.ui.dialogs.InfoSheet
@@ -55,21 +57,21 @@ import com.google.android.play.core.review.ReviewManagerFactory
 import java.util.Locale
 
 class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEventListener {
-    private val binding:ActivitySatelliteFindBinding by lazy{
+    private val binding: ActivitySatelliteFindBinding by lazy {
         ActivitySatelliteFindBinding.inflate(layoutInflater)
     }
 
     private var mComAziMuth = 0
     private var sensorManager: SensorManager? = null
     private var compassRotationV: Sensor? = null
-    private  var compassAccelerometer: Sensor? = null
-    private  var compassMagnetometer: Sensor? = null
+    private var compassAccelerometer: Sensor? = null
+    private var compassMagnetometer: Sensor? = null
     private var compassMat = FloatArray(9)
     private var orientation = FloatArray(9)
     private val compassLastAccelerometer = FloatArray(3)
     private val compassLastMagnetometer = FloatArray(3)
     private var haveSensorOne = false
-    private  var haveSensorTwo:Boolean = false
+    private var haveSensorTwo: Boolean = false
     private var isCompassLastAccelerometerSet = false
     private var isCompassLastMagnetometerSet = false
     private var vibrator: Vibrator? = null
@@ -92,14 +94,11 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     private var mMap: GoogleMap? = null
     private var mapFragment: SupportMapFragment? = null
     private val M_REQUEST_PERMISSION = 10
-    private lateinit var dialog:InfoDialog
+    private lateinit var dialog: InfoDialog
     private var adCountInfo = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (canWeShowAds(RemoteConfig.interFindSatellite)){
-            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId),)
-        }
         setContentView(binding.root)
         FirebaseEvents.logEventActivity("sate_finder_screen", "sate_finder_screen")
 
@@ -138,38 +137,52 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         dialog = InfoDialog(this@SatelliteFindActivity)
         binding.apply {
 
-          /*  btnSatelliteInfo.setOnClickListener{
+            /*  btnSatelliteInfo.setOnClickListener{
 
-                    satelliteInfo()
+                      satelliteInfo()
 
-            }*/
+              }*/
 
             ivBack.setOnClickListener {
-                FirebaseEvents.logEvent("sate_finder_screen_click_back", "sate_finder_screen_click_back")
+                FirebaseEvents.logEvent(
+                    "sate_finder_screen_click_back",
+                    "sate_finder_screen_click_back"
+                )
                 onBackPressedDispatcher.onBackPressed()
             }
 
             btnSelectSatellite.setOnClickListener {
-                FirebaseEvents.logEvent("sate_finder_screen_click_select_sate", "sate_finder_screen_click_select_sate")
+                FirebaseEvents.logEvent(
+                    "sate_finder_screen_click_select_sate",
+                    "sate_finder_screen_click_select_sate"
+                )
 
-                 selectSatellite()
+                selectSatellite()
             }
 
             btnInfo.setOnClickListener {
-                FirebaseEvents.logEvent("sate_finder_screen_click_info", "sate_finder_screen_click_info")
+                FirebaseEvents.logEvent(
+                    "sate_finder_screen_click_info",
+                    "sate_finder_screen_click_info"
+                )
 
                 if (canWeShowAds(RemoteConfig.interFindSatellite) && adCountInfo >= 2) {
-                    showPriorityAdmobInterstitial(true, getString(R.string.interstialId), closeListener = {
-                        InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
-                            satelliteInfo(sheetBinding)
-                        }
-                    }, failListener = {
-                        InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
-                            satelliteInfo(sheetBinding)
-                        }
-                    }, showListener = {
-                        adCountInfo = 0
-                    })
+                    showPriorityAdmobInterstitial(
+                        true,
+                        getString(R.string.interstialId),
+                        closeListener = {
+                            InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
+                                satelliteInfo(sheetBinding)
+                            }
+                        },
+                        failListener = {
+                            InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
+                                satelliteInfo(sheetBinding)
+                            }
+                        },
+                        showListener = {
+                            adCountInfo = 0
+                        })
                 } else {
                     adCountInfo++
                     InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
@@ -204,9 +217,19 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
 
     private fun selectSatellite() {
         if (location != null) {
-            val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
+            if (canWeShowAds(RemoteConfig.interSatellites)){
+                showPriorityInterstitialAdWithCounter(closeListener = {
+                    val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
+                    resultLauncher.launch(intent)
+                }, failListener = {
+                    val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
+                    resultLauncher.launch(intent)
+                })
+            }else{
+                val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
+                resultLauncher.launch(intent)
+            }
 
-            resultLauncher.launch(intent)
         } else {
             Toast.makeText(
                 this@SatelliteFindActivity,
@@ -222,32 +245,36 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             sheetBinding.apply {
                 satAzimut.text = satellitePosition?.getSatelliteAzimut().toString()
                 satellitePositionTv.text = satellitePosition?.getSatLongitude().toString()
-                satElevation.text = satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }.toString()
-                satelliteLNBskewTv.text = satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
+                satElevation.text =
+                    satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }
+                        .toString()
+                satelliteLNBskewTv.text =
+                    satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
             }
         }
     }
 
     @SuppressLint("SetTextI18n")
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            Log.d("testing Ad","OK Ad Show")
-            val data: Intent? = result.data
-            try{
-                satellitePosition = data?.getSerializableExtra("satObject") as SatellitesPositionData?
-                binding.satelliteTitle.text = satellitePosition!!.getSatellite().toString() + ""
-                binding.textCompass.visibility = View.VISIBLE
-                mSatelliteAzimuth = satellitePosition!!.getSatelliteAzimut()
-                binding.btnInfo.visibility = View.VISIBLE
+    var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                Log.d("testing Ad", "OK Ad Show")
+                val data: Intent? = result.data
+                try {
+                    satellitePosition =
+                        data?.getSerializableExtra("satObject") as SatellitesPositionData?
+                    binding.satelliteTitle.text = satellitePosition!!.getSatellite().toString() + ""
+                    binding.textCompass.visibility = View.VISIBLE
+                    mSatelliteAzimuth = satellitePosition!!.getSatelliteAzimut()
+                    binding.btnInfo.visibility = View.VISIBLE
 //                satelliteInfo()
-            }
-            catch (e:Exception){
-                binding.btnInfo.visibility = View.GONE
-                Log.e("TAG", ": $e" )
-            }
+                } catch (e: Exception) {
+                    binding.btnInfo.visibility = View.GONE
+                    Log.e("TAG", ": $e")
+                }
 
+            }
         }
-    }
 
     private fun startSensor() {
         if (sensorManager!!.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
@@ -255,7 +282,8 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                     Sensor.TYPE_ACCELEROMETER
                 ) == null
             ) {
-                Toast.makeText(this@SatelliteFindActivity, "No Sensor found", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SatelliteFindActivity, "No Sensor found", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 compassAccelerometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
                 compassMagnetometer = sensorManager!!.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
@@ -273,14 +301,18 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
         } else {
             compassRotationV = sensorManager!!.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
             haveSensorOne =
-                sensorManager!!.registerListener(this, compassRotationV, SensorManager.SENSOR_DELAY_UI)
+                sensorManager!!.registerListener(
+                    this,
+                    compassRotationV,
+                    SensorManager.SENSOR_DELAY_UI
+                )
         }
     }
 
 
     @SuppressLint("SetTextI18n")
     override fun onSensorChanged(event: SensorEvent) {
-        Log.e("TAG", "onSensorChanged: " )
+        Log.e("TAG", "onSensorChanged: ")
         if (event.sensor.type == Sensor.TYPE_ROTATION_VECTOR) {
             SensorManager.getRotationMatrixFromVector(compassMat, event.values)
             mComAziMuth = ((Math.toDegrees(
@@ -296,7 +328,12 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             isCompassLastMagnetometerSet = true
         }
         if (isCompassLastAccelerometerSet && isCompassLastMagnetometerSet) {
-            SensorManager.getRotationMatrix(compassMat, null, compassLastAccelerometer, compassLastMagnetometer)
+            SensorManager.getRotationMatrix(
+                compassMat,
+                null,
+                compassLastAccelerometer,
+                compassLastMagnetometer
+            )
             SensorManager.getOrientation(compassMat, orientation)
             mComAziMuth = ((Math.toDegrees(
                 SensorManager.getOrientation(compassMat, orientation)[0]
@@ -355,6 +392,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
             sensorManager!!.unregisterListener(this, compassRotationV)
         }
     }
+
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     override fun onResume() {
@@ -410,6 +448,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                 mapInitialization()
                 getMyCurrentLocation()
             }
+
             else -> super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
@@ -505,21 +544,23 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     private val mLocationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
 
-            try{
+            try {
                 sourceLatitude = "" + location.latitude
                 sourceLongitude = "" + location.longitude
                 currentLocation = location
                 myLocation = LatLng(location.latitude, location.longitude)
 
-            }catch (e:Exception){
-                Log.e("TAG", "onLocationChanged: $e" )
+            } catch (e: Exception) {
+                Log.e("TAG", "onLocationChanged: $e")
             }
 
             //            addUserLocation(source_lat,source_lng);
         }
 
         @Deprecated("Deprecated in Java")
-        override fun onStatusChanged(s: String, i: Int, bundle: Bundle) {}
+        override fun onStatusChanged(s: String, i: Int, bundle: Bundle) {
+        }
+
         override fun onProviderEnabled(s: String) {}
         override fun onProviderDisabled(s: String) {}
     }
@@ -531,9 +572,9 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                 ).toLong()
     }
 
-    private fun showNativeAd(){
+    private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.satelliteFindNative)) {
-            newLoadAndShowNativeAd(
+            /*newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_small,
                 getString(R.string.findSatelliteNativeId),
@@ -542,14 +583,44 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                 },
                 failToLoad = {
                     binding.layoutNative.visibility = View.GONE
-                })
+                })*/
+
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutSmallBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@SatelliteFindActivity.application, "satellite_find").loadNativeAd(
+                adsKey = getString(R.string.findSatelliteNativeId),
+                remoteConfig = RemoteConfig.satelliteFindNative,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = bindAdNative.adBody,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
+        } else {
+            binding.layoutNative.visibility = View.GONE
         }
     }
 
     private val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
-            if (!MySharePrefrencesHelper.getBoolean(this@SatelliteFindActivity, isRatting)){
-                val ratingDailog = RattingDialog(this@SatelliteFindActivity){
+            if (!MySharePrefrencesHelper.getBoolean(this@SatelliteFindActivity, isRatting)) {
+                val ratingDailog = RattingDialog(this@SatelliteFindActivity) {
                     finish()
                 }
                 ratingDailog.show()

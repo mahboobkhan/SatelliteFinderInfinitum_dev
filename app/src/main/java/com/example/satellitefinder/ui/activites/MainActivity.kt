@@ -9,11 +9,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.loadAndReturnAd
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityMainBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
 import com.example.satellitefinder.ui.adapters.NavigationAdapter
 import com.example.satellitefinder.ui.adapters.NavigationItemModel
 import com.example.satellitefinder.ui.dialogs.RattingDialog
@@ -22,7 +24,6 @@ import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.RecyclerTouchListener
 import com.example.satellitefinder.utils.canWeShowAds
-import com.example.satellitefinder.utils.exitNativeAd
 import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.isSplash
 import com.example.satellitefinder.utils.privacyPolicy
@@ -59,11 +60,11 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
         )
 
-        if (canWeShowAds(RemoteConfig.nativeExit)) {
-            loadAndReturnAd(this@MainActivity, getString(R.string.exitNativeId)) {
-                exitNativeAd = it
-            }
-        }
+        /* if (canWeShowAds(RemoteConfig.nativeExit)) {
+             loadAndReturnAd(this@MainActivity, getString(R.string.exitNativeId)) {
+                 exitNativeAd = it
+             }
+         }*/
 
         onBackPressedDispatcher.addCallback(this@MainActivity, callback)
 
@@ -73,7 +74,9 @@ class MainActivity : AppCompatActivity() {
                     "home_screen_click_find_satellite",
                     "home_screen_click_find_satellite"
                 )
-                startActivityWithSlideTransition(SatelliteFindActivity::class.java)
+                showInterstitialAndNavigate(RemoteConfig.interFindSatellite) {
+                    startActivityWithSlideTransition(SatelliteFindActivity::class.java)
+                }
             }
 
             btnSatelliteMap.setOnClickListener {
@@ -81,11 +84,15 @@ class MainActivity : AppCompatActivity() {
                     "home_screen_click_satellite_map",
                     "home_screen_click_satellite_map"
                 )
-                startActivityWithSlideTransition(MapSatelliteActivity::class.java)
+                showInterstitialAndNavigate(RemoteConfig.interSatelliteMap) {
+                    startActivityWithSlideTransition(MapSatelliteActivity::class.java)
+                }
             }
             btnCompass.setOnClickListener {
                 FirebaseEvents.logEvent("home_screen_click_compass", "home_screen_click_compass")
-                startActivityWithSlideTransition(CompassActivity::class.java)
+                showInterstitialAndNavigate(RemoteConfig.interCompass) {
+                    startActivityWithSlideTransition(CompassActivity::class.java)
+                }
             }
 
             btnBubbleLevel.setOnClickListener {
@@ -101,7 +108,9 @@ class MainActivity : AppCompatActivity() {
                     "home_screen_click_cur_location",
                     "home_screen_click_cur_location"
                 )
-                startActivityWithSlideTransition(CurrentLocationActivity::class.java)
+                showInterstitialAndNavigate(RemoteConfig.interCurrentLocation) {
+                    startActivityWithSlideTransition(CurrentLocationActivity::class.java)
+                }
             }
 
             btnSetting.setOnClickListener {
@@ -115,12 +124,15 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            if (isAlreadyPurchased()){
+            if (isAlreadyPurchased()) {
                 btnPremium.visibility = View.GONE
                 goVersion.visibility = View.GONE
-            }else{
+            } else {
                 btnPremium.setOnClickListener {
-                    FirebaseEvents.logEvent("home_screen_click_premium", "home_screen_click_premium")
+                    FirebaseEvents.logEvent(
+                        "home_screen_click_premium",
+                        "home_screen_click_premium"
+                    )
                     startActivityWithSlideTransition(SubscriptionActivity::class.java)
                 }
 
@@ -137,6 +149,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         setUpDrawerLayout()
+    }
+
+    private fun showInterstitialAndNavigate(remoteConfig: Boolean, action: () -> Unit) {
+
+        if (canWeShowAds(remoteConfig)) {
+            showPriorityInterstitialAdWithCounter(closeListener = {
+                action.invoke()
+            }, failListener = {
+                action.invoke()
+            })
+        } else {
+            action.invoke()
+        }
     }
 
     private fun setUpDrawerLayout() {
@@ -158,7 +183,17 @@ class MainActivity : AppCompatActivity() {
                             "home_screen_click_language",
                             "home_screen_click_language"
                         )
-                        startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+                        if (canWeShowAds(RemoteConfig.interLanguage)){
+                            showPriorityInterstitialAdWithCounter(closeListener = {
+                                startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+
+                            }, failListener = {
+                                startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+
+                            })
+                        }else{
+                            startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+                        }
                     }
 
                     1 -> {
@@ -216,14 +251,41 @@ class MainActivity : AppCompatActivity() {
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.mainNative)) {
 
-            newLoadAndShowNativeAd(
+            /*newLoadAndShowNativeAd(
                 binding.layoutNative,
                 R.layout.native_ad_layout_main,
                 getString(R.string.mainNativeId),
                 adLoading = {
                     binding.layoutNative.visibility = View.VISIBLE
                 },
-                failToLoad = { binding.layoutNative.visibility = View.GONE })
+                failToLoad = { binding.layoutNative.visibility = View.GONE })*/
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutMainBinding.inflate(layoutInflater)
+
+            NativeAdUtils(this@MainActivity.application, "main").loadNativeAd(
+                adsKey = getString(R.string.mainNativeId),
+                remoteConfig = RemoteConfig.mainNative,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = null,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
         } else {
             binding.layoutNative.visibility = View.GONE
         }

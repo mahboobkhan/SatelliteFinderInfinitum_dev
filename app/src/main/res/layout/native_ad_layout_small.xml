@@ -92,6 +92,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_7sdp"
                     tools:ignore="RelativeOverlap" />
+<!--
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -105,6 +106,18 @@
                     app:layout_constraintStart_toEndOf="@id/ad_attribution"
                     android:progressTint="@color/primary"
                     android:rating="3"/>
+-->
+                <TextView
+                    android:id="@+id/ad_body"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:maxLines="2"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:textColor="@color/textColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ad_attribution" />
 
 
                 <com.google.android.material.button.MaterialButton
@@ -118,6 +131,7 @@
                     android:textSize="@dimen/_10sdp"
                     android:text="Get Started"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ad_body"
                     app:layout_constraintEnd_toEndOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

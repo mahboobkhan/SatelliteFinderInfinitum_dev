@@ -1,30 +1,33 @@
 package com.example.satellitefinder.utils
 
 import android.app.Application
-import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.example.satellitefinder.admobAds.OpenApp
+import com.example.adssdk.Ads
+import com.example.adssdk.open_app_ad.OpenAppAd
+import com.example.satellitefinder.BuildConfig
+import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.leveler.util.PreferenceHelper
-import com.google.android.gms.ads.nativead.NativeAd
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.GlobalContext
 import org.koin.core.logger.Level
-import java.util.concurrent.Executors
 
 class MyApplication : Application(), LifecycleObserver {
 
 
     companion object {
         var isForegrounded = false
-        var canRequestAdByConsent=true
+        var canRequestAdByConsent = true
     }
 
     override fun onCreate() {
         super.onCreate()
+
+        Ads(this, premiumUser = isAlreadyPurchased(), listOf(),if (BuildConfig.DEBUG)"debug" else "release",if (BuildConfig.DEBUG) "appDev" else "appProd")
+
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
         GlobalContext.startKoin {
@@ -34,8 +37,14 @@ class MyApplication : Application(), LifecycleObserver {
         }
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-        if (RemoteConfig.appOpen){
-            OpenApp(this)
+        if (RemoteConfig.appOpen) {
+//            OpenApp(this)
+            OpenAppAd(
+                application = this@MyApplication,
+                openAppAdIdLow = getString(R.string.appOpenId),
+                openAppAdIdMedium = null,
+                openAppAdIdHigh = null
+            )
         }
 
         PreferenceHelper.initPrefs(this)

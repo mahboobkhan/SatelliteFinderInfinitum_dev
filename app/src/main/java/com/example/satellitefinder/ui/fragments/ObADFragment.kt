@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.obNativeAdFull
 import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.FragmentObADBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutFullBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
 import com.example.satellitefinder.utils.canWeShowAds
 
@@ -39,7 +43,7 @@ class ObADFragment : Fragment() {
     private fun showNativeAd() {
         activity?.apply {
             if (canWeShowAds(RemoteConfig.onBoardingNative)) {
-                obNativeAdFull?.let {
+                /*obNativeAdFull?.let {
                     showLoadedNativeAd(
                         this, binding.nativeAdContainer,
                         R.layout.native_ad_layout_full, it
@@ -50,7 +54,34 @@ class ObADFragment : Fragment() {
                         R.layout.native_ad_layout_full,
                         getString(R.string.obNativeFull)
                     )
-                }
+                }*/
+                binding.nativeAdContainer.visibility = View.VISIBLE
+                val bindAdNative = NativeAdLayoutFullBinding.inflate(layoutInflater)
+
+                NativeAdUtils(requireActivity().application, "intro_full").loadNativeAd(
+                    adsKey = getString(R.string.onBoardingNativeId),
+                    remoteConfig = RemoteConfig.onBoardingNative,
+                    nativeAdType = NativeAdType.PRE_CACHE_AD,
+                    adContainer = binding.nativeAdContainer,
+                    nativeAdView = bindAdNative.root,
+                    adHeadline = bindAdNative.adHeadline,
+                    adBody = bindAdNative.adBody,
+                    adIcon = null,
+                    mediaView = bindAdNative.adMedia,
+                    adSponsor = null,
+                    callToAction = bindAdNative.callToAction,
+                    adLoaded = {
+
+                    }, adFailed = { _, _ ->
+
+                    }, adImpression = {
+
+                    }, adClicked = {
+
+                    }, adValidate = {
+                        binding.nativeAdContainer.visibility = View.GONE
+                    }
+                )
             } else {
                 binding.nativeAdContainer.visibility = View.GONE
             }

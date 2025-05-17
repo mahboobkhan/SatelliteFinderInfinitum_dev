@@ -8,11 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
+import com.example.satellitefinder.databinding.ListAdBinding
 import com.example.satellitefinder.databinding.ListAdItemBinding
 import com.example.satellitefinder.databinding.SatelliteItemBinding
-import com.example.satellitefinder.ui.activites.SatellitesActivity
 import com.example.satellitefinder.utils.SatellitesPositionData
 import kotlin.math.roundToLong
 
@@ -21,11 +22,10 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
 
     private var entitiesList: MutableList<BaseItem> = ArrayList()
     var adsHashMap = HashMap<Int, Any>()
-    var activity : Activity? = null
+    var activity: Activity? = null
 
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):RecyclerView.ViewHolder{
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         return when (viewType) {
             0 -> {
@@ -33,8 +33,15 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
                     SatelliteItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 return SatelliteViewHolder(inflate)
             }
+
             else -> {
-                NativeViewHolder(ListAdItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+                NativeViewHolder(
+                    ListAdItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
             }
         }
     }
@@ -47,12 +54,14 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
                 }
                 item.bindItem(holder, position)
             }
+
             is SatelliteItemView -> {
 
                 item.bindItem(holder, position)
             }
         }
     }
+
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
@@ -68,12 +77,41 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
     inner class NativeViewHolder(val binding: ListAdItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
-            activity?.newLoadAndShowNativeAd(
-                binding.adfram, R.layout.list_ad, context.getString(R.string.selectSatelliteNativeId), null)
+//            activity?.newLoadAndShowNativeAd(binding.adfram, R.layout.list_ad, context.getString(R.string.selectSatelliteNativeId), null)
+            binding.adfram.visibility = View.VISIBLE
+            val bindAdNative = activity?.layoutInflater?.let { ListAdBinding.inflate(it) }
+
+            activity?.let {
+                NativeAdUtils(it.application, "satellite_adapter").loadNativeAd(
+                    adsKey = it.getString(R.string.selectSatelliteNativeId),
+                    remoteConfig = true,
+                    nativeAdType = NativeAdType.DEFAULT_AD,
+                    adContainer = binding.adfram,
+                    nativeAdView = bindAdNative?.root,
+                    adHeadline = bindAdNative?.adHeadline,
+                    adBody = null,
+                    adIcon = bindAdNative?.adIcon,
+                    mediaView = bindAdNative?.adMedia,
+                    adSponsor = null,
+                    callToAction = bindAdNative?.callToAction,
+                    adLoaded = {
+
+                    }, adFailed = { _, _ ->
+
+                    }, adImpression = {
+
+                    }, adClicked = {
+
+                    }, adValidate = {
+                        binding.adfram.visibility = View.GONE
+                    }
+                )
+            }
+
         }
     }
 
-    class SatelliteItemView(val satellite:SatellitesPositionData) : BaseItem() {
+    class SatelliteItemView(val satellite: SatellitesPositionData) : BaseItem() {
         override fun itemType(): Int {
             return 0
         }
@@ -81,7 +119,7 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
         override fun bindItem(holder: RecyclerView.ViewHolder?, position: Int) {
             holder as SatelliteViewHolder
 
-            holder.bindData(satellite,position)
+            holder.bindData(satellite, position)
         }
     }
 
@@ -125,23 +163,28 @@ class SatellitesAdapter(val context: Context, val onItemClick: (SatellitesPositi
 
         }
     }
+
     override fun getItemViewType(position: Int): Int {
         return when {
             entitiesList[position].itemType() == 0 -> {
                 0
             }
+
             entitiesList[position].itemType() == 1 -> {
                 1
             }
+
             else -> 2
         }
     }
 
-    inner class SatelliteViewHolder(val binding: SatelliteItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SatelliteViewHolder(val binding: SatelliteItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("SetTextI18n")
         fun bindData(item: SatellitesPositionData?, position: Int) {
             item?.let { data ->
-                binding.satTitle.text = data.getSatellite().toString()+"(${data.getSatelliteDirection()})"
+                binding.satTitle.text =
+                    data.getSatellite().toString() + "(${data.getSatelliteDirection()})"
                 binding.satElevation.text =
                     "Elevation: ${(data.getSatelliteElevation())?.roundToLong()}°"
                 binding.satAzimut.text = "Azimuth:${data.getSatelliteAzimut()}°"

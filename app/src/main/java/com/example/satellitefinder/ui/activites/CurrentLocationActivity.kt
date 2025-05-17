@@ -13,11 +13,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.adssdk.native_ad.NativeAdType
+import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityCurrentLocationBinding
+import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.requestLocationPermissions
@@ -30,7 +32,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
+class CurrentLocationActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private var isGPSEnabled = false
     private var isNetworkEnabled = false
@@ -46,17 +48,13 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
     var supportMapFragment: SupportMapFragment? = null
     private val M_REQUEST_PERMISSION = 10
 
-    val binding:ActivityCurrentLocationBinding by lazy {
+    val binding: ActivityCurrentLocationBinding by lazy {
         ActivityCurrentLocationBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         FirebaseEvents.logEventActivity("cur_location_screen", "cur_location_screen")
-        if (canWeShowAds(RemoteConfig.interCurrentLocation)){
-            showPriorityInterstitialAdWithCounter(true,getString(R.string.interstialId))
-        }
-
         setContentView(binding.root)
         screenEventAnalytics(TAG)
 
@@ -77,7 +75,10 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
         }
 
         binding.btnBack.setOnClickListener {
-            FirebaseEvents.logEvent("cur_location_screen_click_back", "cur_location_screen_click_back")
+            FirebaseEvents.logEvent(
+                "cur_location_screen_click_back",
+                "cur_location_screen_click_back"
+            )
             onBackPressedDispatcher.onBackPressed()
         }
 
@@ -144,11 +145,13 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
                     }
                 }
             }
+
             else -> {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults)
             }
         }
     }
+
     private fun currentLocation() {
         com.example.satellitefinder.utils.currentLocation?.let {
             val latLng = LatLng(it.latitude, it.longitude)
@@ -156,7 +159,6 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
             googleMap1?.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16f))
         }
     }
-
 
 
     private fun getMyLocation() {
@@ -205,7 +207,8 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
             // If GPS enabled, get latitude/longitude using GPS Services
             if (isGPSEnabled) {
                 if (mLocation == null) {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION
+                    if (ContextCompat.checkSelfPermission(
+                            this, Manifest.permission.ACCESS_FINE_LOCATION
                         ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                             this,
                             Manifest.permission.ACCESS_COARSE_LOCATION
@@ -247,15 +250,15 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
 
     private val mLocationListener: LocationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            try{
+            try {
                 sourceLatitude = "" + location.latitude
                 sourceLongitude = "" + location.longitude
                 com.example.satellitefinder.utils.currentLocation = location
                 myCurrentLocation = LatLng(location.latitude, location.longitude)
                 Log.e("mLocationListener ", "  source_lat   $sourceLatitude")
                 Log.e("mLocationListener ", "  source_lng   $sourceLongitude")
-            }catch (e:Exception){
-                Log.e(TAG, "onLocationChanged: $e" )
+            } catch (e: Exception) {
+                Log.e(TAG, "onLocationChanged: $e")
             }
         }
 
@@ -272,6 +275,7 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
             getMyLocation()
         }
     }
+
     companion object {
         private const val MIN_DISTANCE_FOR_UPDATES: Long = 1000 // 10 meters
 
@@ -282,17 +286,49 @@ class CurrentLocationActivity : AppCompatActivity(),OnMapReadyCallback {
 
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.currentLocationNative)) {
-            newLoadAndShowNativeAd(
-                binding.layoutNative,
-                R.layout.native_ad_layout_small,
-                getString(R.string.currentLocationNativeId),
-                adLoading = {
-                    binding.layoutNative.visibility = View.VISIBLE
-                },
-                failToLoad = {
-                    binding.layoutNative.visibility = View.GONE
-                })
+            /* newLoadAndShowNativeAd(
+                 binding.layoutNative,
+                 R.layout.native_ad_layout_small,
+                 getString(R.string.currentLocationNativeId),
+                 adLoading = {
+                     binding.layoutNative.visibility = View.VISIBLE
+                 },
+                 failToLoad = {
+                     binding.layoutNative.visibility = View.GONE
+                 })*/
 
+            binding.layoutNative.visibility = View.VISIBLE
+            val bindAdNative = NativeAdLayoutSmallBinding.inflate(layoutInflater)
+
+            NativeAdUtils(
+                this@CurrentLocationActivity.application,
+                "current_location"
+            ).loadNativeAd(
+                adsKey = getString(R.string.currentLocationNativeId),
+                remoteConfig = RemoteConfig.currentLocationNative,
+                nativeAdType = NativeAdType.DEFAULT_AD,
+                adContainer = binding.layoutNative,
+                nativeAdView = bindAdNative.root,
+                adHeadline = bindAdNative.adHeadline,
+                adBody = bindAdNative.adBody,
+                adIcon = bindAdNative.adIcon,
+                mediaView = bindAdNative.adMedia,
+                adSponsor = null,
+                callToAction = bindAdNative.callToAction,
+                adLoaded = {
+
+                }, adFailed = { _, _ ->
+
+                }, adImpression = {
+
+                }, adClicked = {
+
+                }, adValidate = {
+                    binding.layoutNative.visibility = View.GONE
+                }
+            )
+        } else {
+            binding.layoutNative.visibility = View.GONE
         }
     }
 

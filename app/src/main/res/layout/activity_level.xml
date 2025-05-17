@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activites.LevelActivity"
     android:background="@drawable/app_bg_n">
 
@@ -45,14 +46,31 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:id="@+id/bannerAdContainer"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clShimmer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/bannerAdContainer"
+        app:layout_constraintEnd_toEndOf="@id/bannerAdContainer"
+        app:layout_constraintStart_toStartOf="@id/bannerAdContainer"
+        app:layout_constraintTop_toTopOf="@id/bannerAdContainer">
 
-    </FrameLayout>
+        <include
+            android:id="@+id/shimer"
+            layout="@layout/shimmer_banner_loading_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

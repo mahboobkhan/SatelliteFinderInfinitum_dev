@@ -2,108 +2,41 @@
 <defaults>
 
     <entry>
-        <key>appOpenID</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>splashInterstitialID</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interstitialID</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interCompass</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interCurrentLocation</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interLanguage</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interSatelliteMap</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interFindSatellite</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>interSatellites</key>
-        <value>false</value>
-    </entry>
-
-    <entry>
-        <key>interSatellitesClick</key>
-        <value>true</value>
-    </entry>
-
-
-    <entry>
-        <key>splashNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>mainNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>satelliteFindNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>compassNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>currentLocationNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>selectSatelliteNativeId</key>
-        <value>false</value>
-    </entry>
-    <entry>
-        <key>searchSatelliteNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>mapSatelliteNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>moreNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>onBoardingNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>permissionNative</key>
-        <value>true</value>
-    </entry>
-
-    <entry>
-        <key>exitNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>languagesNativeId</key>
-        <value>true</value>
-    </entry>
-    <entry>
-        <key>bannerId</key>
-        <value>true</value>
-    </entry>
-    <entry>
         <key>adCounter</key>
         <value>3</value>
+    </entry>
+
+    <entry>
+        <key>ads_json_from_v43</key>
+        <value>
+            {
+            "app_open": true,
+            "inter_splash": true,
+            "inter_language": true,
+            "inter_permission": true,
+            "inter_compass": true,
+            "inter_current_location": true,
+            "inter_satellite_map": true,
+            "inter_find_satellite": true,
+            "inter_satellites": true,
+            "inter_satellites_click": false,
+            "native_splash": true,
+            "languages_native": true,
+            "on_boarding_native": true,
+            "main_native": true,
+            "native_exit": true,
+            "satellite_find_native": true,
+            "compass_native": true,
+            "current_location_native": true,
+            "select_satellite_native": false,
+            "search_satellite_native": true,
+            "map_satellite_native": true,
+            "more_native": true,
+            "permission_native": true,
+            "level_banner": true,
+            "info_sheet_banner": true
+            }
+        </value>
     </entry>
 
 </defaults>

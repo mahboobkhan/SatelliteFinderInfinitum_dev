@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.example.adssdk.Ads
+import com.example.adssdk.advert.PurchasePrefs
 import com.example.satellitefinder.R
 import com.example.satellitefinder.databinding.ActivitySubscriptionBinding
 import com.example.satellitefinder.subscription.SubscriptionSkus
@@ -189,6 +191,8 @@ class SubscriptionActivity : AppCompatActivity() {
                     Timber.tag("showprices").d("setupObserver: " + weeklyPrice)
                     if (!augmentedSkuDetails.canPurchase) {
                         MySharePrefrencesHelper.putBillingBoolean(this, true)
+                        PurchasePrefs(this.applicationContext).putBoolean("inApp", true)
+                        Ads.isPremiumUserr = true
                         showToast("SuccessFully Purchased")
                         goToHome()
                         showToast("Restarting application")
@@ -217,6 +221,8 @@ class SubscriptionActivity : AppCompatActivity() {
                     Timber.tag("showprices").d("setupObserver: " + monthlyPrice)
                     if (!augmentedSkuDetails.canPurchase) {
                         MySharePrefrencesHelper.putBillingBoolean(this, true)
+                        PurchasePrefs(this.applicationContext).putBoolean("inApp", true)
+                        Ads.isPremiumUserr = true
                         showToast("SuccessFully Purchased")
                         goToHome()
                         showToast("Restarting application")
@@ -244,6 +250,8 @@ class SubscriptionActivity : AppCompatActivity() {
                     }
                     if (!augmentedSkuDetails.canPurchase) {
                         MySharePrefrencesHelper.putBillingBoolean(this, true)
+                        PurchasePrefs(this.applicationContext).putBoolean("inApp", true)
+                        Ads.isPremiumUserr = true
                         showToast("SuccessFully Purchased")
                         goToHome()
                         showToast("Restarting application")

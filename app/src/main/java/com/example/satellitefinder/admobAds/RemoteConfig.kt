@@ -8,12 +8,12 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.google.gson.Gson
+import java.lang.Exception
 
 
 object RemoteConfig {
     var appOpen: Boolean = true
-
-    var interAll: Boolean = true
     var interCompass: Boolean = true
     var interCurrentLocation: Boolean = true
     var interLanguage: Boolean = true
@@ -22,11 +22,11 @@ object RemoteConfig {
     var interSatellites: Boolean = false
     var interSatellitesClick: Boolean = false
     var interSplash: Boolean = true
+    var interPermission: Boolean = true
 
     var nativeSplash: Boolean = true
     var mainNative: Boolean = true
     var nativeExit: Boolean = true
-    var nativeOnboarding: Boolean = true
     var satelliteFindNative: Boolean = true
     var compassNative: Boolean = true
     var currentLocationNative: Boolean = true
@@ -37,9 +37,9 @@ object RemoteConfig {
     var onBoardingNative: Boolean = true
     var permissionNative: Boolean = true
     var languagesNative: Boolean = true
-    var banner: Boolean = true
-    var adCounter:Long = 3
-
+    var levelBanner: Boolean = true
+    var infoSheetBanner: Boolean = true
+    var adCounter: Long = 3
 
 
     //configurations
@@ -62,33 +62,46 @@ object RemoteConfig {
         val remoteConfig = getRemoteConfig()
         remoteConfig.fetchAndActivate().addOnCompleteListener(application) { task ->
 
-            appOpen = remoteConfig["appOpenID"].asBoolean()
-            interSplash = remoteConfig["splashInterstitialID"].asBoolean()
-            interAll = remoteConfig["interstitialID"].asBoolean()
-            interCompass = remoteConfig["interCompass"].asBoolean()
-            interCurrentLocation = remoteConfig["interCurrentLocation"].asBoolean()
-            interLanguage = remoteConfig["interLanguage"].asBoolean()
-            interSatelliteMap = remoteConfig["interSatelliteMap"].asBoolean()
-            interFindSatellite = remoteConfig["interFindSatellite"].asBoolean()
-            interSatellites = remoteConfig["interSatellites"].asBoolean()
-            interSatellitesClick = remoteConfig["interSatellitesClick"].asBoolean()
 
-            nativeSplash = remoteConfig["splashNativeId"].asBoolean()
-            mainNative = remoteConfig["mainNativeId"].asBoolean()
-            selectSatelliteNative = remoteConfig["selectSatelliteNativeId"].asBoolean()
-            searchSatelliteNative = remoteConfig["searchSatelliteNativeId"].asBoolean()
-            satelliteFindNative = remoteConfig["satelliteFindNativeId"].asBoolean()
-            compassNative = remoteConfig["compassNativeId"].asBoolean()
-            currentLocationNative = remoteConfig["currentLocationNativeId"].asBoolean()
-            nativeExit = remoteConfig["exitNativeId"].asBoolean()
-            nativeOnboarding = remoteConfig["onBoardingNativeId"].asBoolean()
-            mapSatelliteNative = remoteConfig["mapSatelliteNativeId"].asBoolean()
-            moreNative = remoteConfig["moreNativeId"].asBoolean()
-            onBoardingNative = remoteConfig["onBoardingNativeId"].asBoolean()
-            permissionNative = remoteConfig["permissionNative"].asBoolean()
-            languagesNative = remoteConfig["languagesNativeId"].asBoolean()
-            banner = remoteConfig["bannerId"].asBoolean()
             adCounter = remoteConfig["adCounter"].asLong()
+
+            // ads json
+            try {
+                val remoteAdsJson = remoteConfig["ads_json_from_v43"].asString()
+                val data = Gson().fromJson(remoteAdsJson, RemoteConfigModel::class.java)
+
+                appOpen = data.appOpen
+                // interstitial
+                interSplash = data.interSplash
+                interLanguage = data.interLanguage
+                interPermission = data.interPermission
+                interCompass = data.interCompass
+                interCurrentLocation = data.interCurrentLocation
+                interSatelliteMap = data.interSatelliteMap
+                interFindSatellite = data.interFindSatellite
+                interSatellites = data.interSatellites
+                interSatellitesClick = data.interSatellitesClick
+                // native ads
+                nativeSplash = data.nativeSplash
+                languagesNative = data.languagesNative
+                onBoardingNative = data.onBoardingNative
+                mainNative = data.mainNative
+                nativeExit = data.nativeExit
+                satelliteFindNative = data.satelliteFindNative
+                compassNative = data.compassNative
+                currentLocationNative = data.currentLocationNative
+                selectSatelliteNative = data.selectSatelliteNative
+                searchSatelliteNative = data.searchSatelliteNative
+                mapSatelliteNative = data.mapSatelliteNative
+                moreNative = data.moreNative
+                permissionNative = data.permissionNative
+                // banners
+                levelBanner = data.levelBanner
+                infoSheetBanner = data.infoSheetBanner
+
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
 
             callBack.invoke(task.isSuccessful)
         }
