@@ -11,15 +11,34 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.math.ceil
 
 var interstitialAdPriority: InterstitialAd? = null
 var isInterstitialAdOnScreen = false
-var interstitialAdCounter = 0
+var interstitialAdCounter = 0L
 var interstitialAdCounterConfig = 0
 
-fun counterCheck(): Boolean {
+/*fun counterCheck(): Boolean {
     interstitialAdCounter++
     return (interstitialAdCounter % RemoteConfig.adCounter).toInt() == 0
+}*/
+
+fun Activity.counterCheck(): Boolean {
+    interstitialAdCounter++
+
+    val threshold = if (RemoteConfig.adCounter <= 0L) 2 else RemoteConfig.adCounter
+    val currentClick = interstitialAdCounter
+
+    // When counter reaches threshold, show the ad
+    val shouldShowAd = currentClick >= threshold
+
+    // When halfway to the next ad (and not already loaded), pre-load it
+    val isHalfway = ceil(threshold / 2.0).toLong()
+    if (currentClick == isHalfway && mInterstitialAd == null) {
+        loadAdmobInterstitial(adId = getString(R.string.interstialId))
+    }
+
+    return shouldShowAd
 }
 
 fun counterCheckConfig(counterValue: Int): Boolean {
@@ -28,21 +47,15 @@ fun counterCheckConfig(counterValue: Int): Boolean {
 }
 
 fun Activity.showPriorityInterstitialAdWithCounter(
-    loadAgain: Boolean = false,
-    adIDLow: String? = null,
-    loadAd: ((InterstitialAd) -> Unit)? = null,
     closeListener: (() -> Unit)? = null,
     failListener: (() -> Unit)? = null,
     showListener: (() -> Unit)? = null
 ) {
     if (counterCheck()) {
         showPriorityAdmobInterstitial(
-            loadAgain,
-            adIDLow,
-            loadAd,
-            closeListener,
-            failListener,
-            showListener,
+            closeListener = closeListener,
+            failListener = failListener,
+            showListener = showListener,
         )
     } else {
         failListener?.invoke()
@@ -50,9 +63,7 @@ fun Activity.showPriorityInterstitialAdWithCounter(
 }
 
 fun Activity.showPriorityAdmobInterstitial(
-    loadAgain: Boolean = false,
-    adIDLow: String? = null,
-    loadAd: ((InterstitialAd) -> Unit)? = null,
+    canReload: Boolean = true,
     closeListener: (() -> Unit)? = null,
     failListener: (() -> Unit)? = null,
     showListener: (() -> Unit)? = null
@@ -72,11 +83,12 @@ fun Activity.showPriorityAdmobInterstitial(
                 activity = this@showPriorityAdmobInterstitial,
                 screenName = "FullScreenHowToUse"
             )
-                .setReloadAd(true)
+                .setReloadAd(canReload)
                 .showInterstitialAd(
                     adsKey = getString(R.string.interstialId),
                     remoteConfig = true,
                     fullScreenAdShow = {
+                        interstitialAdCounter =0
                         isInterstitialAdOnScreen = true
                         showListener?.invoke()
                         InterstitialAdClass.getInstance()
@@ -238,7 +250,6 @@ fun Activity.loadAndShowInterstitial(
             },
             adType = InterstitialAdType.DEFAULT_AD
         )
-
 
 
     }

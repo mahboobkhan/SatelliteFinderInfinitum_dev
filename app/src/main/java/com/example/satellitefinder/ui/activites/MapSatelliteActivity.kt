@@ -145,7 +145,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                 //              adCount = 0
                 // loadAndShowSplashInterstitial(getString(R.string.interstialId))
-                showPriorityInterstitialAdWithCounter(true, getString(R.string.interstialId),
+                showPriorityInterstitialAdWithCounter(
                     showListener = { },
                     closeListener = { currentLocation() },
                     failListener = { currentLocation() })
@@ -176,8 +176,6 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
             )
             if (adCountInfo >= 2) {
                 showPriorityAdmobInterstitial(
-                    true,
-                    getString(R.string.interstialId),
                     closeListener = {
                         InfoSheet(this@MapSatelliteActivity).showSheet { sheetBinding ->
                             satelliteInfo(sheetBinding)
@@ -209,8 +207,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     "hybrid" -> {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             // adCount = 0
-                            showPriorityInterstitialAdWithCounter(true,
-                                getString(R.string.interstialId),
+                            showPriorityInterstitialAdWithCounter(
                                 showListener = { },
                                 closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID },
                                 failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_HYBRID }
@@ -223,8 +220,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     "normal" -> {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
-                            showPriorityInterstitialAdWithCounter(true,
-                                getString(R.string.interstialId),
+                            showPriorityInterstitialAdWithCounter(
                                 showListener = { },
                                 closeListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL },
                                 failListener = { googleMap1?.mapType = GoogleMap.MAP_TYPE_NORMAL }
@@ -237,8 +233,6 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
                     "satellite" -> {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
                             showPriorityInterstitialAdWithCounter(
-                                true,
-                                getString(R.string.interstialId),
                                 showListener = {
 
                                 },
@@ -258,8 +252,7 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     "terrain" -> {
                         if (canWeShowAds(RemoteConfig.interSatelliteMap)) {
-                            showPriorityInterstitialAdWithCounter(true,
-                                getString(R.string.interstialId),
+                            showPriorityInterstitialAdWithCounter(
                                 showListener = {},
                                 closeListener = {
                                     googleMap1?.mapType = GoogleMap.MAP_TYPE_TERRAIN

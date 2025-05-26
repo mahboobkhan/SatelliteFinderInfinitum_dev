@@ -9,13 +9,17 @@ import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.google.gson.Gson
-import java.lang.Exception
 
 
 object RemoteConfig {
     var appOpen: Boolean = true
     var interCompass: Boolean = true
     var interCurrentLocation: Boolean = true
+    var interProtractor: Boolean = true
+    var interInclinometer: Boolean = true
+    var interPendulum: Boolean = true
+    var interAngleMeter: Boolean = true
+    var interRulerLevel: Boolean = true
     var interLanguage: Boolean = true
     var interSatelliteMap: Boolean = true
     var interFindSatellite: Boolean = true
@@ -37,7 +41,11 @@ object RemoteConfig {
     var onBoardingNative: Boolean = true
     var permissionNative: Boolean = true
     var languagesNative: Boolean = true
+    var inclinometerNative: Boolean = true
     var levelBanner: Boolean = true
+    var pendulumBanner: Boolean = true
+    var angleMeterBanner: Boolean = true
+    var rulerLevelBanner: Boolean = true
     var infoSheetBanner: Boolean = true
     var adCounter: Long = 3
 
@@ -77,6 +85,11 @@ object RemoteConfig {
                 interPermission = data.interPermission
                 interCompass = data.interCompass
                 interCurrentLocation = data.interCurrentLocation
+                interProtractor = data.interProtractor
+                interInclinometer = data.interInclinometer
+                interPendulum = data.interPendulum
+                interAngleMeter = data.interAngleMeter
+                interRulerLevel = data.interRulerLevel
                 interSatelliteMap = data.interSatelliteMap
                 interFindSatellite = data.interFindSatellite
                 interSatellites = data.interSatellites
@@ -84,6 +97,7 @@ object RemoteConfig {
                 // native ads
                 nativeSplash = data.nativeSplash
                 languagesNative = data.languagesNative
+                inclinometerNative = data.inclinometerNative
                 onBoardingNative = data.onBoardingNative
                 mainNative = data.mainNative
                 nativeExit = data.nativeExit
@@ -97,9 +111,12 @@ object RemoteConfig {
                 permissionNative = data.permissionNative
                 // banners
                 levelBanner = data.levelBanner
+                pendulumBanner = data.pendulumBanner
+                angleMeterBanner = data.angleMeterBanner
+                rulerLevelBanner = data.rulerLevelBanner
                 infoSheetBanner = data.infoSheetBanner
 
-            }catch (e : Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
 

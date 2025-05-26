@@ -70,7 +70,11 @@ class LevelActivity : AppCompatActivity(), OrientationListener {
         roll: Float,
         balance: Float
     ) {
-        binding.mainLevelView.onOrientationChanged(Orientation.LANDING, pitch, roll, balance)
+        binding.mainLevelView.setValues(roll,pitch)
+        binding.verticalLevelView.setValues(pitch)
+        binding.horizontalLevelView.setValues(roll)
+        binding.tvX.text = "X= %.1f°".format(roll)
+        binding.tvY.text = "Y= %.1f°".format(pitch)
     }
 
     override fun onCalibrationSaved(success: Boolean) {}

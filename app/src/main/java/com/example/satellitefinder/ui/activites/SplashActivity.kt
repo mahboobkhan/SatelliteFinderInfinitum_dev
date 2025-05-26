@@ -11,21 +11,16 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.adssdk.native_ad.NativeAdType
 import com.example.adssdk.native_ad.NativeAdUtils
+import com.example.adssdk.open_app_ad.OpenAppAdState
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.AdsConsentManager
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.loadAdmobInterstitial
-import com.example.satellitefinder.admobAds.loadAndShowInterstitial
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.databinding.ActivitySplashBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
@@ -69,6 +64,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        OpenAppAdState().disabled("splash")
         isSplash = true
         isPFromSplash = true
 
@@ -89,11 +85,15 @@ class SplashActivity : AppCompatActivity() {
         binding.btnGetStarted.setOnClickListener {
             FirebaseEvents.logEvent("splash_screen_click_start", "splash_screen_click_start")
             if (canWeShowAds(RemoteConfig.interSplash)) {
-                showPriorityAdmobInterstitial(adIDLow = getString(R.string.splashInterstial), closeListener = {
-                    moveNext()
-                }, failListener = {
-                    moveNext()
-                })
+                showPriorityAdmobInterstitial(
+                    canReload = false, showListener = {
+                        isInterstitialShowedOnSplash = true
+                    }, closeListener = {
+                        moveNext()
+                    }, failListener = {
+                        isInterstitialShowedOnSplash = false
+                        moveNext()
+                    })
             } else {
                 moveNext()
             }
@@ -274,5 +274,9 @@ class SplashActivity : AppCompatActivity() {
             requestConsentForm()
 
         }
+    }
+
+    companion object {
+        var isInterstitialShowedOnSplash = false
     }
 }

@@ -11,8 +11,10 @@ import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adssdk.native_ad.NativeAdType
 import com.example.adssdk.native_ad.NativeAdUtils
+import com.example.adssdk.open_app_ad.OpenAppAdState
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityMainBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
@@ -52,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         super.onCreate(savedInstanceState)
         isSplash = false
+        OpenAppAdState().enabled("splash")
         FirebaseEvents.logEventActivity("home_screen", "home_screen")
         screenEventAnalytics("MainActivity")
 
@@ -113,6 +116,64 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            /*btnARView.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interCurrentLocation) {
+                    startActivityWithSlideTransition(ARViewActivity::class.java)
+                }
+            }*/
+            btnProtractor.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interProtractor) {
+                    startActivityWithSlideTransition(ProtractorActivity::class.java)
+                }
+            }
+            btnInclinometer.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interInclinometer) {
+                    startActivityWithSlideTransition(InclinometerActivity::class.java)
+                }
+            }
+
+            btnPendulumBob.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interPendulum) {
+                    startActivityWithSlideTransition(PendulumActivity::class.java)
+                }
+            }
+
+            btnAngleMeter.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interAngleMeter) {
+                    startActivityWithSlideTransition(AngleMeterActivity::class.java)
+                }
+            }
+
+            btnRulerLevel.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_cur_location",
+                    "home_screen_click_cur_location"
+                )
+                showInterstitialAndNavigate(RemoteConfig.interRulerLevel) {
+                    startActivityWithSlideTransition(RulerLevelActivity::class.java)
+                }
+            }
+
             btnSetting.setOnClickListener {
                 FirebaseEvents.logEvent("home_screen_click_drawer", "home_screen_click_drawer")
                 if (layoutDrawer.isDrawerOpen(GravityCompat.START)) {
@@ -153,12 +214,37 @@ class MainActivity : AppCompatActivity() {
 
     private fun showInterstitialAndNavigate(remoteConfig: Boolean, action: () -> Unit) {
 
+
+
         if (canWeShowAds(remoteConfig)) {
-            showPriorityInterstitialAdWithCounter(closeListener = {
-                action.invoke()
-            }, failListener = {
-                action.invoke()
-            })
+
+            if (!SplashActivity.isInterstitialShowedOnSplash) {
+                if (canWeShowAds(RemoteConfig.interSplash)) {
+                    showPriorityAdmobInterstitial(
+                        canReload = false, showListener = {
+                            SplashActivity.isInterstitialShowedOnSplash = true
+                        }, closeListener = {
+                            action.invoke()
+
+                        }, failListener = {
+                            SplashActivity.isInterstitialShowedOnSplash = false
+                            action.invoke()
+                        })
+                } else {
+                    showPriorityInterstitialAdWithCounter(closeListener = {
+                        action.invoke()
+                    }, failListener = {
+                        action.invoke()
+                    })
+                }
+            }else{
+                showPriorityInterstitialAdWithCounter(closeListener = {
+                    action.invoke()
+                }, failListener = {
+                    action.invoke()
+                })
+            }
+
         } else {
             action.invoke()
         }
@@ -183,15 +269,25 @@ class MainActivity : AppCompatActivity() {
                             "home_screen_click_language",
                             "home_screen_click_language"
                         )
-                        if (canWeShowAds(RemoteConfig.interLanguage)){
+                        if (canWeShowAds(RemoteConfig.interLanguage)) {
                             showPriorityInterstitialAdWithCounter(closeListener = {
-                                startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+                                startActivity(
+                                    Intent(
+                                        this@MainActivity,
+                                        LanguagesActivity::class.java
+                                    )
+                                )
 
                             }, failListener = {
-                                startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
+                                startActivity(
+                                    Intent(
+                                        this@MainActivity,
+                                        LanguagesActivity::class.java
+                                    )
+                                )
 
                             })
-                        }else{
+                        } else {
                             startActivity(Intent(this@MainActivity, LanguagesActivity::class.java))
                         }
                     }

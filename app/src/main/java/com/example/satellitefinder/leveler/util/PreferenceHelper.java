@@ -40,7 +40,7 @@ public class PreferenceHelper {
     }
 
     public static boolean getShowAngle() {
-        return getHelperBoolean(PrefKeys.PREF_SHOW_ANGLE, true);
+        return getHelperBoolean(PrefKeys.PREF_SHOW_ANGLE, false);
     }
 
     public static String getDisplayType() {

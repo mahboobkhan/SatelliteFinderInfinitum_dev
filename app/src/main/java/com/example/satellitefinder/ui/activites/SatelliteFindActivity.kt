@@ -168,8 +168,6 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
 
                 if (canWeShowAds(RemoteConfig.interFindSatellite) && adCountInfo >= 2) {
                     showPriorityAdmobInterstitial(
-                        true,
-                        getString(R.string.interstialId),
                         closeListener = {
                             InfoSheet(this@SatelliteFindActivity).showSheet { sheetBinding ->
                                 satelliteInfo(sheetBinding)

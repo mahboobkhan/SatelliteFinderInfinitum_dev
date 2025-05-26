@@ -1,25 +1,19 @@
 package com.example.satellitefinder.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.adssdk.native_ad.NativeAdType
 import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.loadAndReturnAd
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
-import com.example.satellitefinder.admobAds.obNativeAd1
-import com.example.satellitefinder.admobAds.obNativeAd2
-import com.example.satellitefinder.admobAds.obNativeAd4
-import com.example.satellitefinder.admobAds.showLoadedNativeAd
+import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.databinding.FragmentFourBinding
-import com.example.satellitefinder.databinding.FragmentOneBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
-import com.example.satellitefinder.ui.activites.OnBoardingScreen
 import com.example.satellitefinder.ui.activites.PermissionActivity
+import com.example.satellitefinder.ui.activites.SplashActivity
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.baseConfig
 import com.example.satellitefinder.utils.canWeShowAds
@@ -43,7 +37,25 @@ class FragmentFour : Fragment() {
         binding.tvNext.setOnClickListener {
             FirebaseEvents.logEvent("intro_screen_click_start", "intro_screen_click_start")
             context?.baseConfig?.isOnBoardingDone = true
-            activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
+
+            if (!SplashActivity.isInterstitialShowedOnSplash) {
+                if (requireActivity().canWeShowAds(RemoteConfig.interSplash)) {
+                    requireActivity().showPriorityAdmobInterstitial(
+                        canReload = false, showListener = {
+                            SplashActivity.isInterstitialShowedOnSplash = true
+                        }, closeListener = {
+                            activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
+
+                        }, failListener = {
+                            SplashActivity.isInterstitialShowedOnSplash = false
+                            activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
+                        })
+                } else {
+                    activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
+                }
+            }else{
+                activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
+            }
         }
 
         showNativeAd()

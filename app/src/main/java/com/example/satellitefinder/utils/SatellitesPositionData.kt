@@ -65,7 +65,7 @@ class SatellitesPositionData(satelliteData: SatellitesInformationData) :java.io.
         val satelliteLong = Math.toRadians(mSatelliteLongitude!!)
        val currentLong = currentLocation?.let { Math.toRadians(it.getLongitude()) }?: kotlin.run {
             0.0
-        }
+       }
 
 
         val deltaLon = satelliteLong - currentLong

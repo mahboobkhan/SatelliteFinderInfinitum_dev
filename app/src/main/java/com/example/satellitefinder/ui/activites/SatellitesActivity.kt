@@ -60,8 +60,6 @@ class SatellitesActivity : AppCompatActivity() {
                 if (canWeShowAds(RemoteConfig.interSatellitesClick) && satelliteAdCounter == 0) {
                     Log.d("testing Ad", "working to Show Ad")
                     showPriorityAdmobInterstitial(
-                        true,
-                        getString(R.string.interstialId),
                         closeListener = {
                             sendDataResult(it)
                         },

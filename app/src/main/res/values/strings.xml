@@ -52,6 +52,12 @@
     <string name="not_supported">Orientation not supported</string>
     <string name="calibrate_info">press MENU to calibrate...</string>
     <string name="lock_info">tap to lock level orientation</string>
+    <string name="ar_view">AR View</string>
+    <string name="protractor">Protractor</string>
+    <string name="inclinometer">Inclinometer</string>
+    <string name="pendulum_bob">Pendulum Bob</string>
+    <string name="angle_meter">Angle Meter</string>
+    <string name="ruler_level">Ruler Level</string>
 
 
     <string name="subscription_join_our_premium">Join Our Premium</string>
@@ -63,5 +69,8 @@
     <string name="subscription_cancel_anytime">Cancel Anytime</string>
     <string name="subscription_privacy_policy">Privacy Policy</string>
     <string name="subscription_description"> %1$s/%2$s. Cancel subscription anytime, 24 hrs before renewal - Auto Renewal</string>
+    <string name="roll">Roll</string>
+    <string name="pitch">Pitch</string>
+    <string name="reset_device_sensor">Reset Device Sensor</string>
 
 </resources>

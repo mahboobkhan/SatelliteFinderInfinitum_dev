@@ -9,11 +9,9 @@ import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.loadAdmobInterstitial
-import com.example.satellitefinder.admobAds.loadAndShowInterstitial
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.databinding.ActivityPermissionBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
-import com.example.satellitefinder.utils.AdState
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.baseConfig
 import com.example.satellitefinder.utils.canWeShowAds
@@ -37,7 +35,7 @@ class PermissionActivity : AppCompatActivity() {
         setContentView(binding.root)
         FirebaseEvents.logEventActivity("permission_screen", "permission_screen")
         showNativeAd()
-        if (canWeShowAds(RemoteConfig.interPermission)){
+        if (canWeShowAds(RemoteConfig.interPermission)) {
             loadAdmobInterstitial(getString(R.string.interstialId))
         }
 
@@ -48,7 +46,6 @@ class PermissionActivity : AppCompatActivity() {
                 if (it) {
                     if (canWeShowAds(RemoteConfig.interPermission)) {
                         showPriorityAdmobInterstitial(
-                            adIDLow = getString(R.string.interstialId),
                             closeListener = {
                                 moveNext()
                             },
@@ -65,7 +62,7 @@ class PermissionActivity : AppCompatActivity() {
         binding.btnNotNow.setOnClickListener {
             if (canWeShowAds(RemoteConfig.interPermission)) {
                 showPriorityAdmobInterstitial(
-                    adIDLow =getString(R.string.splashInterstial), closeListener = {
+                    closeListener = {
                     moveNext()
                 }, failListener = {
                     moveNext()

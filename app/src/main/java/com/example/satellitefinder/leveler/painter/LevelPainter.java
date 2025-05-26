@@ -176,8 +176,6 @@ public class LevelPainter implements Runnable {
     private Paint lockBackgroundPaint;
     private Paint infoPaint;
     private Paint blackPaint;
-    private int backgroundColor;
-    private Bitmap backgroundBitmap;
     private Drawable drawable;
     /**
      * Config angles
@@ -211,8 +209,6 @@ public class LevelPainter implements Runnable {
         this.displayBackgroundText = PreferenceHelper.getDisplayTypeBackgroundText();
 
         // colors
-        this.backgroundColor = ContextCompat.getColor(context, R.color.bubble_bg);
-        this.backgroundBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.app_bg_n);
 
 
         // strings
@@ -420,7 +416,6 @@ public class LevelPainter implements Runnable {
 
 //        canvas.drawColor(backgroundColor);
 
-        canvas.drawBitmap(backgroundBitmap, 0, 0, null);
 
 
         if (orientation == Orientation.LANDING) {

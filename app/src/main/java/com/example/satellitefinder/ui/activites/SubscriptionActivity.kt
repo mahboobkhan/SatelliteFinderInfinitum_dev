@@ -11,11 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.adssdk.Ads
 import com.example.adssdk.advert.PurchasePrefs
 import com.example.satellitefinder.R
+import com.example.satellitefinder.admobAds.RemoteConfig
+import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.databinding.ActivitySubscriptionBinding
 import com.example.satellitefinder.subscription.SubscriptionSkus
 import com.example.satellitefinder.subscription.SubscriptionViewModel
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.MySharePrefrencesHelper
+import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.isInternetConnected
 import com.example.satellitefinder.utils.privacyPolicy
@@ -54,7 +57,7 @@ class SubscriptionActivity : AppCompatActivity() {
             override fun handleOnBackPressed() {
                 FirebaseEvents.logEvent("premium_screen_back_press", "premium_screen_back_press")
                 if (fromSplash) {
-                    startActivityWithSlideTransition(MainActivity::class.java)
+                    showInterstitialAndMoveToMain()
                 } else {
                     finish()
                 }
@@ -79,7 +82,7 @@ class SubscriptionActivity : AppCompatActivity() {
         binding.ivClose.setOnClickListener {
             FirebaseEvents.logEvent("premium_screen_click_close", "premium_screen_click_close")
             if (fromSplash) {
-                startActivityWithSlideTransition(MainActivity::class.java)
+                showInterstitialAndMoveToMain()
             } else {
                 finish()
             }
@@ -348,6 +351,28 @@ class SubscriptionActivity : AppCompatActivity() {
             }
         }
         return s
+    }
+
+    private fun showInterstitialAndMoveToMain() {
+        if (!SplashActivity.isInterstitialShowedOnSplash) {
+            if (canWeShowAds(RemoteConfig.interSplash)) {
+                showPriorityAdmobInterstitial(
+                    canReload = false,
+                    showListener = {
+                        SplashActivity.isInterstitialShowedOnSplash = true
+                    }, closeListener = {
+                        startActivityWithSlideTransition(MainActivity::class.java)
+
+                    }, failListener = {
+                        SplashActivity.isInterstitialShowedOnSplash = false
+                        startActivityWithSlideTransition(MainActivity::class.java)
+                    })
+            } else {
+                startActivityWithSlideTransition(MainActivity::class.java)
+            }
+        } else {
+            startActivityWithSlideTransition(MainActivity::class.java)
+        }
     }
 
 }
