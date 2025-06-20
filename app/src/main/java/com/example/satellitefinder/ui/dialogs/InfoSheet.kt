@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.example.adssdk.banner_ads.BannerAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.showBannerAD
 import com.example.satellitefinder.databinding.SatelliteInfoSheetBinding
 import com.example.satellitefinder.utils.canWeShowAds
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -38,7 +37,6 @@ class InfoSheet(private val activity: Activity) {
 
     private fun showBannerAd(binding: SatelliteInfoSheetBinding) {
         if (activity.canWeShowAds(RemoteConfig.infoSheetBanner)) {
-            showBannerAD(binding.bannerAdContainer, activity, activity.getString(R.string.bannerId))
             binding.bannerAdContainer.visibility = View.VISIBLE
             BannerAdUtils(activity = activity, screenName = "info_sheet")
                 .loadBanner(

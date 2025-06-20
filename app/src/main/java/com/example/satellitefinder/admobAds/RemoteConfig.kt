@@ -20,16 +20,19 @@ object RemoteConfig {
     var interPendulum: Boolean = true
     var interAngleMeter: Boolean = true
     var interRulerLevel: Boolean = true
+    var interIssTracker: Boolean = true
     var interLanguage: Boolean = true
     var interSatelliteMap: Boolean = true
     var interFindSatellite: Boolean = true
     var interSatellites: Boolean = false
+    var interBackMenus: Boolean = true
     var interSatellitesClick: Boolean = false
     var interSplash: Boolean = true
     var interPermission: Boolean = true
 
     var nativeSplash: Boolean = true
     var mainNative: Boolean = true
+    var nativeSatelliteTypes: Boolean = true
     var nativeExit: Boolean = true
     var satelliteFindNative: Boolean = true
     var compassNative: Boolean = true
@@ -39,6 +42,8 @@ object RemoteConfig {
     var mapSatelliteNative: Boolean = true
     var moreNative: Boolean = true
     var onBoardingNative: Boolean = true
+    var onBoarding1Banner: Boolean = true
+    var onBoarding3Banner: Boolean = true
     var permissionNative: Boolean = true
     var languagesNative: Boolean = true
     var inclinometerNative: Boolean = true
@@ -94,6 +99,8 @@ object RemoteConfig {
                 interFindSatellite = data.interFindSatellite
                 interSatellites = data.interSatellites
                 interSatellitesClick = data.interSatellitesClick
+                interIssTracker = data.interIssTracker
+                interBackMenus = data.interBackMenus
                 // native ads
                 nativeSplash = data.nativeSplash
                 languagesNative = data.languagesNative
@@ -109,6 +116,7 @@ object RemoteConfig {
                 mapSatelliteNative = data.mapSatelliteNative
                 moreNative = data.moreNative
                 permissionNative = data.permissionNative
+                nativeSatelliteTypes = data.nativeSatelliteTypes
                 // banners
                 levelBanner = data.levelBanner
                 pendulumBanner = data.pendulumBanner

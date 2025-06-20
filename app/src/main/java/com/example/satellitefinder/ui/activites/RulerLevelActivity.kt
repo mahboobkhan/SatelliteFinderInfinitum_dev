@@ -72,7 +72,8 @@ class RulerLevelActivity : AppCompatActivity() {
                     onAdValidate = {
                         binding.bannerAdContainer.visibility = View.GONE
                         binding.clShimmer.visibility = View.GONE
-                    })
+                    }
+                )
         } else {
             binding.bannerAdContainer.visibility = View.GONE
             binding.clShimmer.visibility = View.GONE

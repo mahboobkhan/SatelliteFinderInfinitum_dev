@@ -88,7 +88,7 @@ fun Activity.showPriorityAdmobInterstitial(
                     adsKey = getString(R.string.interstialId),
                     remoteConfig = true,
                     fullScreenAdShow = {
-                        interstitialAdCounter =0
+                        interstitialAdCounter = 0
                         isInterstitialAdOnScreen = true
                         showListener?.invoke()
                         InterstitialAdClass.getInstance()

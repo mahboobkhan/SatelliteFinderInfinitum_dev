@@ -49,8 +49,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_14sdp"
-                android:src="@drawable/ic_premium_new_white" />
+                android:layout_marginStart="@dimen/_14sdp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

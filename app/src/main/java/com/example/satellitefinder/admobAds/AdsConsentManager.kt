@@ -44,58 +44,63 @@ class AdsConsentManager(private val activity: Activity) {
             .setTagForUnderAgeOfConsent(false)
             .build()
         consentInformation = UserMessagingPlatform.getConsentInformation(activity)
-        if (resetData) consentInformation?.reset()
-        consentInformation?.requestConsentInfoUpdate(
-            activity,
-            params,
-            {
-                Log.w(TAG, "requestConsentInfoUpdate Success :")
-                UserMessagingPlatform.loadAndShowConsentFormIfRequired(
-                    activity
-                ) { loadAndShowError: FormError? ->
-                    Log.w(
-                        TAG,
-                        "loadAndShowConsentFormIfRequired 3:  loadAndShowError:$loadAndShowError"
-                    )
-                    if (loadAndShowError != null) {
-                        // Consent gathering failed.
+        if (!isConsentRequested){
+            isConsentRequested = true
+            if (resetData) consentInformation?.reset()
+
+            consentInformation?.requestConsentInfoUpdate(
+                activity,
+                params,
+                {
+                    Log.w(TAG, "requestConsentInfoUpdate Success :")
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(
+                        activity
+                    ) { loadAndShowError: FormError? ->
                         Log.w(
-                            TAG, String.format(
-                                "%s: %s",
-                                loadAndShowError.errorCode,
-                                loadAndShowError.message
-                            )
+                            TAG,
+                            "loadAndShowConsentFormIfRequired 3:  loadAndShowError:$loadAndShowError"
                         )
+                        if (loadAndShowError != null) {
+                            // Consent gathering failed.
+                            Log.w(
+                                TAG, String.format(
+                                    "%s: %s",
+                                    loadAndShowError.errorCode,
+                                    loadAndShowError.message
+                                )
+                            )
+                        }
+                        if (!isCallbackUMPSuccess.getAndSet(true)) {
+                            Log.w(TAG, "isCallbackUMPSuccess 11111111114: if code")
+                            umpResultListener.onCheckUMPSuccess(
+                                getConsentResult(
+                                    activity
+                                )
+                            )
+                        }
                     }
+                },
+                { requestConsentError: FormError ->
+                    Log.w(TAG, "requestConsentInfoUpdate Fail :")
+                    // Consent gathering failed.
+                    Log.w(
+                        TAG, String.format(
+                            "%s: %s",
+                            requestConsentError.errorCode,
+                            requestConsentError.message
+                        )
+                    )
                     if (!isCallbackUMPSuccess.getAndSet(true)) {
-                        Log.w(TAG, "isCallbackUMPSuccess 11111111114: if code")
+                        Log.w(TAG, "isCallbackUMPSuccess 2222222222222225: if code")
                         umpResultListener.onCheckUMPSuccess(
                             getConsentResult(
                                 activity
                             )
                         )
                     }
-                }
-            },
-            { requestConsentError: FormError ->
-                Log.w(TAG, "requestConsentInfoUpdate Fail :")
-                // Consent gathering failed.
-                Log.w(
-                    TAG, String.format(
-                        "%s: %s",
-                        requestConsentError.errorCode,
-                        requestConsentError.message
-                    )
-                )
-                if (!isCallbackUMPSuccess.getAndSet(true)) {
-                    Log.w(TAG, "isCallbackUMPSuccess 2222222222222225: if code")
-                    umpResultListener.onCheckUMPSuccess(
-                        getConsentResult(
-                            activity
-                        )
-                    )
-                }
-            })
+                })
+        }
+
         if (consentInformation?.canRequestAds() == true) {
             Log.w(TAG, "consentInformation.canRequestAds() 6: if code")
             if (!isCallbackUMPSuccess.getAndSet(true)) {
@@ -134,6 +139,8 @@ class AdsConsentManager(private val activity: Activity) {
 
     companion object {
         private const val TAG = "AdsConsentManager"
+
+        var isConsentRequested = false
         fun getConsentResult(context: Context): Boolean {
             val sharedPref = context.getSharedPreferences(
                 context.packageName + "_preferences",

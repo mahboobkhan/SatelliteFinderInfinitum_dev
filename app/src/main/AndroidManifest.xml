@@ -9,8 +9,6 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
@@ -30,6 +28,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SatelliteFinder"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activites.NewSatelliteMeterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.NewSatelliteMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.SatelliteTypeLIst"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activites.SatelliteTypeSelection"
+            android:exported="false" />
         <activity
             android:name=".ui.activites.RulerLevelActivity"
             android:exported="false" />
@@ -112,6 +122,7 @@
             android:exported="true"
             android:hardwareAccelerated="true"
             android:screenOrientation="nosensor"
+            android:theme="@style/Theme.SatelliteFinder.ActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.activites.SatellitesActivity"
@@ -146,7 +157,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/appID" />
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_key" />

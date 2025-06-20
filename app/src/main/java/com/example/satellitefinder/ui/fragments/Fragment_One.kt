@@ -1,28 +1,32 @@
 package com.example.satellitefinder.ui.fragments
 
+import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.Fragment
-import com.example.adssdk.native_ad.NativeAdType
-import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.loadAndReturnAd
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
-import com.example.satellitefinder.admobAds.obNativeAd1
-import com.example.satellitefinder.admobAds.obNativeAd2
-import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.FragmentOneBinding
-import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
-import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.canWeShowAds
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.LoadAdError
 
 class Fragment_One : Fragment() {
     private lateinit var binding: FragmentOneBinding
+
+    private var inLineAdaptiveWithCustomHeightAdView: AdView? = null
+    private val TAG = "FirstOnBoardingFragment"
+    private var isInLineAdaptiveWithCustomHeightBannerLoading = false
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,53 +44,108 @@ class Fragment_One : Fragment() {
             OnBoardingScreen.viewPager?.currentItem = 1
         }
 
-        showNativeAd()
+        showBannerAd()
     }
 
-    private fun showNativeAd() {
-        activity?.apply {
-            if (canWeShowAds(RemoteConfig.onBoardingNative)) {
-               /* binding.layoutNative.visibility = View.VISIBLE
-                obNativeAd1?.let { ad ->
-                    showLoadedNativeAd(this, binding.layoutNative, R.layout.native_ad_layout_small, ad)
-                } ?: run {
-                    newLoadAndShowNativeAd(binding.layoutNative, R.layout.native_ad_layout_small, getString(R.string.onBoardingNativeId))
-                }
 
-                //Pre load 2nd
-                loadAndReturnAd(this, getString(R.string.onBoardingNativeId)) { adState ->
-                    obNativeAd2 = adState
-                }*/
-                binding.layoutNative.visibility = View.VISIBLE
-                val bindAdNative = NativeAdLayoutSmallBinding.inflate(layoutInflater)
+    private fun showBannerAd() {
+        requireActivity().let {
+            if (it.canWeShowAds(RemoteConfig.onBoarding1Banner)) {
+                binding.bannerAd.visibility = View.VISIBLE
+                binding.clShimmer.visibility = View.VISIBLE
 
-                NativeAdUtils(requireActivity().application, "intro_1").loadNativeAd(
-                    adsKey = getString(R.string.onBoardingNativeId),
-                    remoteConfig = RemoteConfig.onBoardingNative,
-                    nativeAdType = NativeAdType.DEFAULT_AD,
-                    adContainer = binding.layoutNative,
-                    nativeAdView = bindAdNative.root,
-                    adHeadline = bindAdNative.adHeadline,
-                    adBody = bindAdNative.adBody,
-                    adIcon = bindAdNative.adIcon,
-                    mediaView = bindAdNative.adMedia,
-                    adSponsor = null,
-                    callToAction = bindAdNative.callToAction,
-                    adLoaded = {
 
-                    }, adFailed = { _, _ ->
-
-                    }, adImpression = {
-
-                    }, adClicked = {
-
-                    }, adValidate = {
-                        binding.layoutNative.visibility = View.GONE
-                    }
+                loadInLineAdaptiveWithCustomHeightBanner(
+                    activity = requireActivity(),
+                    bannerAdId = getString(R.string.bannerId),
+                    height = 150,
+                    adViewContainer = binding.bannerAd
                 )
+
             } else {
-                binding.layoutNative.visibility = View.GONE
+                binding.bannerAd.visibility = View.GONE
             }
         }
+    }
+
+    private fun loadInLineAdaptiveWithCustomHeightBanner(
+        activity: Activity,
+        bannerAdId: String,
+        height: Int,
+        adViewContainer: FrameLayout,
+    ) {
+
+        if (inLineAdaptiveWithCustomHeightAdView?.parent != null) {
+            (inLineAdaptiveWithCustomHeightAdView?.parent as FrameLayout).removeView(
+                inLineAdaptiveWithCustomHeightAdView
+            )
+        }
+
+        if (inLineAdaptiveWithCustomHeightAdView != null) {
+            adViewContainer.removeAllViews()
+            binding.clShimmer.visibility = View.GONE
+            adViewContainer.addView(inLineAdaptiveWithCustomHeightAdView)
+            return
+        }
+
+        if (isInLineAdaptiveWithCustomHeightBannerLoading) {
+            return
+        }
+
+        isInLineAdaptiveWithCustomHeightBannerLoading = true
+
+        val adSize =
+            AdSize.getInlineAdaptiveBannerAdSize(
+                if (adViewContainer.width <= 150) 320 else adViewContainer.width,
+                height
+            )
+
+
+        inLineAdaptiveWithCustomHeightAdView = AdView(activity)
+        inLineAdaptiveWithCustomHeightAdView?.adUnitId = bannerAdId
+        inLineAdaptiveWithCustomHeightAdView?.setAdSize(adSize)
+
+        // Replace ad container with new ad view.
+        adViewContainer.removeAllViews()
+        adViewContainer.addView(inLineAdaptiveWithCustomHeightAdView)
+
+        // [START load_ad]
+        // Start loading the ad in the background.
+        val adRequest =
+            AdRequest.Builder().build()
+        inLineAdaptiveWithCustomHeightAdView?.loadAd(adRequest)
+
+        inLineAdaptiveWithCustomHeightAdView?.adListener = object : AdListener() {
+            override fun onAdLoaded() {
+                super.onAdLoaded()
+                isInLineAdaptiveWithCustomHeightBannerLoading = false
+                binding.clShimmer.visibility = View.GONE
+
+                Log.d(TAG, "Banner onAdLoaded:")
+
+            }
+
+            override fun onAdFailedToLoad(p0: LoadAdError) {
+                super.onAdFailedToLoad(p0)
+                binding.bannerAd.visibility = View.GONE
+                binding.clShimmer.visibility = View.GONE
+                inLineAdaptiveWithCustomHeightAdView = null
+                isInLineAdaptiveWithCustomHeightBannerLoading = false
+                Log.d(TAG, "Banner onAdFailedToLoad: ${p0.message}")
+            }
+
+            override fun onAdImpression() {
+                super.onAdImpression()
+                Log.d(TAG, "Banner onAdImpression:")
+                inLineAdaptiveWithCustomHeightAdView = null
+
+            }
+
+            override fun onAdClicked() {
+                super.onAdClicked()
+                Log.d(TAG, "Banner onAdClicked:")
+            }
+        }
+
     }
 }

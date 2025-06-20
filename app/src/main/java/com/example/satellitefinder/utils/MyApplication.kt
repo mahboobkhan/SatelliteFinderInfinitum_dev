@@ -26,7 +26,13 @@ class MyApplication : Application(), LifecycleObserver {
     override fun onCreate() {
         super.onCreate()
 
-        Ads(this, premiumUser = isAlreadyPurchased(), listOf(),if (BuildConfig.DEBUG)"debug" else "release",if (BuildConfig.DEBUG) "appDev" else "appProd")
+        Ads(
+            this,
+            premiumUser = isAlreadyPurchased(),
+            listOf(),
+            BuildConfig.BUILD_TYPE,
+            if (BuildConfig.DEBUG) "appDev" else "appProd"
+        )
 
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
@@ -44,7 +50,7 @@ class MyApplication : Application(), LifecycleObserver {
                 openAppAdIdLow = getString(R.string.appOpenId),
                 openAppAdIdMedium = null,
                 openAppAdIdHigh = null
-            )
+            ).setReloadOnPause(true).setReloadOnDismiss(value = false)
         }
 
         PreferenceHelper.initPrefs(this)

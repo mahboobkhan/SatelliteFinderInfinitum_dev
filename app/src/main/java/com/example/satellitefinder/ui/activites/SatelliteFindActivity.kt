@@ -215,7 +215,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
 
     private fun selectSatellite() {
         if (location != null) {
-            if (canWeShowAds(RemoteConfig.interSatellites)){
+            if (canWeShowAds(RemoteConfig.interSatellites)) {
                 showPriorityInterstitialAdWithCounter(closeListener = {
                     val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
                     resultLauncher.launch(intent)
@@ -223,7 +223,7 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
                     val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
                     resultLauncher.launch(intent)
                 })
-            }else{
+            } else {
                 val intent = Intent(this@SatelliteFindActivity, SatellitesActivity::class.java)
                 resultLauncher.launch(intent)
             }
@@ -241,13 +241,13 @@ class SatelliteFindActivity : AppCompatActivity(), OnMapReadyCallback, SensorEve
     private fun satelliteInfo(sheetBinding: SatelliteInfoSheetBinding) {
         if (currentLocation != null && satellitePosition != null) {
             sheetBinding.apply {
-                satAzimut.text = satellitePosition?.getSatelliteAzimut().toString()
-                satellitePositionTv.text = satellitePosition?.getSatLongitude().toString()
+                satAzimut.text = satellitePosition?.getSatelliteAzimut().toString() + " °"
+                satellitePositionTv.text = satellitePosition?.getSatLongitude().toString() + " °"
                 satElevation.text =
                     satellitePosition?.getSatelliteElevation()?.let { it1 -> Math.round(it1) }
-                        .toString()
+                        .toString() + " °"
                 satelliteLNBskewTv.text =
-                    satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString()
+                    satellitePosition?.getLNBSkew()?.let { Math.round(it) }.toString() + " °"
             }
         }
     }

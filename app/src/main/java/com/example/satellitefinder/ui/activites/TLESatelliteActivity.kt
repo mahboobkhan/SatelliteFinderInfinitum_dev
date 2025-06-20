@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.satellitefinder.R
 import com.example.satellitefinder.models.TLEEntry
+import com.example.satellitefinder.predict4java.SatelliteFactory
+import com.example.satellitefinder.predict4java.TLE
 
 import com.example.satellitefinder.ui.adapters.TLEAdapter
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -29,7 +31,6 @@ import java.util.Date
 class TLESatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var googleMap: GoogleMap
-    private val client = OkHttpClient()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,36 +49,11 @@ class TLESatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         fetchAllTLEs { tleList ->
             runOnUiThread {
                 val adapter = TLEAdapter(tleList) { tle ->
-//                    plotSatelliteOnMap(this, googleMap, tle)
+                    plotSatelliteOnMap(this, googleMap, tle)
                 }
                 findViewById<RecyclerView>(R.id.rvList).adapter = adapter
             }
         }
-    }
-
-    private fun fetchTLE(onResult: (String, String) -> Unit) {
-        val url = "https://celestrak.org/NORAD/elements/stations.txt"
-        val request = Request.Builder().url(url).build()
-
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                Log.e("TLE", "Failed to fetch", e)
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                val lines = response.body?.string()?.lines()
-                lines?.let {
-                    for (i in lines.indices step 3) {
-                        if (lines[i].contains("ISS") || lines[i].contains("ZARYA")) {
-                            val line1 = lines[i + 1].trim()
-                            val line2 = lines[i + 2].trim()
-                            onResult(line1, line2)
-                            break
-                        }
-                    }
-                }
-            }
-        })
     }
 
     override fun onMapReady(map: GoogleMap) {
@@ -121,7 +97,7 @@ class TLESatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         })
     }
 
-   /* fun plotSatelliteOnMap(context: Context, googleMap: GoogleMap, tleEntry: TLEEntry) {
+    fun plotSatelliteOnMap(context: Context, googleMap: GoogleMap, tleEntry: TLEEntry) {
         try {
             val tle = TLE(arrayOf(tleEntry.name, tleEntry.line1, tleEntry.line2))
             val satellite = SatelliteFactory.createSatellite(tle)
@@ -148,5 +124,5 @@ class TLESatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
         } catch (e: Exception) {
             Log.e("Map", "Failed to show satellite", e)
         }
-    }*/
+    }
 }

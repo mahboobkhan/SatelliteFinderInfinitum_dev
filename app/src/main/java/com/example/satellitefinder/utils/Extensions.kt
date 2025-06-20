@@ -63,7 +63,7 @@ fun Context.getSharedPrefs(): SharedPreferences =
 val Context.baseConfig: MyBaseConfig get() = MyBaseConfig.newInstance(this)
 
 
- fun parseDuration(duration: String?): Int {
+fun parseDuration(duration: String?): Int {
     val REGEX = "^P((\\d)*Y)?((\\d)*W)?((\\d)*D)?"
     var days = 0
     val pattern: Pattern = Pattern.compile(REGEX)
@@ -82,17 +82,19 @@ val Context.baseConfig: MyBaseConfig get() = MyBaseConfig.newInstance(this)
     return days
 }
 
-fun Activity.screenEventAnalytics(screeName:String) {
+fun Activity.screenEventAnalytics(screeName: String) {
     var bundle = Bundle()
-    bundle.putString("ActivityName",screeName)
+    bundle.putString("ActivityName", screeName)
 
-    FirebaseAnalytics.getInstance(this).logEvent(screeName,bundle)
+    FirebaseAnalytics.getInstance(this).logEvent(screeName, bundle)
 }
+
 fun Context.isAlreadyPurchased(): Boolean {
     return MySharePrefrencesHelper.getBillingBoolean(
         this
     )
 }
+
 fun Context.rateUs() {
     val uri = Uri.parse("market://details?id=$packageName")
     val myAppLinkToMarket = Intent(Intent.ACTION_VIEW, uri)
@@ -130,10 +132,17 @@ fun Context.sendEmail() {
     mIntent.data = Uri.parse("mailto:")
     mIntent.type = "text/plain"
     mIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("mailto:infinitumsoft.technologies@gmail.com"))
-    mIntent.putExtra(Intent.EXTRA_SUBJECT, "Feed back "+applicationContext.getString(R.string.app_name)+"")
-    mIntent.putExtra(Intent.EXTRA_TEXT, "Tell us which issues you are facing using "+applicationContext.getString(R.string.app_name)+" App?")
+    mIntent.putExtra(
+        Intent.EXTRA_SUBJECT,
+        "Feed back " + applicationContext.getString(R.string.app_name) + ""
+    )
+    mIntent.putExtra(
+        Intent.EXTRA_TEXT,
+        "Tell us which issues you are facing using " + applicationContext.getString(R.string.app_name) + " App?"
+    )
     startActivity(Intent.createChooser(mIntent, "Send Email"))
 }
+
 fun Context.privacyPolicy() {
     try {
         val uri: Uri =
@@ -152,35 +161,35 @@ fun Context.privacyPolicy() {
 
 fun FragmentActivity.requestLocationPermissions(result: ((Boolean) -> Unit)? = null) {
 
-        PermissionX.init(this)
-            .permissions(
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
+    PermissionX.init(this)
+        .permissions(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        )
+        .onExplainRequestReason { scope, deniedList ->
+            scope.showRequestReasonDialog(
+                deniedList,
+                "Please Allow Permissions",
+                "OK",
+                "Cancel"
             )
-            .onExplainRequestReason { scope, deniedList ->
-                scope.showRequestReasonDialog(
-                    deniedList,
-                    "Please Allow Permissions",
-                    "OK",
-                    "Cancel"
-                )
+        }
+        .onForwardToSettings { scope, deniedList ->
+            scope.showForwardToSettingsDialog(
+                deniedList,
+                "Location permissions are required allow them from settings manually",
+                "OK",
+                "Cancel"
+            )
+        }
+        .request { allGranted, _, _ ->
+            if (allGranted) {
+                result?.invoke(true)
+            } else {
+                showToast("Permission Denied")
+                result?.invoke(false)
             }
-            .onForwardToSettings { scope, deniedList ->
-                scope.showForwardToSettingsDialog(
-                    deniedList,
-                    "Location permissions are required allow them from settings manually",
-                    "OK",
-                    "Cancel"
-                )
-            }
-            .request { allGranted, _, _ ->
-                if (allGranted) {
-                    result?.invoke(true)
-                } else {
-                    showToast("Permission Denied")
-                    result?.invoke(false)
-                }
-            }
+        }
 
 }
 
@@ -189,7 +198,7 @@ fun Context.getWindowWidth(percent: Float = 1.0f): Int {
     return (displayMetrics.widthPixels * percent).toInt()
 }
 
-fun Activity.showGpsDialog(){
+fun Activity.showGpsDialog() {
 
     AlertDialog.Builder(this)
         .setCancelable(false)

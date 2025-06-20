@@ -505,9 +505,9 @@ class MapSatelliteActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     companion object {
-        private const val MIN_DISTANCE_FOR_UPDATES: Long = 1000 // 10 meters
+         const val MIN_DISTANCE_FOR_UPDATES: Long = 1000 // 10 meters
 
-        private const val MIN_TIME_UPDATES = (1000 * 60 * 1 // 1 minute
+         const val MIN_TIME_UPDATES = (1000 * 60 * 1 // 1 minute
                 ).toLong()
     }
 

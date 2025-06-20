@@ -61,7 +61,7 @@ class ObADFragment : Fragment() {
                 NativeAdUtils(requireActivity().application, "intro_full").loadNativeAd(
                     adsKey = getString(R.string.onBoardingNativeId),
                     remoteConfig = RemoteConfig.onBoardingNative,
-                    nativeAdType = NativeAdType.PRE_CACHE_AD,
+                    nativeAdType = NativeAdType.EXIT_SCREEN_AD,
                     adContainer = binding.nativeAdContainer,
                     nativeAdView = bindAdNative.root,
                     adHeadline = bindAdNative.adHeadline,

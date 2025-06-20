@@ -137,7 +137,6 @@ class SplashActivity : AppCompatActivity() {
     private fun loadAds() {
         showNativeAd()
         if (canWeShowAds(RemoteConfig.interSplash)) {
-//            loadPriorityAdmobInterstitial(getString(R.string.splashInterstial))
             startHandler(7000)
             loadAdmobInterstitial(getString(R.string.splashInterstial), onAdLoaded = {
                 binding.progress.visibility = View.GONE
@@ -272,7 +271,6 @@ class SplashActivity : AppCompatActivity() {
             startHandler(5000)
         } else {
             requestConsentForm()
-
         }
     }
 

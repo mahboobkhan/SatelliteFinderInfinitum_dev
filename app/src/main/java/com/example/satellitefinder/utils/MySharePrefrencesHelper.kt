@@ -17,8 +17,7 @@ object MySharePrefrencesHelper {
     }
 
 
-
-    fun getKey(contextGetKey: Context, Key: String?,default:String?): String? {
+    fun getKey(contextGetKey: Context, Key: String?, default: String?): String? {
         sharedPreferences =
             contextGetKey.getSharedPreferences("Cache", Context.MODE_PRIVATE)
         return sharedPreferences?.getString(Key, default)
@@ -29,7 +28,7 @@ object MySharePrefrencesHelper {
         sharedPreferences!!.edit().clear().commit()
     }
 
-    fun putBoolean(context: Context,key: String, value: Boolean) {
+    fun putBoolean(context: Context, key: String, value: Boolean) {
         val sharedPref: SharedPreferences =
             context.getSharedPreferences(
                 "Cache", Context.MODE_PRIVATE

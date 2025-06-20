@@ -53,7 +53,7 @@ class FragmentFour : Fragment() {
                 } else {
                     activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
                 }
-            }else{
+            } else {
                 activity?.startActivityWithSlideTransition(PermissionActivity::class.java)
             }
         }
@@ -76,7 +76,7 @@ class FragmentFour : Fragment() {
                 NativeAdUtils(requireActivity().application, "intro_4").loadNativeAd(
                     adsKey = getString(R.string.onBoardingNativeId),
                     remoteConfig = RemoteConfig.onBoardingNative,
-                    nativeAdType = NativeAdType.PRE_CACHE_AD,
+                    nativeAdType = NativeAdType.DEFAULT_AD,
                     adContainer = binding.layoutNative,
                     nativeAdView = bindAdNative.root,
                     adHeadline = bindAdNative.adHeadline,

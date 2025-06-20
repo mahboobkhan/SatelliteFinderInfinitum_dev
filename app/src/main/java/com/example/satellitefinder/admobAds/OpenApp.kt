@@ -74,10 +74,10 @@ class OpenApp(private val globalClass: MyApplication) : Application.ActivityLife
             }
         }
         val request: AdRequest = getAdRequest()
-        AppOpenAd.load(
+        /*AppOpenAd.load(
             myApplication, globalClass.getString(R.string.appOpenId), request,
             AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback
-        )
+        )*/
     }
 
      fun showAdIfAvailable() {

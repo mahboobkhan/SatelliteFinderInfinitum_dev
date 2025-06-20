@@ -48,7 +48,7 @@
     <string name="rate_us">Rate Us</string>
     <string name="share_app">Share App</string>
     <string name="privacy_policy">Privacy Policy</string>
-    <string name="go_premium">Go Premium</string>
+    <string name="go_premium">Get Premium Access</string>
     <string name="not_supported">Orientation not supported</string>
     <string name="calibrate_info">press MENU to calibrate...</string>
     <string name="lock_info">tap to lock level orientation</string>
@@ -57,6 +57,7 @@
     <string name="inclinometer">Inclinometer</string>
     <string name="pendulum_bob">Pendulum Bob</string>
     <string name="angle_meter">Angle Meter</string>
+    <string name="iss_tracker">ISS Tracker</string>
     <string name="ruler_level">Ruler Level</string>
 
 
@@ -72,5 +73,20 @@
     <string name="roll">Roll</string>
     <string name="pitch">Pitch</string>
     <string name="reset_device_sensor">Reset Device Sensor</string>
+
+
+    <string name="satellite_list">Satellite List</string>
+    <string name="weather_satellites">Weather Satellites</string>
+    <string name="general_satellites">General Satellites</string>
+    <string name="starlink_satellites">Starlink Satellites</string>
+    <string name="try_now">Try Now</string>
+    <string name="don_t_go">Don’t go!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Experience the Smart Solution for Your Dish!</string>
+    <string name="exit_app">Exit App?</string>
+    <string name="angle_meter_desc">Easy, precise angle measuring tool.</string>
+    <string name="satellite_desc">Stay Connected, Track Anywhere!</string>
+    <string name="iss_tracker_desc">Live International Space Station tracker</string>
+    <string name="would_you_like_to_spend_some_more_time">Would you like to spend some more time?</string>
+    <string name="no_satellite_found">No Satellite Found</string>
 
 </resources>

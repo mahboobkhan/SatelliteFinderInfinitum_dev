@@ -5,16 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@drawable/app_bg_n"
+    android:fitsSystemWindows="true"
     tools:context=".ui.activites.ExitActivity">
 
     <ImageView
         android:id="@+id/btn_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_5sdp"
         android:padding="@dimen/_5sdp"
+
         android:src="@drawable/ic_cancel_round"
         app:layout_constraintBottom_toBottomOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,11 +25,12 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Exit App?"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/exit_app"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_17ssp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -37,102 +39,64 @@
         android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
-        android:fontFamily="@font/roboto"
+        android:layout_margin="@dimen/_5sdp"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
-        android:text="Experience the Smart Solution for Your Dish!"
+        android:text="@string/experience_the_smart_solution_for_your_dish"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_11ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/ic_exit_bg"
-        android:padding="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView8">
+        app:layout_constraintTop_toBottomOf="@id/textView8" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_exit_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+        android:id="@+id/dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:dotsColor="#909090"
+        app:dotsCornerRadius="8dp"
+        app:dotsSize="@dimen/_12sdp"
+        app:dotsSpacing="@dimen/_3sdp"
+        app:dotsWidthFactor="2.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPager"
+        app:progressMode="true"
+        app:selectedDotColor="#4183F1" />
 
-
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/satellite_finder"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/_20ssp"
-            app:layout_constraintEnd_toStartOf="@id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_40sdp"
-            android:fontFamily="@font/roboto"
-            android:text="Stay Connected, Track Anywhere!"
-            android:textColor="@color/textColor"
-            android:textSize="@dimen/_12ssp"
-            app:layout_constraintEnd_toStartOf="@id/imageView2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView9" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_try"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/roboto"
-            android:text="Try Now"
-            android:textAllCaps="false"
-            android:textColor="#3495F1"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView10" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Don’t go!"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/don_t_go"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+        app:layout_constraintTop_toBottomOf="@id/dots_indicator" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:fontFamily="@font/roboto"
-        android:text="Would you like to spend some more time?"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/would_you_like_to_spend_some_more_time"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -141,11 +105,11 @@
         android:id="@+id/btn_leave"
         android:layout_width="@dimen/_90sdp"
         android:layout_height="@dimen/_48sdp"
+        android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:backgroundTint="#33364E"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/poppins"
         android:text="Leave"
-        android:layout_marginStart="@dimen/_20sdp"
         android:textAllCaps="false"
         android:textColor="@color/textColor"
         android:textSize="@dimen/_16ssp"
@@ -164,7 +128,7 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:background="@drawable/ic_satellite_tracker_bg"
-        android:fontFamily="@font/roboto_medium"
+        android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="Stay"
         android:textColor="@color/textColor"

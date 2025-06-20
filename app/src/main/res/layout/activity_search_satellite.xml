@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/app_bg_n"
     android:fitsSystemWindows="true"
-    tools:context=".ui.activites.SearchSatelliteActivity"
-    android:background="@drawable/app_bg_n">
+    tools:context=".ui.activites.SearchSatelliteActivity">
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,14 +25,14 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/layout_native"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_marginVertical="@dimen/_3sdp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"
+        app:cardBackgroundColor="@color/ad_bg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_width="match_parent"
-        app:cardBackgroundColor="@color/ad_bg">
+        app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/native_ad_layout_loader_small" />
 

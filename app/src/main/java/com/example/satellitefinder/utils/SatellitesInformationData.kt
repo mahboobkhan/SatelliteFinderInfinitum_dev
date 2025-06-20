@@ -436,5 +436,24 @@ class SatellitesInformationData(
                 SatellitesInformationData("THOR 7", "0.7° W", 359.3, 0.013)
             )
         }
+
+        fun getFilteredSatelliteArray(context: Context?): List<SatellitesInformationData> {
+            val allSats = getSatteliteArray(context).toList()
+            val seenNames = mutableSetOf<String>()
+            return allSats.filter { sat ->
+                // Parse the direction as a number (remove non-numeric chars)
+                val dirNum = sat.satelliteDirection.replace("[^\\d.-]".toRegex(), "").toDoubleOrNull() ?: Double.MAX_VALUE
+                // Only include if direction >= 2, or if direction == 1 or 4
+                val include = (dirNum >= 2 && dirNum <= 152) || dirNum == 1.0 || dirNum == 4.0
+                // Remove duplicates by satelliteName
+                val notSeen = sat.satelliteName !in seenNames
+                if (include && notSeen) {
+                    seenNames.add(sat.satelliteName)
+                    true
+                } else {
+                    false
+                }
+            }
+        }
     }
 }

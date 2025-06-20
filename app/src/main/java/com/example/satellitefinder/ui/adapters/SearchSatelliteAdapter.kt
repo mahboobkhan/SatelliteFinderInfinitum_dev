@@ -66,8 +66,8 @@ class SearchSatelliteAdapter(private val actionListner: ActionListener
                 filterList.addAll(satelliteDataSource)
             } else {
                 for (satelliteSource in satelliteDataSource) {
-                    if (satelliteSource.getSatellite().toString().toLowerCase()
-                            .contains(charSequence.toString().toLowerCase())
+                    if (satelliteSource.getSatellite().toString().lowercase()
+                            .contains(charSequence.toString().lowercase())
                     ) {
                         filterList.add(satelliteSource)
                     }

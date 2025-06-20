@@ -8,8 +8,8 @@
     android:padding="@dimen/_12sdp">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_55sdp"
+        android:layout_height="@dimen/_55sdp"
         android:src="@drawable/ic_satellite_tracker"/>
     
     <TextView
@@ -17,8 +17,9 @@
         android:layout_height="wrap_content"
         android:text="@string/satellite_finder"
         android:textColor="@color/textColor"
-        android:textSize="@dimen/_18sdp"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
         android:layout_marginHorizontal="@dimen/_12sdp"
-        android:fontFamily="@font/roboto_medium"/>
+        android:fontFamily="@font/poppins"/>
     
 </LinearLayout>

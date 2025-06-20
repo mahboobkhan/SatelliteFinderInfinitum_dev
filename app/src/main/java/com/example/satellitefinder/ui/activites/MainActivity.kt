@@ -1,23 +1,30 @@
 package com.example.satellitefinder.ui.activites
 
+import android.Manifest
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.adssdk.native_ad.NativeAdType
 import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.adssdk.open_app_ad.OpenAppAdState
+import com.example.adssdk.utils.toast
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.showPriorityAdmobInterstitial
 import com.example.satellitefinder.admobAds.showPriorityInterstitialAdWithCounter
 import com.example.satellitefinder.databinding.ActivityMainBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
+import com.example.satellitefinder.repo.SatelliteViewModel
 import com.example.satellitefinder.ui.adapters.NavigationAdapter
 import com.example.satellitefinder.ui.adapters.NavigationItemModel
 import com.example.satellitefinder.ui.dialogs.RattingDialog
@@ -27,12 +34,20 @@ import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.RecyclerTouchListener
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isAlreadyPurchased
+import com.example.satellitefinder.utils.isInternetConnected
 import com.example.satellitefinder.utils.isSplash
 import com.example.satellitefinder.utils.privacyPolicy
 import com.example.satellitefinder.utils.rateUs
 import com.example.satellitefinder.utils.screenEventAnalytics
 import com.example.satellitefinder.utils.sharesApp
+import com.example.satellitefinder.utils.showToast
 import com.example.satellitefinder.utils.startActivityWithSlideTransition
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy {
@@ -41,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var rateUsDialog: RattingDialog
     private lateinit var drawerItems: ArrayList<NavigationItemModel>
-
+    private val viewModels: SatelliteViewModel by viewModel()
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
         newBase?.let {
@@ -63,13 +78,25 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity,
         )
 
-        /* if (canWeShowAds(RemoteConfig.nativeExit)) {
-             loadAndReturnAd(this@MainActivity, getString(R.string.exitNativeId)) {
-                 exitNativeAd = it
-             }
-         }*/
-
         onBackPressedDispatcher.addCallback(this@MainActivity, callback)
+        viewModels.satelliteList.observe(this@MainActivity) {
+            if (it.isNotEmpty()) {
+                showInterstitialAndNavigate(RemoteConfig.interIssTracker) {
+                    val item = it.firstOrNull()
+                    Intent(this, NewSatelliteMeterActivity::class.java).apply {
+                        putExtra("fromIssTracker", true)
+                        putExtra("satelliteName", item?.name)
+                        putExtra("satelliteLat", item?.latitude)
+                        putExtra("satelliteLng", item?.longitude)
+                        putExtra("satelliteAzimuth", item?.azimuth)
+                        putExtra("satelliteElevation", item?.elevation)
+                        startActivity(this)
+                    }
+                }
+            } else {
+                toast("No satellites found")
+            }
+        }
 
         binding.apply {
             btnFindSatellite.setOnClickListener {
@@ -78,7 +105,13 @@ class MainActivity : AppCompatActivity() {
                     "home_screen_click_find_satellite"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interFindSatellite) {
-                    startActivityWithSlideTransition(SatelliteFindActivity::class.java)
+                    if (!isInternetConnected()) {
+                        startActivityWithSlideTransition(SatelliteFindActivity::class.java)
+                    } else {
+                        startActivityWithSlideTransition(
+                            SatelliteTypeSelection::class.java,
+                            Bundle().apply { putString("fromWhere", "meter") })
+                    }
                 }
             }
 
@@ -87,9 +120,16 @@ class MainActivity : AppCompatActivity() {
                     "home_screen_click_satellite_map",
                     "home_screen_click_satellite_map"
                 )
-                showInterstitialAndNavigate(RemoteConfig.interSatelliteMap) {
+                if (!isInternetConnected()) {
                     startActivityWithSlideTransition(MapSatelliteActivity::class.java)
+                } else {
+                    showInterstitialAndNavigate(RemoteConfig.interSatelliteMap) {
+                        startActivityWithSlideTransition(
+                            SatelliteTypeSelection::class.java,
+                            Bundle().apply { putString("fromWhere", "map") })
+                    }
                 }
+
             }
             btnCompass.setOnClickListener {
                 FirebaseEvents.logEvent("home_screen_click_compass", "home_screen_click_compass")
@@ -97,6 +137,7 @@ class MainActivity : AppCompatActivity() {
                     startActivityWithSlideTransition(CompassActivity::class.java)
                 }
             }
+
 
             btnBubbleLevel.setOnClickListener {
                 FirebaseEvents.logEvent(
@@ -116,19 +157,54 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            /*btnARView.setOnClickListener {
+            btnARView.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_ar_view",
+                    "home_screen_click_ar_view"
                 )
-                showInterstitialAndNavigate(RemoteConfig.interCurrentLocation) {
-                    startActivityWithSlideTransition(ARViewActivity::class.java)
+                if (checkCameraPermission()) {
+                    if (isInternetConnected()) {
+                        startActivityWithSlideTransition(
+                            SatelliteTypeSelection::class.java,
+                            Bundle().apply { putString("fromWhere", "arView") })
+                    } else {
+                        showInterstitialAndNavigate(RemoteConfig.interCurrentLocation) {
+                            startActivityWithSlideTransition(
+                                ARViewActivity::class.java,
+                                Bundle().apply {
+                                    putBoolean("satelliteFromInternet", false)
+                                })
+                        }
+                    }
+
+
+                } else {
+                    checkCameraPermission(onPermissionsGranted = {
+                        if (isInternetConnected()) {
+                            startActivityWithSlideTransition(
+                                SatelliteTypeSelection::class.java,
+                                Bundle().apply { putString("fromWhere", "arView") })
+                        } else {
+                            showInterstitialAndNavigate(RemoteConfig.interCurrentLocation) {
+                                startActivityWithSlideTransition(
+                                    ARViewActivity::class.java,
+                                    Bundle().apply {
+                                        putBoolean("fromEmptyList", true)
+                                    })
+                            }
+                        }
+                    }, onPermissionsDenied = {
+                        showRationaleDialog()
+                    }, onError = {
+                        showToast(it)
+                    })
                 }
-            }*/
+
+            }
             btnProtractor.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_protractor",
+                    "home_screen_click_protractor"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interProtractor) {
                     startActivityWithSlideTransition(ProtractorActivity::class.java)
@@ -136,8 +212,8 @@ class MainActivity : AppCompatActivity() {
             }
             btnInclinometer.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_inclinometer",
+                    "home_screen_click_inclinometer"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interInclinometer) {
                     startActivityWithSlideTransition(InclinometerActivity::class.java)
@@ -146,8 +222,8 @@ class MainActivity : AppCompatActivity() {
 
             btnPendulumBob.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_pendulum",
+                    "home_screen_click_pendulum"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interPendulum) {
                     startActivityWithSlideTransition(PendulumActivity::class.java)
@@ -156,8 +232,8 @@ class MainActivity : AppCompatActivity() {
 
             btnAngleMeter.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_angle_meter",
+                    "home_screen_click_angle_meter"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interAngleMeter) {
                     startActivityWithSlideTransition(AngleMeterActivity::class.java)
@@ -166,12 +242,25 @@ class MainActivity : AppCompatActivity() {
 
             btnRulerLevel.setOnClickListener {
                 FirebaseEvents.logEvent(
-                    "home_screen_click_cur_location",
-                    "home_screen_click_cur_location"
+                    "home_screen_click_ruler",
+                    "home_screen_click_ruler"
                 )
                 showInterstitialAndNavigate(RemoteConfig.interRulerLevel) {
                     startActivityWithSlideTransition(RulerLevelActivity::class.java)
                 }
+            }
+            btnISSTracker.setOnClickListener {
+                FirebaseEvents.logEvent(
+                    "home_screen_click_iss_tracker",
+                    "home_screen_click_iss_tracker"
+                )
+                if (isInternetConnected()) {
+                    viewModels.loadSatellites("iss")
+                } else {
+                    showToast("No Internet Connection")
+                }
+
+
             }
 
             btnSetting.setOnClickListener {
@@ -212,9 +301,71 @@ class MainActivity : AppCompatActivity() {
         setUpDrawerLayout()
     }
 
+    fun Context.checkCameraPermission(
+        onPermissionsDenied: (() -> Unit)? = null,
+        onError: ((String) -> Unit)? = null,
+        onPermissionsGranted: (() -> Unit)? = null,
+    ) {
+        Dexter.withContext(this).withPermissions(Manifest.permission.CAMERA)
+            .withListener(object : MultiplePermissionsListener {
+                override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
+                    if (report?.areAllPermissionsGranted() == true) {
+                        onPermissionsGranted?.invoke()
+                    }
+
+                    if (report?.isAnyPermissionPermanentlyDenied == true) {
+                        onPermissionsDenied?.invoke()
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: MutableList<com.karumi.dexter.listener.PermissionRequest>?,
+                    p1: PermissionToken?
+                ) {
+                    p1?.continuePermissionRequest()
+                }
+            }).withErrorListener { error ->
+                onError?.invoke("Error occurred! $error")
+            }.onSameThread().check()
+    }
+
+    fun Context.checkCameraPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    // Function to open app settings
+    private fun openAppSettings() {
+        try {
+            val intent = Intent(
+                Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.fromParts("package", packageName, null)
+            )
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+
+        }
+    }
+
+
+    private fun showRationaleDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Permission Denied")
+            .setMessage("You have denied the permission permanently. Please go to the app settings to allow the permission.")
+            .setPositiveButton("Go to Settings") { _, _ ->
+                openAppSettings()
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
+            .show()
+    }
+
     private fun showInterstitialAndNavigate(remoteConfig: Boolean, action: () -> Unit) {
-
-
 
         if (canWeShowAds(remoteConfig)) {
 
@@ -237,7 +388,7 @@ class MainActivity : AppCompatActivity() {
                         action.invoke()
                     })
                 }
-            }else{
+            } else {
                 showPriorityInterstitialAdWithCounter(closeListener = {
                     action.invoke()
                 }, failListener = {
@@ -346,15 +497,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun showNativeAd() {
         if (canWeShowAds(RemoteConfig.mainNative)) {
-
-            /*newLoadAndShowNativeAd(
-                binding.layoutNative,
-                R.layout.native_ad_layout_main,
-                getString(R.string.mainNativeId),
-                adLoading = {
-                    binding.layoutNative.visibility = View.VISIBLE
-                },
-                failToLoad = { binding.layoutNative.visibility = View.GONE })*/
             binding.layoutNative.visibility = View.VISIBLE
             val bindAdNative = NativeAdLayoutMainBinding.inflate(layoutInflater)
 
