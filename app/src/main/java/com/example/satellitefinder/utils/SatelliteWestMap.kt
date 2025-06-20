@@ -1,10 +1,12 @@
 package com.example.satellitefinder.utils
 
+import androidx.annotation.Keep
+
 object SatelliteWestMap {
     private var cachedMap: Map<Double, SatelliteInfo>? = null
     private var cachedLat: Double? = null
     private var cachedLon: Double? = null
-
+    @Keep
     data class SatelliteInfo(
         val name: String,
         val longitude: Double,

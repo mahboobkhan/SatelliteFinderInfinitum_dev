@@ -32,6 +32,7 @@ import com.example.satellitefinder.utils.ClickListener
 import com.example.satellitefinder.utils.FirebaseEvents
 import com.example.satellitefinder.utils.LanguagesHelper
 import com.example.satellitefinder.utils.RecyclerTouchListener
+import com.example.satellitefinder.utils.SatelliteDataUtils
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.isAlreadyPurchased
 import com.example.satellitefinder.utils.isInternetConnected
@@ -79,6 +80,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         onBackPressedDispatcher.addCallback(this@MainActivity, callback)
+        
+        // Observe satellite list for ISS tracker
         viewModels.satelliteList.observe(this@MainActivity) {
             if (it.isNotEmpty()) {
                 showInterstitialAndNavigate(RemoteConfig.interIssTracker) {
@@ -95,6 +98,37 @@ class MainActivity : AppCompatActivity() {
                 }
             } else {
                 toast("No satellites found")
+            }
+        }
+        
+        // Observe loading state for ISS tracker
+        viewModels.isLoading.observe(this@MainActivity) { isLoading ->
+            binding.btnISSTracker.isEnabled = !isLoading
+            
+            // Update button appearance based on loading state
+            if (isLoading) {
+                // Show loading state - you can add a loading indicator here
+                binding.btnISSTracker.alpha = 0.6f
+                // You could also change the text to show "Loading..."
+                val textView = binding.btnISSTracker.getChildAt(1) as? androidx.appcompat.widget.AppCompatTextView
+                textView?.text = "Loading..."
+            } else {
+                // Reset to normal state
+                binding.btnISSTracker.alpha = 1.0f
+                val textView = binding.btnISSTracker.getChildAt(1) as? androidx.appcompat.widget.AppCompatTextView
+                textView?.text = getString(R.string.iss_tracker)
+            }
+        }
+        
+        // Observe error messages for ISS tracker
+        viewModels.errorMessage.observe(this@MainActivity) { errorMessage ->
+            errorMessage?.let {
+                if (it.contains("No internet connection")) {
+                    showToast("No Internet Connection")
+                } else {
+                    showToast(it)
+                }
+                viewModels.clearError()
             }
         }
 
@@ -249,18 +283,29 @@ class MainActivity : AppCompatActivity() {
                     startActivityWithSlideTransition(RulerLevelActivity::class.java)
                 }
             }
+            
             btnISSTracker.setOnClickListener {
                 FirebaseEvents.logEvent(
                     "home_screen_click_iss_tracker",
                     "home_screen_click_iss_tracker"
                 )
-                if (isInternetConnected()) {
+                
+                // Check if we have cached ISS data first
+                if (SatelliteDataUtils.isDataAvailable("iss")) {
+                    // Use cached data immediately
                     viewModels.loadSatellites("iss")
+                } else if (isInternetConnected()) {
+                    // Check if data is currently loading
+                    if (SatelliteDataUtils.isLoading("iss")) {
+                        showToast("Loading ISS data...")
+                    } else {
+                        // Fetch fresh data from network
+                        viewModels.loadSatellites("iss")
+                    }
                 } else {
+                    // No internet connection
                     showToast("No Internet Connection")
                 }
-
-
             }
 
             btnSetting.setOnClickListener {

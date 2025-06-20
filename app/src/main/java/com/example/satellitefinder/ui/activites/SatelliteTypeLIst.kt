@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -90,6 +91,27 @@ class SatelliteTypeLIst : AppCompatActivity() {
         setUpSearch()
 
 
+        
+        // Observe loading state
+        viewModels.isLoading.observe(this) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+                binding.noSatelliteFound.visibility = View.GONE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+        
+        // Observe error messages
+        viewModels.errorMessage.observe(this) { errorMessage ->
+            errorMessage?.let {
+                binding.progressBar.visibility = View.GONE
+                binding.noSatelliteFound.visibility = View.VISIBLE
+                toast(it)
+                viewModels.clearError()
+            }
+        }
+
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -102,26 +124,29 @@ class SatelliteTypeLIst : AppCompatActivity() {
 
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 if (location != null) {
-                    adapter.currentLocation = location
-                    adapter.notifyDataSetChanged()
-                    viewModels.satelliteList.observe(this) {
-                        if (it.isNotEmpty()){
+                    // Observe satellite list for immediate data display
+                    viewModels.satelliteList.observe(this) { satellites ->
+                        if (satellites.isNotEmpty()) {
                             binding.progressBar.visibility = View.GONE
-                            fullSatelliteList = it
-                            adapter.submitList(it)
-                        }else{
+                            binding.noSatelliteFound.visibility = View.GONE
+                            fullSatelliteList = satellites
+                            adapter.submitList(satellites)
+                            Log.d("SatelliteTypeLIst", "Displayed ${satellites.size} satellites")
+                        } else {
                             binding.progressBar.visibility = View.GONE
                             binding.noSatelliteFound.visibility = View.VISIBLE
                             toast("No satellites found")
                         }
-
                     }
+                    adapter.currentLocation = location
+                    adapter.notifyDataSetChanged()
+
+
                 }
             }
         }
 
-
-
+        // Load satellites (this will show cached/static data immediately if available)
         viewModels.loadSatellites(satelliteType)
     }
 

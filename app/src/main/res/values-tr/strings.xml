@@ -50,4 +50,42 @@
     <string name="calibrate_info">kalibre etmek için MENÜ\'ye basın...</string>
     <string name="lock_info">seviye yönünü kilitlemek için dokunun</string>
 
+    <string name="ar_view">AR Görünümü</string>
+    <string name="protractor">Açıölçer</string>
+    <string name="inclinometer">Eğimölçer</string>
+    <string name="pendulum_bob">Sarkaç Bob</string>
+    <string name="angle_meter">Açı Ölçer</string>
+    <string name="iss_tracker">ISS Takip Cihazı</string>
+    <string name="ruler_level">Cetvel Seviyesi</string>
+
+
+    <string name="subscription_join_our_premium">Premium Üyeliğimize Katılın</string>
+    <string name="subscription_experience">%100 Reklamsız Deneyim</string>
+    <string name="subscription_weekly_package">Haftalık Paket</string>
+    <string name="subscription_monthly_package">Aylık Paket</string>
+    <string name="subscription_yearly_package">Yıllık Paket</string>
+    <string name="subscription_continue">DEVAM ET</string>
+    <string name="subscription_cancel_anytime">İstediğiniz Zaman İptal Edebilirsiniz</string>
+    <string name="subscription_privacy_policy">Gizlilik Politikası</string>
+    <string name="subscription_description">%1$s/%2$s. Aboneliğinizi istediğiniz zaman, yenilemeden 24 saat önce iptal edin - Otomatik Yenileme</string>
+    <string name="roll">Roll</string>
+    <string name="pitch">Pitch</string>
+    <string name="reset_device_sensor">Cihaz Sensörünü Sıfırla</string>
+
+
+    <string name="satellite_list">Uydu Listesi</string>
+    <string name="weather_satellites">Hava Durumu Uyduları</string>
+    <string name="general_satellites">Genel Uydular</string>
+    <string name="starlink_satellites">Starlink Uyduları</string>
+    <string name="try_now">Şimdi Deneyin</string>
+    <string name="don_t_go">Gitmeyin!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Çanak Çanağınız İçin Akıllı Çözümü Deneyimleyin!</string>
+    <string name="exit_app">Uygulamadan Çıkılsın mı?</string>
+    <string name="angle_meter_desc">Kolay, hassas açı ölçüm aracı.</string>
+    <string name="satellite_desc">Bağlantıda Kalın, Her Yerde Takip Edin!</string>
+    <string name="iss_tracker_desc">Canlı Uluslararası Uzay İstasyonu izleyicisi</string>
+    <string name="would_you_like_to_spend_some_more_time">Biraz daha zaman geçirmek ister misiniz?</string>
+    <string name="no_satellite_found">Uydu Bulunamadı</string>
+
+
 </resources>

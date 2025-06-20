@@ -51,4 +51,41 @@
     <string name="calibrate_info">ለማስተካከል MENU ን ይጫኑ...</string>
     <string name="lock_info">የደረጃ አቀማመጥን ለመቆለፍ መታ ያድርጉ</string>
 
+    <string name="ar_view">የኤአር እይታ</string>
+    <string name="protractor">ፕሮትራክተር</string>
+    <string name="inclinometer">ኢንክሊኖሜትር</string>
+    <string name="pendulum_bob">ፔንዱለም ቦብ</string>
+    <string name="angle_meter">አንግል ሜትር</string>
+    <string name="iss_tracker">አይኤስኤስ መከታተያ</string>
+    <string name="ruler_level">ገዥ ደረጃ</string>
+
+
+    <string name="subscription_join_our_premium">የእኛን ፕሪሚየም ይቀላቀሉ</string>
+    <string name="subscription_experience">ከማስታወቂያ-ነጻ 100% ልምድ</string>
+    <string name="subscription_weekly_package">ሳምንታዊ ጥቅል</string>
+    <string name="subscription_monthly_package">ወርሃዊ ጥቅል</string>
+    <string name="subscription_yearly_package">ዓመታዊ ጥቅል</string>
+    <string name="subscription_continue">ቀጥል</string>
+    <string name="subscription_cancel_anytime">በማንኛውም ጊዜ ሰርዝ</string>
+    <string name="subscription_privacy_policy">የግላዊነት ፖሊሲ</string>
+    <string name="subscription_description">%1$s/%2$s። የደንበኝነት ምዝገባን በማንኛውም ጊዜ ይሰርዙ፣ ከመታደሱ 24 ሰዓታት በፊት - ራስ-እድሳት</string>
+    <string name="roll">ጥቅልል</string>
+    <string name="pitch">ጫጫታ</string>
+    <string name="reset_device_sensor">የመሣሪያ ዳሳሽ ዳግም ያስጀምሩ</string>
+
+
+    <string name="satellite_list">የሳተላይት ዝርዝር</string>
+    <string name="weather_satellites">የአየር ሁኔታ ሳተላይቶች</string>
+    <string name="general_satellites">አጠቃላይ ሳተላይቶች</string>
+    <string name="starlink_satellites">ስታርሊንክ ሳተላይቶች</string>
+    <string name="try_now">አሁን ይሞክሩ</string>
+    <string name="don_t_go">አትሂድ!</string>
+    <string name="experience_the_smart_solution_for_your_dish">ለዲሽዎ ስማርት መፍትሄን ይለማመዱ!</string>
+    <string name="exit_app">ከመተግበሪያ ይውጡ?</string>
+    <string name="angle_meter_desc">ቀላል፣ ትክክለኛ የማዕዘን መለኪያ መሳሪያ።</string>
+    <string name="satellite_desc">እንደተገናኙ ይቆዩ፣ የትም ይከታተሉ!</string>
+    <string name="iss_tracker_desc">የቀጥታ ዓለም አቀፍ የጠፈር ጣቢያ መከታተያ</string>
+    <string name="would_you_like_to_spend_some_more_time">ትንሽ ተጨማሪ ጊዜ ማሳለፍ ይፈልጋሉ?</string>
+    <string name="no_satellite_found">ምንም ሳተላይት አልተገኘም።</string>
+
 </resources>

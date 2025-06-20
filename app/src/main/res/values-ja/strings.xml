@@ -50,4 +50,43 @@
     <string name="calibrate_info">調整するにはメニューを押してください...</string>
     <string name="lock_info">タップして水準器の方向をロックします</string>
 
+    <string name="ar_view">ARビュー</string>
+    <string name="protractor">分度器</string>
+    <string name="inclinometer">傾斜計</string>
+    <string name="pendulum_bob">振り子式ボブ</string>
+    <string name="angle_meter">角度計</string>
+    <string name="iss_tracker">ISSトラッカー</string>
+    <string name="ruler_level">定規・水準器</string>
+
+
+    <string name="subscription_join_our_premium">プレミアムにご参加ください</string>
+    <string name="subscription_experience">100%広告なしの体験</string>
+    <string name="subscription_weekly_package">-
+週間パッケージ</string>
+    <string name="subscription_monthly_package">月間パッケージ</string>
+    <string name="subscription_yearly_package">年間パッケージ</string>
+    <string name="subscription_continue">続行</string>
+    <string name="subscription_cancel_anytime">いつでもキャンセル可能</string>
+    <string name="subscription_privacy_policy">プライバシーポリシー</string>
+    <string name="subscription_description">%1$s/%2$s更新の24時間前までであればいつでもサブスクリプションをキャンセルできます - 自動更新</string>
+    <string name="roll">ロール</string>
+    <string name="pitch">ピッチ</string>
+    <string name="reset_device_sensor">デバイスセンサーをリセット</string>
+
+
+    <string name="satellite_list">衛星リスト</string>
+    <string name="weather_satellites">気象衛星</string>
+    <string name="general_satellites">一般衛星</string>
+    <string name="starlink_satellites">Starlink衛星</string>
+    <string name="try_now">今すぐ試す</string>
+    <string name="don_t_go">もう行かないで！</string>
+    <string name="experience_the_smart_solution_for_your_dish">あなたのアンテナのためのスマートソリューションを体験してください！</string>
+    <string name="exit_app">アプリを終了しますか？</string>
+    <string name="angle_meter_desc">簡単かつ正確な角度測定ツール。</string>
+    <string name="satellite_desc">接続を維持して、どこでも追跡！</string>
+    <string name="iss_tracker_desc">国際宇宙ステーションのライブトラッカー</string>
+    <string name="would_you_like_to_spend_some_more_time">もう少し時間を過ごしてみませんか？</string>
+    <string name="no_satellite_found">衛星が見つかりません</string>
+
+
 </resources>

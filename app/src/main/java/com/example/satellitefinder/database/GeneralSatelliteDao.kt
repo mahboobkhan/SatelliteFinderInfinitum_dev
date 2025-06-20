@@ -12,4 +12,6 @@ interface GeneralSatelliteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
    fun insertAll(satellites: List<GeneralSatelliteEntity>)
+    @Query("DELETE FROM general_satellites")
+    fun deleteAll()
 }

@@ -40,7 +40,7 @@
     <string name="rate_now">Évaluer maintenant</string>
     <string name="bubble_level">Niveau à bulle</string>
     <string name="get_the_perfect_level_with_ease">Obtenez le niveau parfait en toute simplicité</string>
-    <string name="are_you_sure_you_want_to_exit_from_app">Êtes-vous sûr de vouloir quitter l\'application ?</string>
+    <string name="are_you_sure_you_want_to_exit_from_app">Êtes-vous sûr de vouloir quitter l\'application?</string>
     <string name="my_location">Ma position</string>
     <string name="rate_us">Évaluez-nous</string>
     <string name="share_app">Partager l\'application</string>
@@ -49,5 +49,42 @@
     <string name="not_supported">Orientation non prise en charge</string>
     <string name="calibrate_info">Appuyez sur MENU pour calibrer…</string>
     <string name="lock_info">Appuyez pour verrouiller l\'orientation du niveau</string>
+
+    <string name="ar_view">Vue AR</string>
+    <string name="protractor">Rapporteur</string>
+    <string name="inclinometer">Inclinomètre</string>
+    <string name="pendulum_bob">Pendule</string>
+    <string name="angle_meter">Anglemètre</string>
+    <string name="iss_tracker">Suivi ISS</string>
+    <string name="ruler_level">Niveau</string>
+
+
+    <string name="subscription_join_our_premium">Adhérez à notre offre Premium</string>
+    <string name="subscription_experience">Expérience 100  %1ans publicité</string>
+    <string name="subscription_weekly_package">Forfait hebdomadaire</string>
+    <string name="subscription_monthly_package">Forfait mensuel</string>
+    <string name="subscription_yearly_package">Forfait annuel</string>
+    <string name="subscription_continue">CONTINUER</string>
+    <string name="subscription_cancel_anytime">Annulation possible</string>
+    <string name="subscription_privacy_policy">Politique de confidentialité</string>
+    <string name="subscription_description">%1$s/%2$s. Annulez l\'abonnement à tout moment, 24 h avant le renouvellement - Renouvellement automatique</string>
+    <string name="roll">Roll</string>
+    <string name="pitch">Pitch</string>
+    <string name="reset_device_sensor">Réinitialiser le capteur de l\'appareil</string>
+
+
+    <string name="satellite_list">Liste des satellites</string>
+    <string name="weather_satellites">Satellites météorologiques</string>
+    <string name="general_satellites">Satellites généraux</string>
+    <string name="starlink_satellites">Satellites Starlink</string>
+    <string name="try_now">Essayer maintenant</string>
+    <string name="don_t_go">Ne partez pas!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Découvrez la solution intelligente pour votre parabole!</string>
+    <string name="exit_app">Quitter l\'application?</string>
+    <string name="angle_meter_desc">Outil de mesure d\'angle simple et précis.</string>
+    <string name="satellite_desc">Restez connecté, suivez où que vous soyez!</string>
+    <string name="iss_tracker_desc">Suivi en direct de la Station spatiale internationale</string>
+    <string name="would_you_like_to_spend_some_more_time">Envie de passer un peu plus de temps?</string>
+    <string name="no_satellite_found">Aucun satellite trouvé</string>
 
 </resources>

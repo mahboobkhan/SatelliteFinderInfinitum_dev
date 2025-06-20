@@ -50,4 +50,41 @@
     <string name="calibrate_info">Pulsa MENÚ para calibrar...</string>
     <string name="lock_info">Toca para bloquear la orientación del nivel</string>
 
+    <string name="ar_view">Vista de RA</string>
+    <string name="protractor">Transportador</string>
+    <string name="inclinometer">Inclinómetro</string>
+    <string name="pendulum_bob">Péndulo</string>
+    <string name="angle_meter">Medidor de ángulos</string>
+    <string name="iss_tracker">Rastreador ISS</string>
+    <string name="ruler_level">Nivel de regla</string>
+
+
+    <string name="subscription_join_our_premium">Únete a nuestra suscripción Premium</string>
+    <string name="subscription_experience">Experiencia 100  %1in publicidad</string>
+    <string name="subscription_weekly_package">Paquete semanal</string>
+    <string name="subscription_monthly_package">Paquete mensual</string>
+    <string name="subscription_yearly_package">Paquete anual</string>
+    <string name="subscription_continue">CONTINUAR</string>
+    <string name="subscription_cancel_anytime">Cancelar cuando quieras</string>
+    <string name="subscription_privacy_policy">Política de privacidad</string>
+    <string name="subscription_description">%1$s/%2$s. Cancela tu suscripción cuando quieras, 24 horas antes de la renovación - Renovación automática</string>
+    <string name="roll">Rodar</string>
+    <string name="pitch">Inclinar</string>
+    <string name="reset_device_sensor">Restablecer sensor del dispositivo</string>
+
+
+    <string name="satellite_list">Lista de satélites</string>
+    <string name="weather_satellites">Satélites meteorológicos</string>
+    <string name="general_satellites">Satélites generales</string>
+    <string name="starlink_satellites">Satélites Starlink</string>
+    <string name="try_now">Pruébalo ahora</string>
+    <string name="don_t_go">¡No te vayas!</string>
+    <string name="experience_the_smart_solution_for_your_dish">¡Descubre la solución inteligente para tu antena!</string>
+    <string name="exit_app">¿Salir de la aplicación?</string>
+    <string name="angle_meter_desc">Herramienta de medición de ángulos sencilla y precisa.</string>
+    <string name="satellite_desc">¡Mantente conectado, rastrea dondequiera que estés!</string>
+    <string name="iss_tracker_desc">Rastreador en vivo de la Estación Espacial Internacional</string>
+    <string name="would_you_like_to_spend_some_more_time">¿Quieres dedicar más tiempo?</string>
+    <string name="no_satellite_found">No se encontró satélite</string>
+
 </resources>

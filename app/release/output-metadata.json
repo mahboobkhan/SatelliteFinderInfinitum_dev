@@ -11,9 +11,9 @@
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 46,
-      "versionName": "1.5.12",
-      "outputFile": "Satellite Finder1.5.12_-release.apk"
+      "versionCode": 48,
+      "versionName": "1.5.14",
+      "outputFile": "Satellite Finder1.5.14_-release.apk"
     }
   ],
   "elementType": "File",
@@ -22,14 +22,14 @@
       "minApi": 28,
       "maxApi": 30,
       "baselineProfiles": [
-        "baselineProfiles/1/Satellite Finder1.5.12_-release.dm"
+        "baselineProfiles/1/Satellite Finder1.5.14_-release.dm"
       ]
     },
     {
       "minApi": 31,
       "maxApi": 2147483647,
       "baselineProfiles": [
-        "baselineProfiles/0/Satellite Finder1.5.12_-release.dm"
+        "baselineProfiles/0/Satellite Finder1.5.14_-release.dm"
       ]
     }
   ],

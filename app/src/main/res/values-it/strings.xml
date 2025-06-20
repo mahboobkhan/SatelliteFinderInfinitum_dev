@@ -50,4 +50,41 @@
     <string name="calibrate_info">Premi MENU per calibrare...</string>
     <string name="lock_info">Tocca per bloccare l\'orientamento del livello</string>
 
+    <string name="ar_view">Vista AR</string>
+    <string name="protractor">Goniometro</string>
+    <string name="inclinometer">Inclinometro</string>
+    <string name="pendulum_bob">Pendolo Bob</string>
+    <string name="angle_meter">Angolarimetro</string>
+    <string name="iss_tracker">Tracciatore ISS</string>
+    <string name="ruler_level">Livella a righello</string>
+
+
+    <string name="subscription_join_our_premium">Iscriviti al nostro Premium</string>
+    <string name="subscription_experience">Esperienza senza pubblicità al 100%</string>
+    <string name="subscription_weekly_package">Pacchetto settimanale</string>
+    <string name="subscription_monthly_package">Pacchetto mensile</string>
+    <string name="subscription_yearly_package">Pacchetto annuale</string>
+    <string name="subscription_continue">CONTINUA</string>
+    <string name="subscription_cancel_anytime">Annulla in qualsiasi momento</string>
+    <string name="subscription_privacy_policy">Informativa sulla privacy</string>
+    <string name="subscription_description">%1$s/%2$s. Annulla l\'abbonamento in qualsiasi momento, 24 ore prima del rinnovo - Rinnovo automatico</string>
+    <string name="roll">Rotolamento</string>
+    <string name="pitch">Pitch</string>
+    <string name="reset_device_sensor">Reimposta sensore dispositivo</string>
+
+
+    <string name="satellite_list">Elenco satelliti</string>
+    <string name="weather_satellites">Satelliti meteorologici</string>
+    <string name="general_satellites">Satelliti generali</string>
+    <string name="starlink_satellites">Satelliti Starlink</string>
+    <string name="try_now">Prova ora</string>
+    <string name="don_t_go">Non andare!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Scopri la soluzione intelligente per la tua parabola!</string>
+    <string name="exit_app">Vuoi uscire dall\'app?</string>
+    <string name="angle_meter_desc">Strumento di misurazione dell\'angolo semplice e preciso.</string>
+    <string name="satellite_desc">Resta connesso, traccia ovunque!</string>
+    <string name="iss_tracker_desc">Tracker in tempo reale della Stazione Spaziale Internazionale</string>
+    <string name="would_you_like_to_spend_some_more_time">Vuoi dedicare un po\' più di tempo?</string>
+    <string name="no_satellite_found">Nessun satellite trovato</string>
+
 </resources>

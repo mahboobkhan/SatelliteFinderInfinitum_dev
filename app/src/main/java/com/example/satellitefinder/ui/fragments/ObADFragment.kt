@@ -9,12 +9,8 @@ import com.example.adssdk.native_ad.NativeAdType
 import com.example.adssdk.native_ad.NativeAdUtils
 import com.example.satellitefinder.R
 import com.example.satellitefinder.admobAds.RemoteConfig
-import com.example.satellitefinder.admobAds.newLoadAndShowNativeAd
-import com.example.satellitefinder.admobAds.obNativeAdFull
-import com.example.satellitefinder.admobAds.showLoadedNativeAd
 import com.example.satellitefinder.databinding.FragmentObADBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutFullBinding
-import com.example.satellitefinder.databinding.NativeAdLayoutSmallBinding
 import com.example.satellitefinder.ui.activites.OnBoardingScreen
 import com.example.satellitefinder.utils.canWeShowAds
 
@@ -43,18 +39,7 @@ class ObADFragment : Fragment() {
     private fun showNativeAd() {
         activity?.apply {
             if (canWeShowAds(RemoteConfig.onBoardingNative)) {
-                /*obNativeAdFull?.let {
-                    showLoadedNativeAd(
-                        this, binding.nativeAdContainer,
-                        R.layout.native_ad_layout_full, it
-                    )
-                } ?: run {
-                    newLoadAndShowNativeAd(
-                        binding.nativeAdContainer,
-                        R.layout.native_ad_layout_full,
-                        getString(R.string.obNativeFull)
-                    )
-                }*/
+
                 binding.nativeAdContainer.visibility = View.VISIBLE
                 val bindAdNative = NativeAdLayoutFullBinding.inflate(layoutInflater)
 

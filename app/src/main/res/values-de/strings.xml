@@ -50,4 +50,41 @@
     <string name="calibrate_info">Menü drücken zum Kalibrieren...</string>
     <string name="lock_info">Tippen, um die Wasserwaagenausrichtung zu sperren</string>
 
+    <string name="ar_view">AR-Ansicht</string>
+    <string name="protractor">Winkelmesser</string>
+    <string name="inclinometer">Neigungsmesser</string>
+    <string name="pendulum_bob">Pendelgewicht</string>
+    <string name="angle_meter">Winkelmesser</string>
+    <string name="iss_tracker">ISS-Tracker</string>
+    <string name="ruler_level">Lineal-Wasserwaage</string>
+
+
+    <string name="subscription_join_our_premium">Premium-Mitglied werden</string>
+    <string name="subscription_experience">100 % werbefrei erleben</string>
+    <string name="subscription_weekly_package">Wochenpaket</string>
+    <string name="subscription_monthly_package">Monatspaket</string>
+    <string name="subscription_yearly_package">Jahrespaket</string>
+    <string name="subscription_continue">WEITER</string>
+    <string name="subscription_cancel_anytime">Jederzeit kündbar</string>
+    <string name="subscription_privacy_policy">Datenschutzerklärung</string>
+    <string name="subscription_description">%1$s/%2$s. Abonnement jederzeit kündbar, 24 Stunden vor Verlängerung – Automatische Verlängerung</string>
+    <string name="roll">Rolle</string>
+    <string name="pitch">Neigung</string>
+    <string name="reset_device_sensor">Gerätesensor zurücksetzen</string>
+
+
+    <string name="satellite_list">Satellitenliste</string>
+    <string name="weather_satellites">Wettersatelliten</string>
+    <string name="general_satellites">Allgemeine Satelliten</string>
+    <string name="starlink_satellites">Starlink-Satelliten</string>
+    <string name="try_now">Jetzt testen</string>
+    <string name="don_t_go">Nicht mehr!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Erleben Sie die intelligente Lösung für Ihre Satellitenschüssel!</string>
+    <string name="exit_app">App beenden?</string>
+    <string name="angle_meter_desc">Einfaches, präzises Winkelmessgerät.</string>
+    <string name="satellite_desc">Bleiben Sie in Verbindung, verfolgen Sie überall!</string>
+    <string name="iss_tracker_desc">Live-Tracker der Internationalen Raumstation</string>
+    <string name="would_you_like_to_spend_some_more_time">Möchten Sie noch etwas Zeit verbringen?</string>
+    <string name="no_satellite_found">Kein Satellit gefunden</string>
+
 </resources>

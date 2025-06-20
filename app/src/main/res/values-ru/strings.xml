@@ -50,4 +50,42 @@
     <string name="calibrate_info">Нажмите MENU для калибровки...</string>
     <string name="lock_info">Нажмите, чтобы заблокировать ориентацию уровня</string>
 
+    <string name="ar_view">AR View</string>
+    <string name="protractor">Транспортир</string>
+    <string name="inclinometer">Инклинометр</string>
+    <string name="pendulum_bob">Маятниковый Боб</string>
+    <string name="angle_meter">Угол</string>
+    <string name="iss_tracker">ISS Tracker</string>
+    <string name="ruler_level">Линейка-уровень</string>
+
+
+    <string name="subscription_join_our_premium">Присоединяйтесь к нашей Premium</string>
+    <string name="subscription_experience">Опыт работы со 100%-ной рекламой</string>
+    <string name="subscription_weekly_package">Еженедельный пакет</string>
+    <string name="subscription_monthly_package">Ежемесячный пакет</string>
+    <string name="subscription_yearly_package">Годовой пакет</string>
+    <string name="subscription_continue">ПРОДОЛЖИТЬ</string>
+    <string name="subscription_cancel_anytime">Отменить в любой момент</string>
+    <string name="subscription_privacy_policy">Политика конфиденциальности</string>
+    <string name="subscription_description">%1$s/%2$s. Отменить подписку можно в любое время, за 24 часа до продления — автоматическое продление</string>
+    <string name="roll">Крен</string>
+    <string name="pitch">Наклон</string>
+    <string name="reset_device_sensor">Сброс датчика устройства</string>
+
+
+    <string name="satellite_list">Список спутников</string>
+    <string name="weather_satellites">Погодные спутники</string>
+    <string name="general_satellites">Общие спутники</string>
+    <string name="starlink_satellites">Спутники Starlink</string>
+    <string name="try_now">Попробовать сейчас</string>
+    <string name="don_t_go">Не уходите!</string>
+    <string name="experience_the_smart_solution_for_your_dish">Испытайте интеллектуальное решение для своей тарелки!</string>
+    <string name="exit_app">Выйти из приложения?</string>
+    <string name="angle_meter_desc">Простой и точный инструмент для измерения угла.</string>
+    <string name="satellite_desc">Оставайтесь на связи, отслеживайте в любом месте!</string>
+    <string name="iss_tracker_desc">Трекер Международной космической станции в реальном времени</string>
+    <string name="would_you_like_to_spend_some_more_time">Хотите провести еще немного времени?</string>
+    <string name="no_satellite_found">Спутник не найден</string>
+
+
 </resources>

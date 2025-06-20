@@ -50,4 +50,41 @@
     <string name="calibrate_info">اضغط على القائمة للمعايرة...</string>
     <string name="lock_info">انقر لقفل اتجاه المستوى</string>
 
+    <string name="ar_view">عرض الواقع المعزز</string>
+    <string name="protractor">منقلة</string>
+    <string name="inclinometer">مقياس الميل</string>
+    <string name="pendulum_bob">مرجحة البندول</string>
+    <string name="angle_meter">مقياس الزاوية</string>
+    <string name="iss_tracker">متتبع محطة الفضاء الدولية</string>
+    <string name="ruler_level">مستوى المسطرة</string>
+
+
+    <string name="subscription_join_our_premium">انضم إلى باقتنا المميزة</string>
+    <string name="subscription_experience">تجربة خالية تمامًا من الإعلانات</string>
+    <string name="subscription_weekly_package">الباقة الأسبوعية</string>
+    <string name="subscription_monthly_package">الباقة الشهرية</string>
+    <string name="subscription_yearly_package">الباقة السنوية</string>
+    <string name="subscription_continue">متابعة</string>
+    <string name="subscription_cancel_anytime">إلغاء الاشتراك في أي وقت</string>
+    <string name="subscription_privacy_policy">سياسة الخصوصية</string>
+    <string name="subscription_description">%1$s/%2$s يمكنك إلغاء الاشتراك في أي وقت، قبل ٢٤ ساعة من التجديد - التجديد التلقائي</string>
+    <string name="roll">التدحرج</string>
+    <string name="pitch">الميلان</string>
+    <string name="reset_device_sensor">إعادة ضبط مستشعر الجهاز</string>
+
+
+    <string name="satellite_list">قائمة الأقمار الصناعية</string>
+    <string name="weather_satellites">أقمار الطقس</string>
+    <string name="general_satellites">أقمار صناعية عامة</string>
+    <string name="starlink_satellites">أقمار ستارلينك</string>
+    <string name="try_now">جرب الآن</string>
+    <string name="don_t_go">لا تندم!</string>
+    <string name="experience_the_smart_solution_for_your_dish">جرّب الحل الذكي لطبقك!</string>
+    <string name="exit_app">هل تريد الخروج من التطبيق؟</string>
+    <string name="angle_meter_desc">أداة قياس زاوية سهلة ودقيقة.</string>
+    <string name="satellite_desc">ابقَ على اتصال، تتبّع من أي مكان!</string>
+    <string name="iss_tracker_desc">متتبع مباشر لمحطة الفضاء الدولية</string>
+    <string name="would_you_like_to_spend_some_more_time">هل ترغب في قضاء المزيد من الوقت؟</string>
+    <string name="no_satellite_found">لم يتم العثور على قمر صناعي</string>
+
 </resources>

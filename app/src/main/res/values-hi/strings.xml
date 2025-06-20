@@ -50,4 +50,41 @@
     <string name="calibrate_info">कैलिब्रेट करने के लिए MENU दबाएँ...</string>
     <string name="lock_info">लेवल ओरिएंटेशन लॉक करने के लिए टैप करें</string>
 
+    <string name="ar_view">AR व्यू</string>
+    <string name="protractor">प्रोट्रैक्टर</string>
+    <string name="inclinometer">इनक्लिनोमीटर</string>
+    <string name="pendulum_bob">पेंडुलम बॉब</string>
+    <string name="angle_meter">एंगल मीटर</string>
+    <string name="iss_tracker">ISS ट्रैकर</string>
+    <string name="ruler_level">रूलर लेवल</string>
+
+
+    <string name="subscription_join_our_premium">हमारे प्रीमियम में शामिल हों</string>
+    <string name="subscription_experience">100% विज्ञापन-मुक्त अनुभव</string>
+    <string name="subscription_weekly_package">साप्ताहिक पैकेज</string>
+    <string name="subscription_monthly_package">मासिक पैकेज</string>
+    <string name="subscription_yearly_package">वार्षिक पैकेज</string>
+    <string name="subscription_continue">जारी रखें</string>
+    <string name="subscription_cancel_anytime">किसी भी समय रद्द करें</string>
+    <string name="subscription_privacy_policy">गोपनीयता नीति</string>
+    <string name="subscription_description">%1$s/%2$s. नवीनीकरण से 24 घंटे पहले किसी भी समय सदस्यता रद्द करें - ऑटो नवीनीकरण</string>
+    <string name="roll">रोल</string>
+    <string name="pitch">पिच</string>
+    <string name="reset_device_sensor">डिवाइस सेंसर रीसेट करें</string>
+
+
+    <string name="satellite_list">सैटेलाइट सूची</string>
+    <string name="weather_satellites">मौसम उपग्रह</string>
+    <string name="general_satellites">सामान्य उपग्रह</string>
+    <string name="starlink_satellites">स्टारलिंक उपग्रह</string>
+    <string name="try_now">अभी आज़माएँ</string>
+    <string name="don_t_go">मत जाएँ!</string>
+    <string name="experience_the_smart_solution_for_your_dish">अपने डिश के लिए स्मार्ट समाधान का अनुभव करें!</string>
+    <string name="exit_app">ऐप से बाहर निकलें?</string>
+    <string name="angle_meter_desc">आसान, सटीक कोण मापने वाला उपकरण।</string>
+    <string name="satellite_desc">कनेक्ट रहें, कहीं भी ट्रैक करें!</string>
+    <string name="iss_tracker_desc">लाइव इंटरनेशनल स्पेस स्टेशन ट्रैकर</string>
+    <string name="would_you_like_to_spend_some_more_time">क्या आप कुछ और समय बिताना चाहेंगे?</string>
+    <string name="no_satellite_found">कोई सैटेलाइट नहीं मिला</string>
+
 </resources>

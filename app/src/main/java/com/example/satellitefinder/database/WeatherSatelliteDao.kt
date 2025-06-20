@@ -12,4 +12,8 @@ interface WeatherSatelliteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(satellites: List<WeatherSatelliteEntity>)
+
+    @Query("DELETE FROM weather_satellites")
+    fun deleteAll()
+
 }

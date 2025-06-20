@@ -12,4 +12,6 @@ interface StarlinkSatelliteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(satellites: List<StarlinkSatelliteEntity>)
+    @Query("DELETE FROM starlink_satellites")
+    fun deleteAll()
 }

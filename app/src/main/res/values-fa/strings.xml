@@ -50,4 +50,42 @@
     <string name="calibrate_info">MENU را برای کالیبره کردن فشار دهید...</string>
     <string name="lock_info">برای قفل کردن جهت سطح ضربه بزنید</string>
 
+    <string name="ar_view">نمای واقعیت افزوده</string>
+    <string name="protractor">نقاله</string>
+    <string name="inclinometer">شیب‌سنج</string>
+    <string name="pendulum_bob">آونگ باب</string>
+    <string name="angle_meter">زاویه‌سنج</string>
+    <string name="iss_tracker">ردیاب ISS</string>
+    <string name="ruler_level">تراز خط‌کش</string>
+
+
+    <string name="subscription_join_our_premium">به جمع ویژه ما بپیوندید</string>
+    <string name="subscription_experience">تجربه ۱۰۰٪ بدون تبلیغات</string>
+    <string name="subscription_weekly_package">بسته هفتگی</string>
+    <string name="subscription_monthly_package">بسته ماهانه</string>
+    <string name="subscription_yearly_package">بسته سالانه</string>
+    <string name="subscription_continue">ادامه</string>
+    <string name="subscription_cancel_anytime">لغو در هر زمان</string>
+    <string name="subscription_privacy_policy">سیاست حفظ حریم خصوصی</string>
+    <string name="subscription_description">%1$s/%2$s. لغو اشتراک در هر زمان، ۲۴ ساعت قبل از تمدید - تمدید خودکار</string>
+    <string name="roll">چرخش</string>
+    <string name="pitch">زیر و بمی صدا</string>
+    <string name="reset_device_sensor">تنظیم مجدد حسگر دستگاه</string>
+
+
+    <string name="satellite_list">لیست ماهواره‌ها</string>
+    <string name="weather_satellites">ماهواره‌های هواشناسی</string>
+    <string name="general_satellites">ماهواره‌های عمومی</string>
+    <string name="starlink_satellites">ماهواره‌های استارلینک</string>
+    <string name="try_now">اکنون امتحان کنید</string>
+    <string name="don_t_go">نرو!</string>
+    <string name="experience_the_smart_solution_for_your_dish">راهکار هوشمند برای دیش خود را تجربه کنید!</string>
+    <string name="exit_app">از برنامه خارج می‌شوید؟</string>
+    <string name="angle_meter_desc">ابزار اندازه‌گیری زاویه آسان و دقیق.</string>
+    <string name="satellite_desc">در ارتباط باشید، هر جایی را ردیابی کنید!</string>
+    <string name="iss_tracker_desc">ردیاب زنده ایستگاه فضایی بین‌المللی</string>
+    <string name="would_you_like_to_spend_some_more_time">آیا دوست دارید زمان بیشتری را صرف کنید؟</string>
+    <string name="no_satellite_found">ماهواره‌ای یافت نشد</string>
+
+
 </resources>

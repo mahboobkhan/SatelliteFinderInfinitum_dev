@@ -50,4 +50,42 @@
     <string name="calibrate_info">ক্যালিব্রেট করতে মেনু টিপুন...</string>
     <string name="lock_info">লেভেল ওরিয়েন্টেশন লক করতে ট্যাপ করুন</string>
 
+
+    <string name="ar_view">AR ভিউ</string>
+    <string name="protractor">প্রোটেক্টর</string>
+    <string name="inclinometer">ইনক্লিনোমিটার</string>
+    <string name="pendulum_bob">পেন্ডুলাম বব</string>
+    <string name="angle_meter">অ্যাঙ্গেল মিটার</string>
+    <string name="iss_tracker">ISS ট্র্যাকার</string>
+    <string name="ruler_level">রুলার লেভেল</string>
+
+
+    <string name="subscription_join_our_premium">আমাদের প্রিমিয়ামে যোগ দিন</string>
+    <string name="subscription_experience">১০০% বিজ্ঞাপন-মুক্ত অভিজ্ঞতা</string>
+    <string name="subscription_weekly_package">সাপ্তাহিক প্যাকেজ</string>
+    <string name="subscription_monthly_package">মাসিক প্যাকেজ</string>
+    <string name="subscription_yearly_package">বার্ষিক প্যাকেজ</string>
+    <string name="subscription_continue">চালিয়ে যান</string>
+    <string name="subscription_cancel_anytime">যেকোনো সময় বাতিল করুন</string>
+    <string name="subscription_privacy_policy">গোপনীয়তা নীতি</string>
+    <string name="subscription_description">%1$s/%2$s। নবায়নের ২৪ ঘন্টা আগে যেকোনো সময় সাবস্ক্রিপশন বাতিল করুন - স্বয়ংক্রিয় পুনর্নবীকরণ</string>
+    <string name="roll">রোল</string>
+    <string name="pitch">পিচ</string>
+    <string name="reset_device_sensor">ডিভাইস সেন্সর রিসেট করুন</string>
+
+
+    <string name="satellite_list">স্যাটেলাইট তালিকা</string>
+    <string name="weather_satellites">আবহাওয়া উপগ্রহ</string>
+    <string name="general_satellites">সাধারণ উপগ্রহ</string>
+    <string name="starlink_satellites">স্টারলিংক উপগ্রহ</string>
+    <string name="try_now">এখনই চেষ্টা করুন</string>
+    <string name="don_t_go">যাবেন না!</string>
+    <string name="experience_the_smart_solution_for_your_dish">আপনার খাবারের জন্য স্মার্ট সমাধানের অভিজ্ঞতা নিন!</string>
+    <string name="exit_app">অ্যাপ থেকে বেরিয়ে আসুন?</string>
+    <string name="angle_meter_desc">সহজ, সুনির্দিষ্ট কোণ পরিমাপের সরঞ্জাম।</string>
+    <string name="satellite_desc">সংযুক্ত থাকুন, যেকোনো জায়গায় ট্র্যাক করুন!</string>
+    <string name="iss_tracker_desc">লাইভ আন্তর্জাতিক মহাকাশ স্টেশন ট্র্যাকার</string>
+    <string name="would_you_like_to_spend_some_more_time">আপনি কি আরও কিছু সময় ব্যয় করতে চান?</string>
+    <string name="no_satellite_found">কোনও উপগ্রহ পাওয়া যায়নি</string>
+
 </resources>

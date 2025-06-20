@@ -1,8 +1,9 @@
 package com.example.satellitefinder.database
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-
+@Keep
 @Entity(tableName = "weather_satellites")
 data class WeatherSatelliteEntity(
     @PrimaryKey val name: String,

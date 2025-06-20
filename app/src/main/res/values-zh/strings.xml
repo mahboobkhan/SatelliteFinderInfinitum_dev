@@ -50,4 +50,42 @@
     <string name="calibrate_info">按菜单校准...</string>
     <string name="lock_info">点击锁定水平方向</string>
 
+
+    <string name="ar_view">AR 视图</string>
+    <string name="protractor">量角器</string>
+    <string name="inclinometer">倾角仪</string>
+    <string name="pendulum_bob">摆锤</string>
+    <string name="angle_meter">角度计</string>
+    <string name="iss_tracker">ISS 追踪器</string>
+    <string name="ruler_level">标尺水平仪</string>
+
+
+    <string name="subscription_join_our_premium">加入我们的高级会员</string>
+    <string name="subscription_experience">体验 100% 无广告</string>
+    <string name="subscription_weekly_package">周套餐</string>
+    <string name="subscription_monthly_package">月套餐</string>
+    <string name="subscription_yearly_package">年套餐</string>
+    <string name="subscription_continue">继续</string>
+    <string name="subscription_cancel_anytime">随时取消</string>
+    <string name="subscription_privacy_policy">隐私政策</string>
+    <string name="subscription_description">%1$s/%2$s.随时取消订阅，续订前 24 小时 - 自动续订</string>
+    <string name="roll">滚动</string>
+    <string name="pitch">俯仰</string>
+    <string name="reset_device_sensor">重置设备传感器</string>
+
+
+    <string name="satellite_list">卫星列表</string>
+    <string name="weather_satellites">气象卫星</string>
+    <string name="general_satellites">普通卫星</string>
+    <string name="starlink_satellites">星链卫星</string>
+    <string name="try_now">立即试用</string>
+    <string name="don_t_go">别走！</string>
+    <string name="experience_the_smart_solution_for_your_dish">体验您的卫星天线智能解决方案！</string>
+    <string name="exit_app">退出应用？</string>
+    <string name="angle_meter_desc">简单、精确的角度测量工具。</string>
+    <string name="satellite_desc">保持连接，随时随地追踪！</string>
+    <string name="iss_tracker_desc">国际空间站实时追踪器</string>
+    <string name="would_you_like_to_spend_some_more_time">您想再多待一会儿吗？</string>
+    <string name="no_satellite_found">未找到卫星</string>
+
 </resources>

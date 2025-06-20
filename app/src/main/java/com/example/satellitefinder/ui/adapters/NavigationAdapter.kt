@@ -2,10 +2,11 @@ package com.example.satellitefinder.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.Keep
 import androidx.recyclerview.widget.RecyclerView
 import com.example.satellitefinder.R
 import com.example.satellitefinder.databinding.NavigationItemBinding
-
+@Keep
 data class NavigationItemModel(var icon: Int, var title: String)
 
 class NavigationAdapter(private var items: ArrayList<NavigationItemModel>, private var currentPos: Int) :

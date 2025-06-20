@@ -12,4 +12,7 @@ interface IssSatelliteDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
      fun insertAll(satellites: List<IssSatelliteEntity>)
+
+    @Query("DELETE FROM iss_satellites")
+    fun deleteAll()
 }

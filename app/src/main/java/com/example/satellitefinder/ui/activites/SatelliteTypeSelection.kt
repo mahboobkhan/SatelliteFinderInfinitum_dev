@@ -15,9 +15,16 @@ import com.example.satellitefinder.admobAds.RemoteConfig
 import com.example.satellitefinder.admobAds.showNativeAd
 import com.example.satellitefinder.databinding.ActivitySatelliteTypeSelectionBinding
 import com.example.satellitefinder.databinding.NativeAdLayoutMainBinding
+import com.example.satellitefinder.repo.SatelliteDataManager
 import com.example.satellitefinder.ui.adapters.SatelliteAdapter
 import com.example.satellitefinder.utils.canWeShowAds
 import com.example.satellitefinder.utils.startActivityWithSlideTransition
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.koin.core.context.GlobalContext
 
 class SatelliteTypeSelection : AppCompatActivity() {
     private val binding by lazy {
@@ -35,6 +42,8 @@ class SatelliteTypeSelection : AppCompatActivity() {
     val fromWhere by lazy {
         intent.getStringExtra("fromWhere")
     }
+    
+    private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,9 +59,42 @@ class SatelliteTypeSelection : AppCompatActivity() {
         binding.ivBack.setOnClickListener {
             finish()
         }
+        
+        checkDataAvailability()
         setUpRecyclerView()
-
-
+    }
+    
+    private fun checkDataAvailability() {
+        scope.launch {
+            try {
+                val dataManager = GlobalContext.get().get<SatelliteDataManager>()
+                
+                // Check if any data is still loading
+                val isLoading = listOf("weather", "general", "starlink").any { 
+                    dataManager.isLoading(it) 
+                }
+                
+                if (isLoading) {
+                    binding.loadingContainer.visibility = View.VISIBLE
+                    
+                    // Set up callback to hide loading when data is ready
+                    dataManager.onDataLoaded = { satelliteType ->
+                        // Check if all data is loaded
+                        val allLoaded = listOf("weather", "general", "starlink").all { 
+                            dataManager.isDataLoaded(it) 
+                        }
+                        if (allLoaded) {
+                            binding.loadingContainer.visibility = View.GONE
+                        }
+                    }
+                } else {
+                    binding.loadingContainer.visibility = View.GONE
+                }
+                
+            } catch (e: Exception) {
+                binding.loadingContainer.visibility = View.GONE
+            }
+        }
     }
 
     private fun setUpRecyclerView() {
